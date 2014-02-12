@@ -16,35 +16,87 @@ class TEIDataSource:
 		if not urn.startswith("urn:cts:"):
 			raise Exception("The URN is not a CTS URN. " + urn)
 		self.urn = urn
-
-	def read_fragment(self, ref="1.1"):
-		"reads a fragment from the source. ref must be dot-separated reference compliant with the expected schema of the source"
-		fo = self.open_source()
-		parser = etree.XMLParser(ns_clean=True, resolve_entities=False)
-		root = etree.parse(fo, parser)
-		## see http://lxml.de/xpathxslt.html for more detail to expand
-		elems = root.xpath(".//div1[@type='chapter'][@n='1']")
-		for e in elems:
-			for p in e.iter("p"):
-				print(etree.tostring(p))
-
-	def close_source(self):
-		self.fo.close()
-
-	def open_source(self):
 		cts_uri_frag = self.get_path_component(self.urn)
 		the_file_name = self.get_file_name(cts_uri_frag)
-		self.fo = open(self.corpus + self.file_name, 'r')
-		return self.fo
+		self.current_text = str()
+		self.prev_text = str()
+		self.read_doc_metadata()
+
+	def read_fragment(self, ref="1"):
+		"reads a fragment from the source. ref must be dot-separated reference compliant with the expected schema of the source"
+		refs=[]
+		if ref and self.delim:
+			refs = ref.split(self.delim)
+		elif ref:
+			refs = [ref]
+		else:
+			raise Exception("No ref given.")
+
+		fo = self.open_source()
+		parser = etree.XMLParser(ns_clean=True, resolve_entities=False, no_network=True)
+		root = etree.parse(fo, parser)
+		i = 0
+		xpathstr = "./"
+		for r in refs:
+			# print("Adding " + r + " to " + xpathstr)
+			i += 1
+			xpathstr += "/div%s" % str(i)
+			xpathstr += "[@type='%s']" % self.sections[i-1]
+			xpathstr += "[@n='%s']" % r
+
+		print("query = %s" % xpathstr)	
+		## see http://lxml.de/xpathxslt.html for more detail to expand
+		elems = root.xpath(xpathstr)
+
+		if elems and len(elems):
+			self.prev_text = self.current_text
+			self.current_text = str()
+			for e in elems:
+				self.current_text += str(etree.tostring(e, pretty_print=True), encoding='utf-8')
+		else:
+			self.close_source(fo) 
+			raise Exception("No text part with ref: "+ str(ref))
+
+		self.close_source(fo) 
+		return self.current_text
+
+	def read_doc_metadata(self):
+		self.source_desc = ""
+		fo = self.open_source()
+		parser = etree.XMLParser(ns_clean=True, resolve_entities=True, no_network=False)
+		root = etree.parse(fo, parser)
+		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/sourceDesc")
+		for e in src_elems:
+			self.source_desc += str(etree.tostring(e, pretty_print=True), encoding='utf-8')
+		self.sections = []
+		self.delim = None
+		sect_elems = root.xpath("/TEI.2/teiHeader/encodingDesc/refsDecl/state")
+		## print("found refsDecl/state elems count=" + str(len(sect_elems)))
+		for sect in sect_elems:
+			unit = sect.get("unit")
+			if (unit == "book"): ## HACK!!
+				unit = unit.title()
+			self.sections.append(unit)
+			if sect.get("delim"):
+				self.delim = sect.get("delim")
+		self.close_source(fo)
+
+
+	def close_source(self, fo=None):
+		if fo:
+			fo.close()
+			
+	def open_source(self):
+		return open(self.corpus + self.file_name, 'r')
 
 	def get_file_name(self, cts_uri_frag=None):
-		path_part = cts_uri_frag.split(".")
-		path_part = path_part[:len(path_part)-1] #don't want the last part of the path, it's not a directory.
-		for p in path_part:
-			if not p.startswith(self.corpus_prefix):
+		dirs_part = cts_uri_frag.split(".")
+		dirs_part = dirs_part[:len(dirs_part)-1] #don't want the last part of the path, it's not a directory.
+		for d in dirs_part:
+			if not d.startswith(self.corpus_prefix):
 				raise Exception("Corpus must be '" + self.corpus_prefix + "': " + self.urn)
-		self.file_name = "/".join(path_part) + "/" + cts_uri_frag + ".xml"
-		print("file is " + self.file_name)
+		self.file_name = "/".join(dirs_part) + "/" + cts_uri_frag + ".xml"
+		# print("file is " + self.file_name)
 		return self.file_name
 
 	def get_path_component(self, urn="urn:cts:"):
@@ -62,15 +114,7 @@ class TEIDataSource:
 		return path_component
 
 
-# this is a test document URI
-sallust_cataline = "urn:cts:latinLit:phi0631.phi001.perseus-lat2"
-tds = TEIDataSource(sallust_cataline)
-fo = tds.open_source()
-print("Name of the file: ", fo.name)
-print("Closed or not : ", fo.closed)
-print("Opening mode : ", fo.mode)
-tds.close_source()
-tds.read_fragment("1.1")
+
 
 
 
