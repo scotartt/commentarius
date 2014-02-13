@@ -4,6 +4,118 @@
 		"selected_items":
 		[
 			[
+				"sections",
+				"sectionslist  (variable)"
+			],
+			[
+				"div",
+				"div1"
+			],
+			[
+				"section",
+				"sections"
+			],
+			[
+				"assertIs",
+				"assertIsNotNone  (function)"
+			],
+			[
+				"pa",
+				"parser"
+			],
+			[
+				"xpath",
+				"xpathstr"
+			],
+			[
+				"c",
+				"close_source  (function)"
+			],
+			[
+				"pre",
+				"prev_text"
+			],
+			[
+				"close",
+				"close_source"
+			],
+			[
+				"rea",
+				"read_doc_metadata  (function)"
+			],
+			[
+				"re",
+				"read_doc_metadata  (function)"
+			],
+			[
+				"sect",
+				"sect_elems"
+			],
+			[
+				"assertN",
+				"assertIsNone  (function)"
+			],
+			[
+				"assertE",
+				"assertEquals  (function)"
+			],
+			[
+				"assertequals",
+				"assertNotEquals  (function)"
+			],
+			[
+				"to",
+				"tostring"
+			],
+			[
+				"cts",
+				"cts_uri_frag"
+			],
+			[
+				"path",
+				"path_component"
+			],
+			[
+				"bad",
+				"badfo"
+			],
+			[
+				"cl",
+				"close_source"
+			],
+			[
+				"open",
+				"open_source"
+			],
+			[
+				"corpu",
+				"corpus_prefix"
+			],
+			[
+				"greek",
+				"greek_corpus_prefix"
+			],
+			[
+				"get",
+				"get_name_components"
+			],
+			[
+				"latin",
+				"latinLit"
+			],
+			[
+				"fie",
+				"filename"
+			],
+			[
+				"lat",
+				"latin_lit"
+			],
+			[
+				"file",
+				"file_name"
+			],
+			[
 				"font",
 				"font-size"
 			],
@@ -96,37 +208,26 @@
 	"buffers":
 	[
 		{
-			"file": "decommentariis/decommentariis/settings.py",
+			"file": "decommentariis/decommentariis/xml_file.py",
 			"settings":
 			{
-				"buffer_size": 2525,
+				"buffer_size": 5002,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "from django.contrib.auth.models import User, Group\nfrom rest_framework import serializers\n\nclass UserSerializer(serializers.HyperlinkedModelSerializer):\n	class Meta:\n		model = User\n		fields = ('url', 'username', 'email', 'groups')\n		lookup_field = 'username'\n\n\nclass GroupSerializer(serializers.HyperlinkedModelSerializer):\n	class Meta:\n		model = Group\n		fields = ('url', 'name')\n		lookup_field = 'name'\n		\n",
-			"file": "decommentariis/savecomment/serializers.py",
-			"file_size": 91,
-			"file_write_time": 130365086010000000,
+			"file": "decommentariis/decommentariis/xml_file_metadata_test.py",
 			"settings":
 			{
-				"buffer_size": 407,
+				"buffer_size": 2142,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "decommentariis/savecomment/views.py",
+			"file": "data/canonical/CTS_XML_TEI/perseus/latinLit/phi0448/phi001/phi0448.phi001.perseus-lat1.xml",
 			"settings":
 			{
-				"buffer_size": 572,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "decommentariis/savecomment/models.py",
-			"settings":
-			{
-				"buffer_size": 57,
+				"buffer_size": 488332,
 				"line_ending": "Unix"
 			}
 		}
@@ -134,12 +235,20 @@
 	"build_system": "Packages/Pandown/Pandown HTML.sublime-build",
 	"command_palette":
 	{
-		"height": 287.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
+				"XML",
+				"Indent XML"
+			],
+			[
+				"xml",
+				"Indent XML"
+			],
+			[
 				"tabs",
-				"Indentation: Convert to all views to Tabs"
+				"Indentation: Convert to Tabs"
 			],
 			[
 				"pack",
@@ -201,6 +310,20 @@
 	},
 	"file_history":
 	[
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0474/phi043/phi0474.phi043.perseus-lat1.xml",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/settings.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file_test.py",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0448/phi001/phi0448.phi001.perseus-eng1.xml",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0448/phi001/phi0448.phi001.perseus-lat1.xml",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0631/phi001/phi0631.phi001.perseus-lat2.xml",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/greekLit/tlg0012/tlg001/tlg0012.tlg001.perseus-grc1.xml",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/greekLit/tlg0003/tlg001/tlg0003.tlg001.perseus-grc1.xml",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/greekLit/tlg0004/tlg001/tlg0004.tlg001.perseus-grc1.xml",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/greekLit/tlg0001/tlg001/tlg0001.tlg001.perseus-grc1.xml",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/savecomment/views.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/savecomment/serializers.py",
+		"/Users/smcphee/Development/python/lib/python3.3/site-packages/django/contrib/auth/models.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/savecomment/models.py",
 		"/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site.py",
 		"/Users/smcphee/Sites/autonomous.org/mailme.php",
 		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/Preferences.sublime-settings",
@@ -283,6 +406,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<div1",
+			"\"//",
+			"i",
+			"recursemethod",
+			"sectionsdict",
+			"sectionslist",
+			"delim",
+			"gobbledegook",
+			"type=\"Book\"",
+			"pretty_print",
+			"open_source",
+			"tostring",
+			"elems",
+			"]))\n",
+			"p",
+			"path_part",
+			"print",
+			"get_path_components",
+			"path_c",
+			"path_component",
+			"fo",
+			"self",
+			"pathc",
+			"cts_uri",
+			"get_name_components",
+			"User",
+			"AbstractBaseUser",
 			"permission-detail",
 			".box",
 			"overlay",
@@ -370,6 +520,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"type=\"book\"",
 			">*",
 			",\\n",
 			"\\{\\1\\}",
@@ -392,24 +543,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "decommentariis/decommentariis/settings.py",
+					"file": "decommentariis/decommentariis/xml_file.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2525,
+						"buffer_size": 5002,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2097,
-								2097
+								2742,
+								2742
 							]
 						],
 						"settings":
@@ -520,142 +671,8 @@
 							"codeintel_tooltips": "popup",
 							"sublime_auto_complete": true,
 							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1582.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "decommentariis/savecomment/serializers.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 407,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								50,
-								50
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -665,20 +682,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "decommentariis/savecomment/views.py",
+					"buffer": 1,
+					"file": "decommentariis/decommentariis/xml_file_metadata_test.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 572,
+						"buffer_size": 2142,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								572,
-								0
+								1659,
+								1659
 							]
 						],
 						"settings":
@@ -799,29 +816,29 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "decommentariis/savecomment/models.py",
+					"buffer": 2,
+					"file": "data/canonical/CTS_XML_TEI/perseus/latinLit/phi0448/phi001/phi0448.phi001.perseus-lat1.xml",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 57,
+						"buffer_size": 488332,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								426468,
+								426473
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": false,
-							"syntax": "Packages/Python/Python.tmLanguage"
+							"syntax": "Packages/XML/XML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 190767.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -868,7 +885,7 @@
 	"project": "comentarius.sublime-project",
 	"replace":
 	{
-		"height": 58.0
+		"height": 74.0
 	},
 	"save_all_on_build": true,
 	"select_file":
