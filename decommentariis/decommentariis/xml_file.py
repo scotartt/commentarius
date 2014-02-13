@@ -70,6 +70,10 @@ class TEIDataSource:
 		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/sourceDesc")
 		for e in src_elems:
 			self.source_desc += str(etree.tostring(e, pretty_print=True), encoding='utf-8')
+		self.get_metadata_sections(root)
+		self.close_source(fo)
+
+	def get_metadata_sections(self, root):
 		self.sections = []
 		self.delim = None
 		sect_elems = root.xpath("/TEI.2/teiHeader/encodingDesc/refsDecl/state")
@@ -78,7 +82,41 @@ class TEIDataSource:
 			self.sections.append(sect.get("unit"))
 			if sect.get("delim"):
 				self.delim = sect.get("delim")
-		self.close_source(fo)
+		self.get_sections(root)
+
+	def get_sections(self, root):
+		if self.sections:
+			self.sectionslist = []
+			i = 0
+			self.sectionslist = self.recursion_of_elements(i, root)
+			#print ("COMPLETE METADATA")	
+
+	def recursion_of_elements(self, i, container):
+		# method below here
+		maxi = len(self.sections)
+		if  i < maxi:
+			xpathstr = ".//div%d" % (i+1)
+			sect = self.sections[i]
+			typestr = "[@type='%s']" % sect
+			xpathstr += typestr
+			#print(str(i) + " = " + xpathstr)
+			div1s = container.xpath(xpathstr)
+			_temp = []
+			#print("AT %d THE COUNT OF CHILDREN IS %d" % (i, len(div1s)))
+			for d in div1s:
+				ddict = dict(d.attrib)
+				#print(ddict['type'] + "=" + ddict['n'])
+				childs = self.recursion_of_elements(i+1, d)
+				ddict["children"] = childs
+				_temp.append(ddict)
+
+			##print ("DONE NOW %d with %s, have count %d" % (i, sect, len(_temp)))
+			return _temp
+		else:
+			#print("The test has ended at %d attempts" % i)
+			return None
+		# method ends here
+
 
 	def parser(self):
 		return etree.XMLParser(ns_clean=True, resolve_entities=False, no_network=True)
