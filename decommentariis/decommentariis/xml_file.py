@@ -28,23 +28,23 @@ class TEIDataSource:
 		if ref and self.delim:
 			refs = ref.split(self.delim)
 		elif ref:
-			refs = [ref]
+			refs = ref.split() #i.e. white space
 		else:
 			raise Exception("No ref given.")
 
 		fo = self.open_source()
-		parser = etree.XMLParser(ns_clean=True, resolve_entities=False, no_network=True)
+		parser = self.parser()
 		root = etree.parse(fo, parser)
 		i = 0
 		xpathstr = "./"
 		for r in refs:
 			# print("Adding " + r + " to " + xpathstr)
 			i += 1
-			xpathstr += "/div%s" % str(i)
+			xpathstr += "/div%s" % str(i) #div1, div2, div3 etc
 			xpathstr += "[@type='%s']" % self.sections[i-1]
 			xpathstr += "[@n='%s']" % r
 
-		print("query = %s" % xpathstr)	
+		print("query on %s = %s" % (self.file_name, xpathstr))	
 		## see http://lxml.de/xpathxslt.html for more detail to expand
 		elems = root.xpath(xpathstr)
 
@@ -60,10 +60,12 @@ class TEIDataSource:
 		self.close_source(fo) 
 		return self.current_text
 
+
 	def read_doc_metadata(self):
+		"loads the sourceDesc element (title and author details) of the document and chapter breakdown."
 		self.source_desc = ""
 		fo = self.open_source()
-		parser = etree.XMLParser(ns_clean=True, resolve_entities=True, no_network=False)
+		parser = self.parser()
 		root = etree.parse(fo, parser)
 		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/sourceDesc")
 		for e in src_elems:
@@ -73,14 +75,13 @@ class TEIDataSource:
 		sect_elems = root.xpath("/TEI.2/teiHeader/encodingDesc/refsDecl/state")
 		## print("found refsDecl/state elems count=" + str(len(sect_elems)))
 		for sect in sect_elems:
-			unit = sect.get("unit")
-			if (unit == "book"): ## HACK!!
-				unit = unit.title()
-			self.sections.append(unit)
+			self.sections.append(sect.get("unit"))
 			if sect.get("delim"):
 				self.delim = sect.get("delim")
 		self.close_source(fo)
 
+	def parser(self):
+		return etree.XMLParser(ns_clean=True, resolve_entities=False, no_network=True)
 
 	def close_source(self, fo=None):
 		if fo:
@@ -112,9 +113,3 @@ class TEIDataSource:
 		else:
 			raise Exception("The URN is not a Latin or Greek corpus. " + urn)
 		return path_component
-
-
-
-
-
-
