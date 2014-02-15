@@ -1,5 +1,6 @@
 import unittest
 import xml_file
+import json
  
 sallust_cataline = "urn:cts:latinLit:phi0631.phi001.perseus-lat2"
 homer_iliad = "urn:cts:greekLit:tlg0012.tlg001.perseus-grc1"
@@ -27,6 +28,9 @@ class TestTEIDataSource(unittest.TestCase):
 			# print(str(i) + "=" + s)
 		self.assertEqual(i, 1)
 		self.assertEqual(tds.delim, None)
+		self.assertIsNotNone(tds.document_struct)
+		#print(tds.document_structure)
+
 		# print("delimiter=" + tds.delim)
 		
 
@@ -40,23 +44,14 @@ class TestTEIDataSource(unittest.TestCase):
 			# print(str(i) + "=" + s)
 		self.assertEqual(i, 3)
 		self.assertEqual(tds.delim, ".")
-		# print("delimiter=" + tds.delim)
-		print("got list of length " + str(len(tds.sectionslist)))
-		llist = tds.sectionslist
-		for e in llist:
-			print(e['n'])
-			if 'children' in e:
-					self.recurse(e['children'], e['n'])
-			print("\n")
-		
-
-	def recurse(self, alist, parent):
-		if alist:
-			for e in alist:
-				#print("im doing it more " + str(e))
-				print(parent + "." + e['n'])
-				if 'children' in e:
-					self.recurse(e['children'], parent + "." + e['n'])
+		self.assertIsNotNone(tds.document_struct)
+		f = open("./sallust.json", 'w')
+		f.write(json.dumps(tds.document_struct, sort_keys=True, indent=2, separators=(',', ': ')))
+		f.close()
+		f = open("./sallust_flat.json", 'w')
+		f.write(json.dumps(tds.document_struct_flat, sort_keys=True, indent=2, separators=(',', ': ')))
+		f.close()
+		#print(tds.document_structure)
 
 	def test_cicero_load(self):
 		print("\n======================\n%s" % cicero_derepublica)
@@ -68,7 +63,9 @@ class TestTEIDataSource(unittest.TestCase):
 			#print(str(i) + "=" + s)
 		self.assertEqual(i, 2)
 		self.assertEqual(tds.delim, None)
-		
+		self.assertIsNotNone(tds.document_struct)
+		#print(tds.document_structure)
+
 		# print("delimiter=" + tds.delim)
 
 	

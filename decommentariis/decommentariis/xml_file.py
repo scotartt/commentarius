@@ -24,6 +24,10 @@ class TEIDataSource:
 
 	def read_fragment(self, ref="1"):
 		"reads a fragment from the source. ref must be dot-separated reference compliant with the expected schema of the source"
+		if not ref in self.document_struct_flat:
+			msg = "This ref '" + ref + "' not in valid refs list: " + str(self.document_struct_flat)
+			print(msg)
+			raise Exception(msg)
 		refs=[]
 		if ref and self.delim:
 			refs = ref.split(self.delim)
@@ -74,6 +78,7 @@ class TEIDataSource:
 		self.close_source(fo)
 
 	def get_metadata_sections(self, root):
+		"this method extracts the metadata about the document sections."
 		self.sections = []
 		self.delim = None
 		sect_elems = root.xpath("/TEI.2/teiHeader/encodingDesc/refsDecl/state")
@@ -85,13 +90,15 @@ class TEIDataSource:
 		self.get_sections(root)
 
 	def get_sections(self, root):
+		"this method gets each type of section in the document and creates a navigable document structure indicator"
 		if self.sections:
 			self.sectionslist = []
 			i = 0
-			self.sectionslist = self.recursion_of_elements(i, root)
-			#print ("COMPLETE METADATA")	
+			self.sectionslist = self.xml_element_recursion(i, root)
+			self.doc_struct()
 
-	def recursion_of_elements(self, i, container):
+	def xml_element_recursion(self, i, container):
+		"This method parses TEI compatible XML for recursive document elements according to the metadata extracted about those document elements"
 		# method below here
 		maxi = len(self.sections)
 		if  i < maxi:
@@ -99,24 +106,63 @@ class TEIDataSource:
 			sect = self.sections[i]
 			typestr = "[@type='%s']" % sect
 			xpathstr += typestr
-			#print(str(i) + " = " + xpathstr)
-			div1s = container.xpath(xpathstr)
+			divs = container.xpath(xpathstr)
 			_temp = []
-			#print("AT %d THE COUNT OF CHILDREN IS %d" % (i, len(div1s)))
-			for d in div1s:
-				ddict = dict(d.attrib)
-				#print(ddict['type'] + "=" + ddict['n'])
-				childs = self.recursion_of_elements(i+1, d)
-				ddict["children"] = childs
-				_temp.append(ddict)
-
-			##print ("DONE NOW %d with %s, have count %d" % (i, sect, len(_temp)))
+			for div in divs:
+				div_dict = dict(div.attrib)
+				#print(div_dict['type'] + "=" + div_dict['n'])
+				children = self.xml_element_recursion(i+1, div)
+				if children :
+					div_dict["children"] = children
+				_temp.append(div_dict)
 			return _temp
 		else:
-			#print("The test has ended at %d attempts" % i)
 			return None
 		# method ends here
 
+	def doc_struct(self):
+		"This method gets the list of valid references in the document. The references are formatted with the metadata specified delimiter, e.g. 1.2.3. There are two structures. One is a 'proper' structure i.e. a map of the document. The other is a simple 'flat' list of the valid reference strings."
+		delim = self.delim
+		if not delim:
+			delim = " "
+		self.document_struct = {}
+		self.document_struct['_metadata_structure_list'] = self.sections
+		self.document_struct['_metadata_structure_delim'] = delim
+		self.document_struct['_metadata_document_urn'] = self.urn
+		self.document_struct['_metadata_document_description'] = self.source_desc
+		self.document_struct['document_structure'] = []
+		self.document_struct_flat = []
+		for section_elem in self.sectionslist:
+			tree_top_elem = {}
+			tree_top_elem["ref_type"] = str(section_elem['type'])
+			tree_top_elem["ref_n"] = str(section_elem['n'])
+			self.document_struct_flat.append(str(section_elem['n']))
+			if 'children' in section_elem:
+				children = self.doc_struct_recurse(delim, section_elem['children'], str(section_elem['n']))
+				if children:
+					tree_top_elem['xchildren'] = children
+			self.document_struct['document_structure'].append(tree_top_elem)
+
+	def doc_struct_recurse(self, delim, child_list, parent_str):
+		"This is the recursive method used by doc_struct()"
+		if child_list:
+			child_tree_items =[]
+			for child in child_list:
+				refstr = "%s%s%s" % (parent_str, delim, str(child['n']))
+				self.document_struct_flat.append(refstr)
+				tree_item = {}
+				tree_item['ref_type'] = child['type']
+				tree_item['ref_n'] = refstr
+				if 'children' in child:
+					children = self.doc_struct_recurse(delim, child['children'], refstr)
+					if children:
+						tree_item['xchildren'] = children
+				# end if
+				child_tree_items.append(tree_item)
+			# end for
+			return child_tree_items
+		else:
+			return None
 
 	def parser(self):
 		return etree.XMLParser(ns_clean=True, resolve_entities=False, no_network=True)
