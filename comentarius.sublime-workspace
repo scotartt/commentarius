@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"docu",
+				"document_struct_flat  (variable)"
+			],
+			[
+				"sec",
+				"sections  (variable)"
+			],
+			[
+				"chil",
+				"child_tree_items"
+			],
+			[
+				"de",
+				"delim  (variable)"
+			],
+			[
+				"do",
+				"document_structure"
+			],
+			[
+				"assert",
+				"assertIsNotNone"
+			],
+			[
+				"d",
+				"document_structure  (variable)"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
 				"sections",
 				"sectionslist  (variable)"
 			],
@@ -211,23 +243,31 @@
 			"file": "decommentariis/decommentariis/xml_file.py",
 			"settings":
 			{
-				"buffer_size": 5002,
+				"buffer_size": 7188,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "decommentariis/decommentariis/xml_file_metadata_test.py",
+			"file": "decommentariis/decommentariis/sallust.json",
 			"settings":
 			{
-				"buffer_size": 2142,
+				"buffer_size": 258536,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "data/canonical/CTS_XML_TEI/perseus/latinLit/phi0448/phi001/phi0448.phi001.perseus-lat1.xml",
+			"file": "decommentariis/decommentariis/sallust_flat.json",
 			"settings":
 			{
-				"buffer_size": 488332,
+				"buffer_size": 29451,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 624,
 				"line_ending": "Unix"
 			}
 		}
@@ -310,6 +350,7 @@
 	},
 	"file_history":
 	[
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file_metadata_test.py",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0474/phi043/phi0474.phi043.perseus-lat1.xml",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/settings.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file_test.py",
@@ -406,6 +447,31 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"tree_top_element",
+			"tree_top",
+			"children",
+			"struct_recurse",
+			"()\"",
+			"childs",
+			"			#print(str(i) + \" = \" + xpathstr)\n",
+			"div1s",
+			"ddict",
+			"d",
+			"recursion_of_elements",
+			"get_metadata_sections",
+			"read_doc_metadata",
+			"top_level",
+			"alist",
+			"parent",
+			"},'\n",
+			"open",
+			"pprefix",
+			"pref ",
+			"pref",
+			"cpref",
+			"				#json +=  \"children : { //%d\\n\" % i\n",
+			"i",
+			"t",
 			"<div1",
 			"\"//",
 			"i",
@@ -508,11 +574,7 @@
 			"\\[#(\\S+?)\\]",
 			"(\\s+?)\\[([^\\]]+?)\\]\\[#(\\S+?)\\]",
 			"\\s+?\\[([^\\]]+?)\\]\\[#(\\S+?)\\]",
-			"\\[#(\\S+?)\\]",
-			"\\[\\]\\[#(\\S+?)\\]",
-			"\\[([\\d-]+?)\\]\\[#(\\S+?)\\]",
-			"\\[\\]\\[#(\\S+?)\\]",
-			"\\[([\\d-]+?)\\]\\[#(\\S+?)\\]"
+			"\\[#(\\S+?)\\]"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -552,15 +614,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5002,
+						"buffer_size": 7188,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2742,
-								2742
+								1146,
+								1146
 							]
 						],
 						"settings":
@@ -675,7 +737,7 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 430.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -683,19 +745,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "decommentariis/decommentariis/xml_file_metadata_test.py",
+					"file": "decommentariis/decommentariis/sallust.json",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2142,
+						"buffer_size": 258536,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1659,
-								1659
+								48994,
+								48994
 							]
 						],
 						"settings":
@@ -805,8 +867,9 @@
 							},
 							"codeintel_tooltips": "popup",
 							"sublime_auto_complete": true,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -817,31 +880,167 @@
 				},
 				{
 					"buffer": 2,
-					"file": "data/canonical/CTS_XML_TEI/perseus/latinLit/phi0448/phi001/phi0448.phi001.perseus-lat1.xml",
-					"semi_transient": true,
+					"file": "decommentariis/decommentariis/sallust_flat.json",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 488332,
+						"buffer_size": 29451,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								426468,
-								426473
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": false,
-							"syntax": "Packages/XML/XML.tmLanguage"
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 190767.0,
+						"translation.y": 10463.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 624,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": false,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]

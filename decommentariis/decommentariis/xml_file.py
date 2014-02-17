@@ -12,12 +12,16 @@ greek_corpus_prefix = "tlg" # thesaurus linguae graecae
 
 class TEIDataSource:
 	"This class abstracts access to the XML data in the Perseus TEI files. Expects CTS compliant URN to be passed to constructor."
-	def __init__(self, urn=""):
+	def __init__(self, urn=None):
+		if urn:
+			self.load(urn)
+
+	def load(self, urn=""):
 		if not urn.startswith("urn:cts:"):
 			raise Exception("The URN is not a CTS URN. " + urn)
 		self.urn = urn
 		cts_uri_frag = self.get_path_component(self.urn)
-		the_file_name = self.get_file_name(cts_uri_frag)
+		self.file_name = self.get_file_name(cts_uri_frag)
 		self.current_text = str()
 		self.prev_text = str()
 		self.read_doc_metadata()
@@ -47,8 +51,7 @@ class TEIDataSource:
 			xpathstr += "/div%s" % str(i) #div1, div2, div3 etc
 			xpathstr += "[@type='%s']" % self.sections[i-1]
 			xpathstr += "[@n='%s']" % r
-
-		print("query on %s = %s" % (self.file_name, xpathstr))	
+		# print("query on %s = %s" % (self.file_name, xpathstr))	
 		## see http://lxml.de/xpathxslt.html for more detail to expand
 		elems = root.xpath(xpathstr)
 
@@ -144,7 +147,7 @@ class TEIDataSource:
 			self.document_struct['document_structure'].append(tree_top_elem)
 
 	def doc_struct_recurse(self, delim, child_list, parent_str):
-		"This is the recursive method used by doc_struct()"
+		"This is the recursive method used by doc_struct(). Each child contains the full reference to the parent.child relationship with the nominated delimiter, in the tree_item['ref_n'] emtry of the returned dict."
 		if child_list:
 			child_tree_items =[]
 			for child in child_list:
@@ -172,17 +175,19 @@ class TEIDataSource:
 			fo.close()
 			
 	def open_source(self):
+		"Opens the source file nominated from the URN give at construction."
 		return open(self.corpus + self.file_name, 'r')
 
 	def get_file_name(self, cts_uri_frag=None):
+		"Given the URN, determines the file name which should contain the data."
 		dirs_part = cts_uri_frag.split(".")
 		dirs_part = dirs_part[:len(dirs_part)-1] #don't want the last part of the path, it's not a directory.
 		for d in dirs_part:
 			if not d.startswith(self.corpus_prefix):
 				raise Exception("Corpus must be '" + self.corpus_prefix + "': " + self.urn)
-		self.file_name = "/".join(dirs_part) + "/" + cts_uri_frag + ".xml"
+		file_name = "/".join(dirs_part) + "/" + cts_uri_frag + ".xml"
 		# print("file is " + self.file_name)
-		return self.file_name
+		return file_name
 
 	def get_path_component(self, urn="urn:cts:"):
 		path_component = urn.replace("urn:cts:", "")
