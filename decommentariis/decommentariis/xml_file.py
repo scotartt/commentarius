@@ -15,7 +15,12 @@ class TEIDataSource:
 	def __init__(self, urn=None):
 		if urn:
 			self.load(urn)
-
+		else:
+			pass
+			
+	def list(self):
+		return { sallust_cataline:"urn:cts:latinLit:phi0631.phi001.perseus-lat2", caesar_gallicwar:"urn:cts:latinLit:phi0448.phi001.perseus-lat1", cicero_derepublica: "urn:cts:latinLit:phi0474.phi043.perseus-lat1"} 
+		
 	def load(self, urn=""):
 		if not urn.startswith("urn:cts:"):
 			raise Exception("The URN is not a CTS URN. " + urn)
