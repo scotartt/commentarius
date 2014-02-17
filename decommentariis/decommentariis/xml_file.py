@@ -12,12 +12,26 @@ greek_corpus_prefix = "tlg" # thesaurus linguae graecae
 
 class TEIDataSource:
 	"This class abstracts access to the XML data in the Perseus TEI files. Expects CTS compliant URN to be passed to constructor."
+	## fields (strings) that encode various parameters
+	urn = None
+	corpus = None
+	file_name = None
+	current_text = None
+	prev_text = None
+	## fields that tell us the structure of the document
+	source_desc = None
+	delim = None
+	sections = []
+	xmlsectionslist = []
+	document_struct = {}
+	document_struct_flat = []
+
 	def __init__(self, urn=None):
 		if urn:
 			self.load(urn)
 		else:
 			pass
-			
+
 	def list(self):
 		return { sallust_cataline:"urn:cts:latinLit:phi0631.phi001.perseus-lat2", caesar_gallicwar:"urn:cts:latinLit:phi0448.phi001.perseus-lat1", cicero_derepublica: "urn:cts:latinLit:phi0474.phi043.perseus-lat1"} 
 		
@@ -100,9 +114,9 @@ class TEIDataSource:
 	def get_sections(self, root):
 		"this method gets each type of section in the document and creates a navigable document structure indicator"
 		if self.sections:
-			self.sectionslist = []
+			self.xmlsectionslist = []
 			i = 0
-			self.sectionslist = self.xml_element_recursion(i, root)
+			self.xmlsectionslist = self.xml_element_recursion(i, root)
 			self.doc_struct()
 
 	def xml_element_recursion(self, i, container):
@@ -140,7 +154,7 @@ class TEIDataSource:
 		self.document_struct['_metadata_document_description'] = self.source_desc
 		self.document_struct['document_structure'] = []
 		self.document_struct_flat = []
-		for section_elem in self.sectionslist:
+		for section_elem in self.xmlsectionslist:
 			tree_top_elem = {}
 			tree_top_elem["ref_type"] = str(section_elem['type'])
 			tree_top_elem["ref_n"] = str(section_elem['n'])
