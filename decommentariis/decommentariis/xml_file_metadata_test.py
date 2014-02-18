@@ -10,6 +10,7 @@ junk_cts = "asjgk:sajgksa:asdgsag:.sagjksa"
 urncts_junk_cts = "urn:cts:asdgsag:.sagjksa"
 urnctslatinlit_junk_cts = "urn:cts:latinLit:phoo123.sagjksa"
 does_not_exist_cts = "urn:cts:latinLit:phi9999.phi999.perseus-lat9"
+strabo_geo = "urn:cts:greekLit:tlg0099.tlg001.perseus-grc1"
 
 class TestTEIDataSource(unittest.TestCase):
  
@@ -29,9 +30,8 @@ class TestTEIDataSource(unittest.TestCase):
 		self.assertEqual(i, 1)
 		self.assertEqual(tds.delim, None)
 		self.assertIsNotNone(tds.document_metastructure)
-		#print(tds.document_metastructure)
+		self.printdetail(tds)
 
-		# print("delimiter=" + tds.delim)
 		
 
 	def test_caesar_load(self):
@@ -45,13 +45,7 @@ class TestTEIDataSource(unittest.TestCase):
 		self.assertEqual(i, 3)
 		self.assertEqual(tds.delim, ".")
 		self.assertIsNotNone(tds.document_metastructure)
-		f = open("./sallust.json", 'w')
-		f.write(json.dumps(tds.document_metastructure, sort_keys=True, indent=2, separators=(',', ': ')))
-		f.close()
-		f = open("./sallust_flat.json", 'w')
-		f.write(json.dumps(tds.document_metastructure_flat, sort_keys=True, indent=2, separators=(',', ': ')))
-		f.close()
-		#print(tds.document_metastructure)
+		self.printdetail(tds)
 
 	def test_cicero_load(self):
 		print("\n======================\n%s" % cicero_derepublica)
@@ -64,11 +58,24 @@ class TestTEIDataSource(unittest.TestCase):
 		self.assertEqual(i, 2)
 		self.assertEqual(tds.delim, None)
 		self.assertIsNotNone(tds.document_metastructure)
-		print(json.dumps(tds.document_metastructure, sort_keys=True, indent=2, separators=(',', ': ')))
+		self.printdetail(tds)
 
-		# print("delimiter=" + tds.delim)
+	def test_strabo_load(self):
+		print("\n======================\n%s" % strabo_geo)
+		tds = xml_file.TEIDataSource(strabo_geo)
+		self.assertNotEqual(tds.source_desc, None)
+		i = 0
+		for s in tds.sections:
+			i += 1
+			# print(str(i) + "=" + s)
+		self.assertEqual(i, 3)
+		#self.assertEqual(tds.delim, ".")
+		self.assertIsNotNone(tds.document_metastructure)
+		self.assertEqual("Strabo", tds.author)
+		self.printdetail(tds)
 
-	
+	def printdetail(self, tds):
+		print(str(tds.author) + ", '" + str(tds.title) + "', " + str(tds.editor) + ", " + str(tds.publisher) + ": " + str(tds.pubPlace) + ", " + str(tds.date))
 
 if __name__ == '__main__':
 	unittest.main()

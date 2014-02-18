@@ -3,12 +3,17 @@ This python class is used to get the data off the file system.
 """
 from lxml import etree
 import os
+data_dir="/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/"
+if os.environ.get("CTS_DATA_PATH"):
+	data_dir=os.environ.get("CTS_DATA_PATH")
+else:
+	print('Using default value for "data_dir":"' + data_dir + '"')
 
-data_dir = "/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/" ## must be parameterised
 latin_lit = data_dir + "latinLit/"
 greek_lit = data_dir + "greekLit/"
-latin_corpus_prefix = "phi" # package humanities institute
-greek_corpus_prefix = "tlg" # thesaurus linguae graecae
+latin_corpus_prefix = "phi"    # package humanities institute
+latin_corpus_prefix_2 = "stoa" # stoa texts
+greek_corpus_prefix = "tlg"    # thesaurus linguae graecae
 
 class TEIDataSource:
 	"This class abstracts access to the XML data in the Perseus TEI files. Expects CTS compliant URN to be passed to constructor."
@@ -16,6 +21,12 @@ class TEIDataSource:
 	urn = None
 	corpus = None
 	file_name = None
+	author = None
+	title = None
+	publisher = None
+	pubPlace = None
+	date = None
+	editor = None
 	current_text = None
 	prev_text = None
 	## fields that tell us the structure of the document
@@ -96,8 +107,30 @@ class TEIDataSource:
 		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/sourceDesc")
 		for e in src_elems:
 			self.source_desc += str(etree.tostring(e, pretty_print=True), encoding='utf-8')
+		if len(src_elems):
+			self.populate_bib_fields(src_elems[0])
 		self.get_metadata_sections(root)
 		self.close_source(fo)
+
+	def populate_bib_fields(self, e):
+		authorE = e.xpath(".//author")
+		if len(authorE):
+			self.author = authorE[0].text
+		titleE = e.xpath(".//title")
+		if len(titleE):
+			self.title = titleE[0].text
+		publisherE = e.xpath(".//publisher")
+		if len(publisherE):
+			self.publisher = publisherE[0].text
+		dateE = e.xpath(".//date")
+		if len(dateE):
+			self.date = dateE[0].text
+		editorE = e.xpath(".//editor")
+		if len(editorE):
+			self.editor = editorE[0].text
+		pubPlaceE = e.xpath(".//pubPlace")
+		if len(pubPlaceE):
+			self.pubPlace = pubPlaceE[0].text
 
 	def get_metadata_sections(self, root):
 		"this method extracts the metadata about the document sections."
@@ -201,9 +234,6 @@ class TEIDataSource:
 		"Given the URN, determines the file name which should contain the data."
 		dirs_part = cts_uri_frag.split(".")
 		dirs_part = dirs_part[:len(dirs_part)-1] #don't want the last part of the path, it's not a directory.
-		for d in dirs_part:
-			if not d.startswith(self.corpus_prefix):
-				raise Exception("Corpus must be '" + self.corpus_prefix + "': " + self.urn)
 		file_name = "/".join(dirs_part) + "/" + cts_uri_frag + ".xml"
 		# print("file is " + self.file_name)
 		return file_name
@@ -212,12 +242,14 @@ class TEIDataSource:
 		path_component = urn.replace("urn:cts:", "")
 		if path_component.startswith("latinLit:"):
 			self.corpus = latin_lit
-			self.corpus_prefix = latin_corpus_prefix
 			path_component = path_component.replace("latinLit:", "")
 		elif path_component.startswith("greekLit:"):
 			self.corpus = greek_lit
-			self.corpus_prefix = greek_corpus_prefix
 			path_component = path_component.replace("greekLit:", "")
 		else:
 			raise Exception("The URN is not a Latin or Greek corpus. " + urn)
 		return path_component
+
+	def print_bib_detail(self):
+		return "{0}, '{1}', (ed. {2}), {3} : {4}, {5}".format(str(self.author), str(self.title), str(self.editor), str(self.publisher), str(self.pubPlace), str(self.date)).replace("\n", " ").replace("  ", " ")
+
