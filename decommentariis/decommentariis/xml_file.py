@@ -4,7 +4,7 @@ This python class is used to get the data off the file system.
 from lxml import etree
 import os
 
-data_dir = "../../data/canonical/CTS_XML_TEI/perseus/"
+data_dir = "/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/" ## must be parameterised
 latin_lit = data_dir + "latinLit/"
 greek_lit = data_dir + "greekLit/"
 latin_corpus_prefix = "phi" # package humanities institute
@@ -23,8 +23,8 @@ class TEIDataSource:
 	delim = None
 	sections = []
 	xmlsectionslist = []
-	document_struct = {}
-	document_struct_flat = []
+	document_metastructure = {}
+	document_metastructure_flat = []
 
 	def __init__(self, urn=None):
 		if urn:
@@ -47,8 +47,8 @@ class TEIDataSource:
 
 	def read_fragment(self, ref="1"):
 		"reads a fragment from the source. ref must be dot-separated reference compliant with the expected schema of the source"
-		if not ref in self.document_struct_flat:
-			msg = "This ref '" + ref + "' not in valid refs list: " + str(self.document_struct_flat)
+		if not ref in self.document_metastructure_flat:
+			msg = "This ref '" + ref + "' not in valid refs list: " + str(self.document_metastructure_flat)
 			print(msg)
 			raise Exception(msg)
 		refs=[]
@@ -147,23 +147,23 @@ class TEIDataSource:
 		delim = self.delim
 		if not delim:
 			delim = " "
-		self.document_struct = {}
-		self.document_struct['_metadata_structure_list'] = self.sections
-		self.document_struct['_metadata_structure_delim'] = delim
-		self.document_struct['_metadata_document_urn'] = self.urn
-		self.document_struct['_metadata_document_description'] = self.source_desc
-		self.document_struct['document_structure'] = []
-		self.document_struct_flat = []
+		self.document_metastructure = {}
+		self.document_metastructure['_metadata_structure_list'] = self.sections
+		self.document_metastructure['_metadata_structure_delim'] = delim
+		self.document_metastructure['_metadata_document_urn'] = self.urn
+		self.document_metastructure['_metadata_document_description'] = self.source_desc
+		self.document_metastructure['document_structure'] = []
+		self.document_metastructure_flat = []
 		for section_elem in self.xmlsectionslist:
 			tree_top_elem = {}
 			tree_top_elem["ref_type"] = str(section_elem['type'])
 			tree_top_elem["ref_n"] = str(section_elem['n'])
-			self.document_struct_flat.append(str(section_elem['n']))
+			self.document_metastructure_flat.append(str(section_elem['n']))
 			if 'children' in section_elem:
 				children = self.doc_struct_recurse(delim, section_elem['children'], str(section_elem['n']))
 				if children:
 					tree_top_elem['xchildren'] = children
-			self.document_struct['document_structure'].append(tree_top_elem)
+			self.document_metastructure['document_structure'].append(tree_top_elem)
 
 	def doc_struct_recurse(self, delim, child_list, parent_str):
 		"This is the recursive method used by doc_struct(). Each child contains the full reference to the parent.child relationship with the nominated delimiter, in the tree_item['ref_n'] emtry of the returned dict."
@@ -171,7 +171,7 @@ class TEIDataSource:
 			child_tree_items =[]
 			for child in child_list:
 				refstr = "%s%s%s" % (parent_str, delim, str(child['n']))
-				self.document_struct_flat.append(refstr)
+				self.document_metastructure_flat.append(refstr)
 				tree_item = {}
 				tree_item['ref_type'] = child['type']
 				tree_item['ref_n'] = refstr

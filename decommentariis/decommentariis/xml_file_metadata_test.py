@@ -28,8 +28,8 @@ class TestTEIDataSource(unittest.TestCase):
 			# print(str(i) + "=" + s)
 		self.assertEqual(i, 1)
 		self.assertEqual(tds.delim, None)
-		self.assertIsNotNone(tds.document_struct)
-		#print(tds.document_structure)
+		self.assertIsNotNone(tds.document_metastructure)
+		#print(tds.document_metastructure)
 
 		# print("delimiter=" + tds.delim)
 		
@@ -44,14 +44,14 @@ class TestTEIDataSource(unittest.TestCase):
 			# print(str(i) + "=" + s)
 		self.assertEqual(i, 3)
 		self.assertEqual(tds.delim, ".")
-		self.assertIsNotNone(tds.document_struct)
+		self.assertIsNotNone(tds.document_metastructure)
 		f = open("./sallust.json", 'w')
-		f.write(json.dumps(tds.document_struct, sort_keys=True, indent=2, separators=(',', ': ')))
+		f.write(json.dumps(tds.document_metastructure, sort_keys=True, indent=2, separators=(',', ': ')))
 		f.close()
 		f = open("./sallust_flat.json", 'w')
-		f.write(json.dumps(tds.document_struct_flat, sort_keys=True, indent=2, separators=(',', ': ')))
+		f.write(json.dumps(tds.document_metastructure_flat, sort_keys=True, indent=2, separators=(',', ': ')))
 		f.close()
-		#print(tds.document_structure)
+		#print(tds.document_metastructure)
 
 	def test_cicero_load(self):
 		print("\n======================\n%s" % cicero_derepublica)
@@ -63,8 +63,8 @@ class TestTEIDataSource(unittest.TestCase):
 			#print(str(i) + "=" + s)
 		self.assertEqual(i, 2)
 		self.assertEqual(tds.delim, None)
-		self.assertIsNotNone(tds.document_struct)
-		#print(tds.document_structure)
+		self.assertIsNotNone(tds.document_metastructure)
+		print(json.dumps(tds.document_metastructure, sort_keys=True, indent=2, separators=(',', ': ')))
 
 		# print("delimiter=" + tds.delim)
 
