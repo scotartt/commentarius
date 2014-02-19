@@ -19,7 +19,8 @@ class TEIEntry(models.Model):
 		return super(TEIEntry, self).save(*args, **kwargs)
 
 	def __str__(self):
-		return self.cts_urn
+		fnone = lambda s: str(s) if s else "-"
+		return "{0} :: {1}, '{2}'".format(self.cts_urn, fnone(self.author), fnone(self.title))
 
 	def readURN(self):
 		tei = TEIDataSource(self.cts_urn)

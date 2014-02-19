@@ -5,10 +5,12 @@ sallust_cataline = "urn:cts:latinLit:phi0631.phi001.perseus-lat2"
 homer_iliad = "urn:cts:greekLit:tlg0012.tlg001.perseus-grc1"
 caesar_gallic = "urn:cts:latinLit:phi0448.phi001.perseus-lat1"
 cicero_derepublica ="urn:cts:latinLit:phi0474.phi043.perseus-lat1"
+propertius = "urn:cts:latinLit:phi0620.phi001.perseus-lat2"
 junk_cts = "asjgk:sajgksa:asdgsag:.sagjksa"
 urncts_junk_cts = "urn:cts:asdgsag:.sagjksa"
 urnctslatinlit_junk_cts = "urn:cts:latinLit:phoo123.sagjksa"
 does_not_exist_cts = "urn:cts:latinLit:phi9999.phi999.perseus-lat9"
+
 
 class TestTEIDataSource(unittest.TestCase):
  
@@ -46,7 +48,7 @@ class TestTEIDataSource(unittest.TestCase):
 		tds = xml_file.TEIDataSource(homer_iliad)
 		with self.assertRaises(Exception): #, "No text part with ref: 1"):
 			text = tds.read_fragment('1')
-			print(text)
+			#print(text)
 
 
 	def test_sallust_reads_metadata(self):
@@ -68,7 +70,7 @@ class TestTEIDataSource(unittest.TestCase):
 		tds = xml_file.TEIDataSource(caesar_gallic)
 		tds.read_doc_metadata()
 		self.assertNotEqual(tds.source_desc, None)
-		print(tds.source_desc)
+		#print(tds.source_desc)
 		i = 0
 		for s in tds.sections:
 			i += 1
@@ -77,6 +79,11 @@ class TestTEIDataSource(unittest.TestCase):
 		self.assertEqual(tds.delim, ".")
 		# print("delimiter=" + tds.delim)
 
+	def test_propertius_reads_1_2(self):
+		print("")
+		tds = xml_file.TEIDataSource(propertius)
+		text = tds.read_fragment('1.2')
+		print(text)
 
 	def test_sallust_reads_chapt1(self):
 		print("")
@@ -114,7 +121,8 @@ class TestTEIDataSource(unittest.TestCase):
 		print("")
 		tds = xml_file.TEIDataSource(cicero_derepublica)
 		text = tds.read_fragment('2 2')
-		print(text)
+		self.assertIsNotNone(text)
+		#print(text)
 
 if __name__ == '__main__':
 	unittest.main()

@@ -133,13 +133,20 @@ class TEIDataSource:
 		"this method extracts the metadata about the document sections."
 		self.sections = []
 		self.delim = None
-		sect_elems = root.xpath("/TEI.2/teiHeader/encodingDesc/refsDecl/state")
-		## print("found refsDecl/state elems count=" + str(len(sect_elems)))
-		for sect in sect_elems:
-			self.sections.append(sect.get("unit"))
-			if sect.get("delim"):
-				self.delim = sect.get("delim")
-		self.get_sections(root)
+		sect_elems = root.xpath("/TEI.2/teiHeader/encodingDesc/refsDecl/state | /TEI.2/teiHeader/encodingDesc/refsDecl/step")
+		if sect_elems and len(sect_elems):
+			## print("found refsDecl/state elems count=" + str(len(sect_elems)))
+			for sect in sect_elems:
+				if sect.get("unit"):
+					self.sections.append(sect.get("unit"))
+				elif sect.get("refunit"):
+					self.sections.append(sect.get("refunit"))
+				if sect.get("delim"):
+					self.delim = sect.get("delim")
+			self.get_sections(root)
+		else:
+			raise Exception("No parsable metadata!")
+
 
 	def get_sections(self, root):
 		"this method gets each type of section in the document and creates a navigable document structure indicator"
