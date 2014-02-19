@@ -10,7 +10,7 @@ tei_resource = TEIEntryResource()
 
 urlpatterns = patterns('',
 	# Examples:
-	# url(r'^admin/', include(admin.site.urls)),
+	url(r'^admin/', include(admin.site.urls)),
 	#(r'^blog/', include('decommentariis.urls')),
     (r'^api/', include(tei_resource.urls)),
 )
