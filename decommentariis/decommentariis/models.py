@@ -6,13 +6,14 @@ from decommentariis.xml_file import TEIDataSource
 class TEIEntry(models.Model):
 	cts_urn = models.CharField(max_length=200, primary_key=True)
 	creation_date = models.DateTimeField(default=now)
-	author = models.CharField(max_length=200)
-	title = models.CharField(max_length=200)
-	editor = models.CharField(max_length=200)
-	publisher = models.CharField(max_length=200)
-	pubPlace = models.CharField(max_length=200)
-	pubDate = models.CharField(max_length=30)
-	metadata = models.TextField()
+	author = models.CharField(max_length=200, null=True, db_index=True)
+	title = models.CharField(max_length=200, null=True, db_index=True)
+	editor = models.CharField(max_length=200, null=True, db_index=True)
+	publisher = models.CharField(max_length=200, null=True)
+	pubPlace = models.CharField(max_length=200, null=True)
+	pubDate = models.CharField(max_length=30, null=True)
+	bibliographic_entry = models.CharField(max_length=1024,null=True, db_index=True)
+	metadata = models.TextField(null=True)
 
 	def save(self, *args, **kwargs):
 		return super(TEIEntry, self).save(*args, **kwargs)
@@ -29,6 +30,7 @@ class TEIEntry(models.Model):
 		self.publisher = tei.publisher
 		self.pubPlace = tei.pubPlace
 		self.pubDate = tei.date
+		self.bibliographic_entry = tei.print_bib_detail()
 
 	def readData(self, ref):
 		tei = TEIDataSource(self.cts_urn)

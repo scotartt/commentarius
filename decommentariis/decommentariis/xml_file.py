@@ -42,10 +42,7 @@ class TEIDataSource:
 			self.load(urn)
 		else:
 			pass
-
-	def list(self):
-		return { sallust_cataline:"urn:cts:latinLit:phi0631.phi001.perseus-lat2", caesar_gallicwar:"urn:cts:latinLit:phi0448.phi001.perseus-lat1", cicero_derepublica: "urn:cts:latinLit:phi0474.phi043.perseus-lat1"} 
-		
+	
 	def load(self, urn=""):
 		if not urn.startswith("urn:cts:"):
 			raise Exception("The URN is not a CTS URN. " + urn)
@@ -251,5 +248,6 @@ class TEIDataSource:
 		return path_component
 
 	def print_bib_detail(self):
-		return "{0}, '{1}', (ed. {2}), {3} : {4}, {5}".format(str(self.author), str(self.title), str(self.editor), str(self.publisher), str(self.pubPlace), str(self.date)).replace("\n", " ").replace("  ", " ")
+		fnone = lambda s: str(s) if s else "-"
+		return "{0}, '{1}', (ed. {2}), {3} : {4}, {5}".format(fnone(self.author), fnone(self.title), fnone(self.editor), fnone(self.publisher), fnone(self.pubPlace), fnone(self.date)).replace("\n", " ").replace("  ", " ")
 
