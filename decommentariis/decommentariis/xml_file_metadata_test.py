@@ -1,6 +1,4 @@
-import unittest
-import json
-import os
+import unittest, json, os
 from xml_file import TEIDataSource
 
 sallust_cataline = "urn:cts:latinLit:phi0631.phi001.perseus-lat2"
@@ -16,7 +14,6 @@ strabo_geo = "urn:cts:greekLit:tlg0099.tlg001.perseus-grc1"
 # where the files are.
 if not os.environ.get("CTS_DATA_PATH"):
 	os.environ.setdefault("CTS_DATA_PATH", "/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/")
-
 
 class TestTEIDataSource(unittest.TestCase):
  

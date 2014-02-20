@@ -17,7 +17,7 @@ greek_corpus_prefix = "tlg"    # thesaurus linguae graecae
 
 class TEIDataSource:
 	"This class abstracts access to the XML data in the Perseus TEI files. Expects CTS compliant URN to be passed to constructor."
-	## fields (strings) that encode various parameters
+	## fields (strings) that simply encode various attributes parsed either from the given argument or out of the document.
 	urn = None
 	corpus = None
 	file_name = None
@@ -27,9 +27,9 @@ class TEIDataSource:
 	pubPlace = None
 	date = None
 	editor = None
+	## fields (data structures) that tell us about the structure of the document
 	current_text = None
 	prev_text = None
-	## fields that tell us the structure of the document
 	source_desc = None
 	delim = None
 	sections = []
@@ -75,11 +75,11 @@ class TEIDataSource:
 		for r in refs:
 			# print("Adding " + r + " to " + xpathstr)
 			i += 1
-			xpathstr += "/div%s" % str(i) #div1, div2, div3 etc
-			xpathstr += "[@type='%s']" % self.sections[i-1]
-			xpathstr += "[@n='%s']" % r
+			xpathstr = "{0}/div{1}[@type='{2}'][@n='{3}']".format(xpathstr, str(i), self.sections[i-1], r)
+			# e.g. {xpathstr}/div1[@type='book'][@n='2']
+
 		# print("query on %s = %s" % (self.file_name, xpathstr))	
-		## see http://lxml.de/xpathxslt.html for more detail to expand
+		# see http://lxml.de/xpathxslt.html for more detail to expand
 		elems = root.xpath(xpathstr)
 
 		if elems and len(elems):

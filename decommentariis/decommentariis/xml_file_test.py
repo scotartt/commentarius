@@ -1,5 +1,4 @@
-import unittest
-import os
+import unittest, os
 from xml_file import TEIDataSource
  
 sallust_cataline = "urn:cts:latinLit:phi0631.phi001.perseus-lat2"
