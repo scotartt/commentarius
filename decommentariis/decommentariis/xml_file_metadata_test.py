@@ -1,7 +1,8 @@
 import unittest
-import xml_file
 import json
- 
+import os
+from xml_file import TEIDataSource
+
 sallust_cataline = "urn:cts:latinLit:phi0631.phi001.perseus-lat2"
 homer_iliad = "urn:cts:greekLit:tlg0012.tlg001.perseus-grc1"
 caesar_gallic = "urn:cts:latinLit:phi0448.phi001.perseus-lat1"
@@ -12,6 +13,11 @@ urnctslatinlit_junk_cts = "urn:cts:latinLit:phoo123.sagjksa"
 does_not_exist_cts = "urn:cts:latinLit:phi9999.phi999.perseus-lat9"
 strabo_geo = "urn:cts:greekLit:tlg0099.tlg001.perseus-grc1"
 
+# where the files are.
+if not os.environ.get("CTS_DATA_PATH"):
+	os.environ.setdefault("CTS_DATA_PATH", "/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/")
+
+
 class TestTEIDataSource(unittest.TestCase):
  
 	def setUp(self):
@@ -21,7 +27,7 @@ class TestTEIDataSource(unittest.TestCase):
 	def test_sallust_load(self):
 		print("\n======================\n%s" % sallust_cataline)
 		# this is a test document URI
-		tds = xml_file.TEIDataSource(sallust_cataline)
+		tds = TEIDataSource(sallust_cataline)
 		self.assertNotEqual(tds.source_desc, None)
 		i = 0
 		for s in tds.sections:
@@ -36,7 +42,7 @@ class TestTEIDataSource(unittest.TestCase):
 
 	def test_caesar_load(self):
 		print("\n======================\n%s" % caesar_gallic)
-		tds = xml_file.TEIDataSource(caesar_gallic)
+		tds = TEIDataSource(caesar_gallic)
 		self.assertNotEqual(tds.source_desc, None)
 		i = 0
 		for s in tds.sections:
@@ -49,7 +55,7 @@ class TestTEIDataSource(unittest.TestCase):
 
 	def test_cicero_load(self):
 		print("\n======================\n%s" % cicero_derepublica)
-		tds = xml_file.TEIDataSource(cicero_derepublica)
+		tds = TEIDataSource(cicero_derepublica)
 		self.assertIsNotNone(tds.source_desc)
 		i = 0
 		for s in tds.sections:
@@ -62,7 +68,7 @@ class TestTEIDataSource(unittest.TestCase):
 
 	def test_strabo_load(self):
 		print("\n======================\n%s" % strabo_geo)
-		tds = xml_file.TEIDataSource(strabo_geo)
+		tds = TEIDataSource(strabo_geo)
 		self.assertNotEqual(tds.source_desc, None)
 		i = 0
 		for s in tds.sections:
