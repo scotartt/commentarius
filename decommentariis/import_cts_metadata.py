@@ -16,27 +16,23 @@ def open_source(path, filename):
 
 def save_sections(section_numbers, entry):
 	if section_numbers and (len(section_numbers)):
+		i = 10
 		for section in section_numbers:
-			#if not entry.teisection_set.filter(section_ref=section).exists():
 			teiSection = TEISection()
+			teiSection.cts_urn = '{0}:{1}'.format(entry.cts_urn, section)
 			teiSection.entry = entry
 			teiSection.section_ref = section
-			print('\t\tSection {0} in {1}'.format(teiSection.section_ref, entry.cts_urn))
+			teiSection.cts_sequence = i
+			print('\t\tSection {0}'.format(teiSection.cts_urn))
 			teiSection.save()
+			i += 10
 
 def savedb(urn):
-	#if not TEIEntry.objects.filter(urn).exists():
 	entry = TEIEntry(urn)
 	section_numbers = entry.loadURN()
 	print('NEW {0}\n\t{1}'.format(urn, entry.bibliographic_entry))
 	entry.save()
 	save_sections(section_numbers, entry)
-	# else:
-	# 	entry = TEIEntry.objects.get(urn)
-	# 	section_numbers = entry.loadURN()
-	# 	print('UPDATE {0}\n\t{1}'.format(urn, entry.bibliographic_entry))
-	# 	entry.save(section_numbers, entry)
-
 
 def readdatafromline(line, prefix):
 	line = line.rstrip().rstrip('.xml')
@@ -49,10 +45,12 @@ def readdatafromline(line, prefix):
 			print("\n!!! {0} has unparseable data: {1}".format(urn, ex))
 
 ## the script
+# first, the latins
 latinFile = open_source(path, "latinLit.txt")
 for line in latinFile.readlines():
 	readdatafromline(line, 'urn:cts:latinLit:')
 
-
-
-
+# then, the greeks
+greekFile = open_source(path, "greekLit.txt")
+for line in greekFile.readlines():
+	readdatafromline(line, 'urn:cts:greekLit:')

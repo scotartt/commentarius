@@ -123,7 +123,7 @@ class TestTEIDataSource(unittest.TestCase):
 	def test_cicero_reads_chapt2_2(self):
 		print("")
 		tds = TEIDataSource(cicero_derepublica)
-		text = tds.read_fragment('2 2')
+		text = tds.read_fragment('2,2')
 		self.assertIsNotNone(text)
 		#print(text)
 

@@ -36,8 +36,10 @@ class TEIEntry(models.Model):
 
 
 class TEISection(models.Model):
+	cts_urn = models.CharField(max_length=244, primary_key=True)
 	entry = models.ForeignKey(TEIEntry)
 	section_ref = models.CharField(max_length=32)
+	cts_sequence = models.IntegerField(editable=False)
 
 	def __str__(self):
 		return "{0} :: {1}".format(self.entry.cts_urn, str(self.section_ref))
@@ -46,5 +48,5 @@ class TEISection(models.Model):
 		tei = TEIDataSource(self.entry.cts_urn)
 		return tei.read_fragment(self.section_ref)
 
-	# class Meta:
-	# 	unique_together = ('entry', 'section_ref')
+	class Meta:
+		unique_together = ('entry', 'section_ref')

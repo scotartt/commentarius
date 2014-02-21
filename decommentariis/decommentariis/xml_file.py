@@ -14,6 +14,7 @@ greek_lit = data_dir + "greekLit/"
 latin_corpus_prefix = "phi"    # package humanities institute
 latin_corpus_prefix_2 = "stoa" # stoa texts
 greek_corpus_prefix = "tlg"    # thesaurus linguae graecae
+default_delim = ","
 
 class TEIDataSource:
 	"This class abstracts access to the XML data in the Perseus TEI files. Expects CTS compliant URN to be passed to constructor."
@@ -63,7 +64,7 @@ class TEIDataSource:
 		if ref and self.delim:
 			refs = ref.split(self.delim)
 		elif ref:
-			refs = ref.split() #i.e. white space
+			refs = ref.split(default_delim)
 		else:
 			raise Exception("No ref given.")
 
@@ -183,7 +184,7 @@ class TEIDataSource:
 		"This method gets the list of valid references in the document. The references are formatted with the metadata specified delimiter, e.g. 1.2.3. There are two structures. One is a 'proper' structure i.e. a map of the document. The other is a simple 'flat' list of the valid reference strings."
 		delim = self.delim
 		if not delim:
-			delim = " "
+			delim = default_delim
 		self.document_metastructure = {}
 		self.document_metastructure['_metadata_structure_list'] = self.sections
 		self.document_metastructure['_metadata_structure_delim'] = delim
