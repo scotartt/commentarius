@@ -7,6 +7,7 @@ class TEIEntryResource(ModelResource):
     class Meta:
         queryset = TEIEntry.objects.all()
         resource_name = 'sourcetext'
+        excludes = ['metadata']
 
 class TEISectionResource(ModelResource):
 	entry = fields.ForeignKey(TEIEntryResource, 'entry')

@@ -1,20 +1,17 @@
 from django.conf.urls import *
 from django.contrib.auth.models import User, Group
-from decommentariis.api import TEIEntryResource, TEISectionResource
 from django.contrib import admin
+from tastypie.api import Api
+from decommentariis.api import TEIEntryResource, TEISectionResource
 
 admin.autodiscover()
 
-#tei_source = TEIDataSourceResource()
-tei_entries = TEIEntryResource()
-tei_references = TEISectionResource()
+v1_api = Api(api_name='v1')
+v1_api.register(TEIEntryResource())
+v1_api.register(TEISectionResource())
 
 urlpatterns = patterns('',
 	# Examples:
-	url(r'^admin/', include(admin.site.urls)),
-	#(r'^blog/', include('decommentariis.urls')),
-    (r'^api/', include(tei_entries.urls)),
-    (r'^api/', include(tei_references.urls)),
+	(r'^admin/', include(admin.site.urls)),
+	(r'^api/', include(v1_api.urls)),
 )
-
-
