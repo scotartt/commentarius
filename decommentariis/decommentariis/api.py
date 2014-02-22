@@ -22,3 +22,5 @@ class TEISectionResource(ModelResource):
 	class Meta:
 		queryset = TEISection.objects.all()
 		resource_name = 'sourcesection'
+		list_allowed_methods = ['get']
+

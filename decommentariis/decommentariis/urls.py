@@ -10,8 +10,13 @@ v1_api = Api(api_name='v1')
 v1_api.register(TEIEntryResource())
 v1_api.register(TEISectionResource())
 
-urlpatterns = patterns('',
-	# Examples:
-	(r'^admin/', include(admin.site.urls)),
-	(r'^api/', include(v1_api.urls)),
+urlpatterns = patterns('decommentariis.views',
+	# a CTS URN looks like this 'urn:cts:latinLit:phi0631.phi001.perseus-lat2'
+	url(r'^text/$', 'list_texts'),
+	url(r'^text/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\.){2}[\w-]+)/$', 'get_text_sections'),
+)
+
+urlpatterns += patterns('',
+	url(r'^admin/', include(admin.site.urls)),
+	url(r'^api/', include(v1_api.urls)),
 )

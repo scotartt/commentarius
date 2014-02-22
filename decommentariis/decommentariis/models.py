@@ -22,6 +22,10 @@ class TEIEntry(models.Model):
 		fnone = lambda s: str(s) if s else "-"
 		return "{0} :: {1} :: '{2}'".format(self.cts_urn, fnone(self.author), fnone(self.title))
 
+	def sections(self):
+		return self.teisection_set.all()
+
+
 	def loadURN(self):
 		tei = TEIDataSource(self.cts_urn)
 		self.metadata = json.dumps(tei.document_metastructure, sort_keys=True, indent=2, separators=(',', ': '))
