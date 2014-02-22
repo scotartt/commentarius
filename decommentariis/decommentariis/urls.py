@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib import admin
 from tastypie.api import Api
 from decommentariis.api import TEIEntryResource, TEISectionResource
+from decommentariis.views import TextListView, SectionListView
 
 admin.autodiscover()
 
@@ -12,8 +13,8 @@ v1_api.register(TEISectionResource())
 
 urlpatterns = patterns('decommentariis.views',
 	# a CTS URN looks like this 'urn:cts:latinLit:phi0631.phi001.perseus-lat2'
-	url(r'^text/$', 'list_texts'),
-	url(r'^text/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\.){2}[\w-]+)/$', 'get_text_sections'),
+	url(r'^text/$', TextListView.as_view()),
+	url(r'^text/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\.){2}[\w-]+)/$', SectionListView.as_view()),
 )
 
 urlpatterns += patterns('',

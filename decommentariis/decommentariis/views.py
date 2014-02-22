@@ -1,6 +1,28 @@
 import datetime
 from django.http import HttpResponse
+from django.views.generic import ListView, DetailView
 from decommentariis.models import TEIEntry, TEISection
+
+class TextListView(ListView):
+	model = TEIEntry
+	template_name = 'text_list.html'
+
+class SectionListView(ListView):
+	template_name = 'section_list.html'
+
+	def get_queryset(self):
+		urn = self.kwargs['urn']
+		self.teitext = TEIEntry.objects.get(cts_urn=urn)
+		## self.teitext = get_object_or_404(TEIEntry, cts_urn=urn)
+		return TEISection.objects.filter(entry=self.teitext)
+
+	def get_context_data(self, **kwargs):
+		# Call the base implementation first to get a context
+		context = super(SectionListView, self).get_context_data(**kwargs)
+		# Add in a QuerySet of all the books
+		context['teitext'] = self.teitext
+		return context
+
 
 def list_texts(request):
 	now = datetime.datetime.now()
