@@ -3,8 +3,8 @@
 {% block content %}
 	<h2>Texts available</h2>
 	<ul>
-		{% for teientry in object_list %}
-		<li><a href='./{{ teientry.cts_urn }}/'>{{ teientry }}</a></li>
+		{% for teisection in object_list %}
+		<li><a href='/read/{{ teisection.entry.cts_urn }}/{{ teisection.section_ref }}/'>{{ teisection.section_ref }}</a></li>
 		{% endfor %}
 	</ul>
 {% endblock %}
