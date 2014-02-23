@@ -1,7 +1,7 @@
 # decommentariis/api.py
 from tastypie import fields
 from tastypie.resources import Resource, ModelResource
-from decommentariis.models import TEIEntry, TEISection, TEISectionText
+from decommentariis.models import TEIEntry, TEISection
 
 class TEIEntryResource(ModelResource):
 	sections = fields.ToManyField('decommentariis.api.TEISectionResource', 'teisection_set', related_name='entry')
@@ -18,3 +18,7 @@ class TEISectionResource(ModelResource):
 		queryset = TEISection.objects.all()
 		resource_name = 'sourcesection'
 		list_allowed_methods = ['get']
+
+	def dehydrate(self, bundle):
+		bundle.data['text_data'] = bundle.obj.readData()
+		return bundle 

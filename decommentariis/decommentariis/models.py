@@ -48,7 +48,7 @@ class TEISection(models.Model):
 	def __str__(self):
 		return "{0} :: {1}".format(self.entry.cts_urn, str(self.section_ref))
 
-	def readData(self, ref):
+	def readData(self):
 		tei = TEIDataSource(self.entry.cts_urn)
 		return tei.read_fragment(self.section_ref)
 
