@@ -25,6 +25,10 @@ class TEIEntry(models.Model):
 	def sections(self):
 		return self.teisection_set.all()
 
+	def section_refs(self):
+		tei = TEIDataSource(self.cts_urn)
+		return tei.document_metastructure_flat #its a []
+
 
 	def loadURN(self):
 		tei = TEIDataSource(self.cts_urn)

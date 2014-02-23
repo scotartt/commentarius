@@ -11,6 +11,10 @@ class TEIEntryResource(ModelResource):
 		excludes = ['metadata']
 		list_allowed_methods = ['get']
 
+	def dehydrate(self, bundle):
+		bundle.data['section_refs'] = bundle.obj.section_refs()
+		return bundle
+
 class TEISectionResource(ModelResource):
 	entry = fields.ForeignKey(TEIEntryResource, 'entry', related_name='sections')
 
