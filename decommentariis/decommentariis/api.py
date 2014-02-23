@@ -15,6 +15,9 @@ class TEIEntryResource(ModelResource):
 		#     'user': ALL_WITH_RELATIONS,
 		#     'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
 		# }
+	def dehydrate(self, bundle):
+		bundle.data['teisections'] = bundle.obj.sections()
+		return bundle
 
 class TEISectionResource(ModelResource):
 	entry = fields.ForeignKey(TEIEntryResource, 'entry')
