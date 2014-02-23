@@ -4,23 +4,16 @@ from tastypie.resources import ModelResource
 from decommentariis.models import TEIEntry, TEISection
 
 class TEIEntryResource(ModelResource):
+	sections = fields.ToManyField('decommentariis.api.TEISectionResource', 'teisection_set', related_name='entry')
 	class Meta:
 		queryset = TEIEntry.objects.all()
 		resource_name = 'sourcetext'
 		excludes = ['metadata']
 		list_allowed_methods = ['get']
-		# authorization = DjangoAuthorization()
-		# filtering = {
-		#     'slug': ALL,
-		#     'user': ALL_WITH_RELATIONS,
-		#     'created': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
-		# }
-	def dehydrate(self, bundle):
-		bundle.data['teisections'] = bundle.obj.sections()
-		return bundle
+
 
 class TEISectionResource(ModelResource):
-	entry = fields.ForeignKey(TEIEntryResource, 'entry')
+	entry = fields.ForeignKey(TEIEntryResource, 'entry', related_name='sections')
 
 	class Meta:
 		queryset = TEISection.objects.all()
