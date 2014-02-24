@@ -28,11 +28,14 @@ def save_sections(section_numbers, entry):
 			i += 10
 
 def savedb(urn):
-	entry = TEIEntry(urn)
-	section_numbers = entry.loadURN()
-	print('NEW {0}\n\t{1}'.format(urn, entry.bibliographic_entry))
-	entry.save()
-	save_sections(section_numbers, entry)
+	if TEIEntry.objects.filter(cts_urn = urn).exists():
+		print('UPDATE {0} already exists'.format(urn))
+	else:
+		entry = TEIEntry(urn)
+		section_numbers = entry.loadURN()
+		print('NEW {0}\n\t{1}'.format(urn, entry.bibliographic_entry))
+		entry.save()
+		save_sections(section_numbers, entry)
 
 def readdatafromline(line, prefix):
 	line = line.rstrip().rstrip('.xml')

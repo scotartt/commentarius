@@ -2,6 +2,7 @@ import datetime
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from decommentariis.models import TEIEntry, TEISection
+from decommentariis.xml_file import TEIDataSource
 
 class TextListView(ListView):
 	model = TEIEntry
@@ -19,32 +20,30 @@ class SectionListView(ListView):
 	def get_context_data(self, **kwargs):
 		# Call the base implementation first to get a context
 		context = super(SectionListView, self).get_context_data(**kwargs)
-		# Add in a QuerySet of all the books
 		context['teitext'] = self.teitext
 		return context
 
+class SectionTextDetailView(DetailView):
+	template_name = 'section_text.html'
 
-def list_texts(request):
-	now = datetime.datetime.now()
-	html = "<html><body>"
-	text_list = TEIEntry.objects.all()
-	html += "<p>The available texts at {0} are:<p>".format(now)
-	html += "\n<ul>\n"
-	for text in text_list:
-		html += "<li><a href='./{0}/'>{1}</a></li>\n".format(text.cts_urn, text)
-	html += "</ul>\n"
-	html += "</body></html>"
-	return HttpResponse(html)
+	def get_queryset(self):
+		urn = self.kwargs['urn']
+		return TEISection.objects.filter(cts_urn=urn)
 
-def get_text_sections(request, urn):
-	now = datetime.datetime.now()
-	text = TEIEntry.objects.get(cts_urn=urn)
-	html = "<html><body>"
-	html += "<pre>You requested text '{0}' at {1}.".format(urn, now)
-	html += "\n\nThe text you requested is as follows:\n\nBibliographic data: '"
-	html += "{0}'\n".format(text.bibliographic_entry)
-	html += "\n\n\tAvailable section list:\n "
-	for section in text.sections() :
-		html += "\t{0} = {1}\n ".format(section.section_ref, section.cts_urn)
-	html += "</pre>\n</body></html>"
-	return HttpResponse(html)
+	def get_object(self):
+		urn = self.kwargs['urn']
+		section = TEISection.objects.get(cts_urn=urn)
+		self.section_text = section.readData()
+		return section
+
+	def get_context_data(self, **kwargs):
+		context = super(SectionTextDetailView, self).get_context_data(**kwargs)
+		context['section_text'] = self.section_text
+		return context
+
+
+
+
+
+
+

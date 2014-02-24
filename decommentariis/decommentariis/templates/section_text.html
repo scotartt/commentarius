@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2>Text</h2>
+	<p>Reading section: <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.section_ref }}</a></p>
+	<div id="text">
+		{{ section_text }}
+	</div>
+{% endblock %}

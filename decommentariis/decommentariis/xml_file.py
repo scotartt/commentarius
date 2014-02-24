@@ -1,5 +1,5 @@
 """
-This python class is used to get the data off the file system.
+These python classes are used to get the data off the file system.
 """
 from lxml import etree
 import os
