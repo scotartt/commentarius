@@ -17,25 +17,39 @@ def open_source(path, filename):
 def save_sections(section_numbers, entry):
 	if section_numbers and (len(section_numbers)):
 		i = 10
+
 		for section in section_numbers:
-			teiSection = TEISection()
-			teiSection.cts_urn = '{0}:{1}'.format(entry.cts_urn, section)
+			teiSection = None
+			urn = '{0}:{1}'.format(entry.cts_urn, section)
+
+			if TEISection.objects.filter(cts_urn = urn).exists():
+				teiSection = TEISection.objects.get(cts_urn = urn)
+				print('\t\tExisting Section {0}'.format(urn))
+			else:
+				teiSection = TEISection()
+				teiSection.cts_urn = urn
+				print('\t\tNew Section {0}'.format(urn))
+
 			teiSection.entry = entry
 			teiSection.section_ref = section
 			teiSection.cts_sequence = i
-			print('\t\tSection {0}'.format(teiSection.cts_urn))
 			teiSection.save()
 			i += 10
 
 def savedb(urn):
+	entry = None
+	section_numbers = None
 	if TEIEntry.objects.filter(cts_urn = urn).exists():
-		print('UPDATE {0} already exists'.format(urn))
+		entry = TEIEntry.objects.get(cts_urn=urn)
+		section_numbers = entry.loadURN()
+		print('UPDATE {0}\n\t{1}'.format(urn, entry.bibliographic_entry))
 	else:
 		entry = TEIEntry(urn)
 		section_numbers = entry.loadURN()
 		print('NEW {0}\n\t{1}'.format(urn, entry.bibliographic_entry))
-		entry.save()
-		save_sections(section_numbers, entry)
+	
+	entry.save()
+	save_sections(section_numbers, entry)
 
 def readdatafromline(line, prefix):
 	line = line.rstrip().rstrip('.xml')
