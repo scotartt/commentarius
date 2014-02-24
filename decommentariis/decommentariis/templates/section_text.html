@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h2>Text</h2>
-	<p>Reading section: <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.section_ref }}</a></p>
-	<div id="text">
-		{{ section_text }}
+	<div id="header" class="row">
+		<div class="4u"><h2>Text</h2></div>
+		<div class="8u">Reading section: <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.section_ref }}</a></div>
+	</div>
+	<div class="row">
+		<div id="text" class="-4u 8u">
+		{% autoescape off %}  {{ section_text }} {% endautoescape %}
+		</div>
 	</div>
 {% endblock %}

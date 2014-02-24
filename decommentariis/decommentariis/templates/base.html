@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="style.css"/>
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery.poptrox.min.js"></script>
+		<script src="/static/js/skel.min.js">
+		{
+			prefix: "/static/css/style",
+			resetCSS: true,
+			boxModel: "border",
+			grid: { gutters: 30 },
+			breakpoints: {
+				wide: { range: "1200-", containers: 1140, grid: { gutters: 50 } },
+				narrow: { range: "481-1199", containers: 960 },
+				mobile: { range: "-480", containers: "fluid", lockViewport: true, grid: { collapse: true } }
+			}
+		}
+		</script>
+		<noscript>
+			<link rel="stylesheet" href="/static/css/skel-noscript.css" />
+			<link rel="stylesheet" href="/static/css/style.css" />
+		</noscript>
 		<title>{% block title %}commentarius{% endblock title %}</title>
 	</head>
 	<body>
-		<div id="content">
+		<div id="content" class="container small">
 			{% block content %}there is no content here{% endblock content %}
 		</div>
 	</body>
