@@ -38,6 +38,12 @@ class SectionTextDetailView(DetailView):
 		context = super(SectionTextDetailView, self).get_context_data(**kwargs)
 		context['section_text'] = self.object.readData()
 		context['section_path'] = self.object.parents()
+		siblings = self.object.siblings()
+		if 'prev' in siblings:
+			print('prev whiizo')
+			context['section_prev'] = siblings['prev']
+		if 'next' in siblings:
+			context['section_next'] = siblings['next']
 		return context
 
 

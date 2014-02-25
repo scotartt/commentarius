@@ -16,8 +16,18 @@
 		</div>
 	</div>
 	<div id="maincontent" class="row">
-		<div id="text" class="col-md-4 col-md-offset-1">
-		{% autoescape off %}  {{ section_text }} {% endautoescape %}
+		<div id="leftoftext" class="col-md-1">
+			{% if section_prev %}
+			Prev:<br/><a href='../{{ section_prev.cts_urn }}/'>{{ section_prev.section_ref }}</a>
+			{% endif %}
+		</div>
+		<div id="text" class="col-md-4">
+			{% autoescape off %}  {{ section_text }} {% endautoescape %}
+		</div>
+		<div id="rightoftext" class="col-md-1">
+			{% if section_next %}
+			Next:<br/><a href='../{{ section_next.cts_urn }}/'>{{ section_next.section_ref }}</a>
+			{% endif %}
 		</div>
 	</div>
 	<div id="parentnav" class="row">
