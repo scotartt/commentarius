@@ -69,15 +69,13 @@ class TEISection(models.Model):
 		sections = teiDS.document_metastructure_flat
 		index = sections.index(self.section_ref)
 		plusone = index+1
-		queries = []
+		siblings = {}
 		if index > 0:
-			queries.append(Q(section_ref=sections[index-1]))
+			siblings['prev'] = TEISection.objects.get(section_ref=sections[index-1], entry = self.entry)
 		if plusone < len(sections):
-			queries.append(Q(section_ref=sections[plusone]))
-		query = Q()
-		for q in queries:
-			query |= q
-		return list(TEISection.objects.filter(query, entry=self.entry))
+			siblings['next'] = TEISection.objects.get(section_ref=sections[plusone], entry = self.entry)
+		
+		return siblings
 
 	def parents(self):
 		return self._parents(self.section_ref, self.tei())
