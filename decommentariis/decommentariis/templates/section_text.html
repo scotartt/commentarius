@@ -7,21 +7,25 @@
 
 {% block content %}
 	<div class="row">
-		<div class="col-md-12"><a href='/text/{{ object.cts_urn }}/'>{{ object.cts_urn }}</a> of <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.entry.cts_urn }}</a></div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			{{ object.entry.author }} 
-			<em>'{{ object.entry.title }}'</em>
+		<div class="col-md-1">
+		<p>{{ object.section_ref }}</p>
 		</div>
-		<div class="col-md-6">
-			{{ object.section_ref }}
+		<div class="col-md-11">
+			<p>{{ object.entry.author }} 
+			<em>'{{ object.entry.title }}'</em></p>
 		</div>
 	</div>
-
 	<div id="maincontent" class="row">
-		<div id="text" class="col-md-6">
+		<div id="text" class="col-md-4 col-md-offset-1">
 		{% autoescape off %}  {{ section_text }} {% endautoescape %}
+		</div>
+	</div>
+	<div id="parentnav" class="row">
+		<div class="col-md-6">
+			Path: <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.entry.cts_urn }}</a>
+			{% for sect in section_path %}
+				:: <a href='../{{ sect.cts_urn }}/'>{{ sect.section_ref }}</a>
+			{% endfor %}
 		</div>
 	</div>
 {% endblock %}

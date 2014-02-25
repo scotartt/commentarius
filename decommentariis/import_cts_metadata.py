@@ -7,7 +7,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "decommentariis.settings")
 os.environ.setdefault("CTS_DATA_PATH", "/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/")
 from decommentariis.models import TEIEntry, TEISection
 from decommentariis.xml_file import TEIDataSource
-print(TEIEntry.objects.all())
+# print(TEIEntry.objects.all())
 path = os.environ.get("CTS_DATA_PATH")
 
 ## functions for the script.

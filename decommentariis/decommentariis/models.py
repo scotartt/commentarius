@@ -1,6 +1,7 @@
 import json
 from tastypie.utils.timezone import now
 from django.db import models
+from django.db.models import Q
 from decommentariis.xml_file import TEIDataSource
 
 class TEIEntry(models.Model):
@@ -48,13 +49,48 @@ class TEISection(models.Model):
 	entry = models.ForeignKey(TEIEntry)
 	section_ref = models.CharField(max_length=32)
 	cts_sequence = models.IntegerField(editable=False)
+	_tei = None
 
 	def __str__(self):
 		return "{0} :: {1}".format(self.entry.cts_urn, str(self.section_ref))
 
+	def tei(self):
+		if  self._tei:
+			return self._tei
+		else:
+			self._tei = TEIDataSource(self.entry.cts_urn)
+			return self._tei
+
 	def readData(self):
-		tei = TEIDataSource(self.entry.cts_urn)
-		return tei.read_fragment(self.section_ref)
+		return self.tei().read_fragment(self.section_ref)
+
+	def parents(self):
+		return self._parents(self.section_ref, self.tei())
+
+	def _parents(self, section_ref, teiDS):
+		sections = teiDS.document_metastructure_flat
+		delim = teiDS.delim
+		elements = section_ref.split(delim)
+		elements_len = len(elements)
+		if elements_len > 0:
+			parentelement = ""
+			queries = []
+			i = 0
+			for e in elements:
+				if i==0:
+					parentelement += e
+				else:
+					parentelement += delim + e
+				i += 1
+				queries.append(Q(section_ref=parentelement))
+			query = Q()
+			for q in queries:
+				query |= q
+			return list(TEISection.objects.filter(query, entry=self.entry))
+		else:
+			return []
+		
+
 
 	class Meta:
 		unique_together = ('entry', 'section_ref')

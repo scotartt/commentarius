@@ -32,13 +32,12 @@ class SectionTextDetailView(DetailView):
 
 	def get_object(self):
 		urn = self.kwargs['urn']
-		section = TEISection.objects.get(cts_urn=urn)
-		self.section_text = section.readData()
-		return section
+		return TEISection.objects.get(cts_urn=urn)
 
 	def get_context_data(self, **kwargs):
 		context = super(SectionTextDetailView, self).get_context_data(**kwargs)
-		context['section_text'] = self.section_text
+		context['section_text'] = self.object.readData()
+		context['section_path'] = self.object.parents()
 		return context
 
 
