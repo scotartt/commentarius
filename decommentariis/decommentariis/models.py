@@ -64,6 +64,21 @@ class TEISection(models.Model):
 	def readData(self):
 		return self.tei().read_fragment(self.section_ref)
 
+	def siblings(self):
+		teiDS = self.tei()
+		sections = teiDS.document_metastructure_flat
+		index = sections.index(self.section_ref)
+		plusone = index+1
+		queries = []
+		if index > 0:
+			queries.append(Q(section_ref=sections[index-1]))
+		if plusone < len(sections):
+			queries.append(Q(section_ref=sections[plusone]))
+		query = Q()
+		for q in queries:
+			query |= q
+		return list(TEISection.objects.filter(query, entry=self.entry))
+
 	def parents(self):
 		return self._parents(self.section_ref, self.tei())
 
@@ -89,8 +104,6 @@ class TEISection(models.Model):
 			return list(TEISection.objects.filter(query, entry=self.entry))
 		else:
 			return []
-		
-
 
 	class Meta:
 		unique_together = ('entry', 'section_ref')

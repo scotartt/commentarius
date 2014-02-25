@@ -73,5 +73,48 @@ class TestTEISection(unittest.TestCase):
 			print(str(p))
 		self.assertEqual(1, len(parents))
 
+	def test_load_section_siblings111(self):
+		section = caesar_gallic + ":1.1.1"
+		## the siblings are 1.1 and 1.1.2
+		teisection = TEISection.objects.get(cts_urn=section)
+		siblings = teisection.siblings()
+		self.assertIsNotNone(siblings)
+		for s in siblings:
+			self.assertIsNotNone(s)
+			print(str(s))
+		self.assertEqual(2, len(siblings))
+	def test_load_section_siblings1(self):
+		section = caesar_gallic + ":1"
+		## the siblings are 1.1
+		teisection = TEISection.objects.get(cts_urn=section)
+		siblings = teisection.siblings()
+		self.assertIsNotNone(siblings)
+		for s in siblings:
+			self.assertIsNotNone(s)
+			print(str(s))
+		self.assertEqual(1, len(siblings))
+
+	def test_load_section_siblings5(self):
+		section = caesar_gallic + ":5"
+		## the siblings are 1.1
+		teisection = TEISection.objects.get(cts_urn=section)
+		siblings = teisection.siblings()
+		self.assertIsNotNone(siblings)
+		for s in siblings:
+			self.assertIsNotNone(s)
+			print(str(s))
+		self.assertEqual(2, len(siblings))
+
+	def test_load_section_siblings_last(self):
+		section = caesar_gallic + ":8.55.2" #last section of caesar bg
+		## the siblings are 8.55.1
+		teisection = TEISection.objects.get(cts_urn=section)
+		siblings = teisection.siblings()
+		self.assertIsNotNone(siblings)
+		for s in siblings:
+			self.assertIsNotNone(s)
+			print(str(s))
+		self.assertEqual(1, len(siblings))
+
 if __name__ == '__main__':
 	unittest.main()
