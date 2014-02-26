@@ -1,6 +1,12 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
   padding-top: 70px;
   padding-bottom: 30px;
+  margin-bottom: 60px;
+
 }
 
 .theme-dropdown .dropdown-menu {
@@ -11,4 +17,14 @@ body {
 
 .theme-showcase > p > .btn {
   margin: 5px 0;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+  padding-top: 10px;
 }

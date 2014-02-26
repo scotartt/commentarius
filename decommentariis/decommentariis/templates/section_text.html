@@ -30,12 +30,18 @@
 			{% endif %}
 		</div>
 	</div>
+	
+{% endblock %}
+
+{% block footer %}
 	<div id="parentnav" class="row">
 		<div class="col-md-6">
-			Path: <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.entry.cts_urn }}</a>
+			<p class="text-muted">
+			text loc <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.entry.cts_urn }}</a>
 			{% for sect in section_path %}
 				:: <a href='../{{ sect.cts_urn }}/'>{{ sect.section_ref }}</a>
 			{% endfor %}
+			</p>
 		</div>
 	</div>
-{% endblock %}
+{% endblock footer %}
