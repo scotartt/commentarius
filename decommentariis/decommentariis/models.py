@@ -67,13 +67,33 @@ class TEISection(models.Model):
 	def siblings(self):
 		teiDS = self.tei()
 		sections = teiDS.document_metastructure_flat
+		level_count = len(self.section_ref.split(teiDS.delim))
 		index = sections.index(self.section_ref)
 		plusone = index+1
+		minusone = index-1
+		last = len(sections)
 		siblings = {}
-		if index > 0:
-			siblings['prev'] = TEISection.objects.get(section_ref=sections[index-1], entry = self.entry)
-		if plusone < len(sections):
-			siblings['next'] = TEISection.objects.get(section_ref=sections[plusone], entry = self.entry)
+		if minusone >= 0:
+			_prevsect = sections[minusone]
+			_pslevel_count = len(_prevsect.split(teiDS.delim))
+			# if the above isn't the same number of sections,
+			# i.e. so 1.1.1 to 1.1.2 and 1.1 to 1.2 etc
+			while level_count != _pslevel_count and minusone >= 0:
+				minusone = minusone - 1 # decrement
+				_prevsect = sections[minusone]
+				_pslevel_count = len(_prevsect.split(teiDS.delim))
+			# either it's the first one or none
+			if level_count == _pslevel_count and minusone >= 0: # if not there was never a match
+				siblings['prev'] = TEISection.objects.get(section_ref=_prevsect, entry = self.entry)
+		if plusone < last:
+			_nextsect = sections[plusone]
+			_nslevel_count = len(_nextsect.split(teiDS.delim))
+			while level_count != _nslevel_count and plusone < last-1:
+				plusone = plusone + 1 # increment
+				_nextsect = sections[plusone]
+				_nslevel_count = len(_nextsect.split(teiDS.delim))
+			if level_count == _nslevel_count and plusone < last: # if not there was never a match
+				siblings['next'] = TEISection.objects.get(section_ref=_nextsect, entry = self.entry)
 		
 		return siblings
 
