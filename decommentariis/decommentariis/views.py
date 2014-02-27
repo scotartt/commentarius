@@ -1,10 +1,11 @@
 import datetime
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render_to_response
+from django.contrib.auth import logout
 from decommentariis.models import TEIEntry, TEISection
 from decommentariis.xml_file import TEIDataSource
 from decommentariis.forms import UserForm
