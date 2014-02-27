@@ -2,6 +2,8 @@ import json
 from tastypie.utils.timezone import now
 from django.db import models
 from django.db.models import Q
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from decommentariis.xml_file import TEIDataSource
 
 class TEIEntry(models.Model):
@@ -151,9 +153,11 @@ class TEISection(models.Model):
 	class Meta:
 		unique_together = ('entry', 'section_ref')
 
+
 class CommentaryEntry(models.Model):
 	commentary = models.TextField(null=False)
 	section = models.ForeignKey(TEISection)
+	user = models.ForeignKey(User)
 	
 
 

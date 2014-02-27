@@ -1,8 +1,13 @@
 import datetime
+from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.shortcuts import render_to_response
 from decommentariis.models import TEIEntry, TEISection
 from decommentariis.xml_file import TEIDataSource
+from decommentariis.forms import UserForm
 
 class TextListView(ListView):
 	model = TEIEntry
@@ -48,6 +53,17 @@ class SectionTextDetailView(DetailView):
 		return context
 
 
+## old school views
+
+def main_page(request):
+    return render_to_response('index.html')
+
+def logout_page(request):
+    """
+    Log users out and re-direct them to the main page.
+    """
+    logout(request)
+    return HttpResponseRedirect('/')
 
 
 
