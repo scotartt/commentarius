@@ -114,3 +114,9 @@ body {
   cursor: not-allowed;
   background-color: #fff;
 }
+.form-inline {
+  margin:5px 3px;
+}
+.input-group {
+  margin:5px 0px;
+}
