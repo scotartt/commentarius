@@ -19,14 +19,14 @@ class SectionListView(ListView):
 
 	def get_queryset(self):
 		urn = self.kwargs['urn']
-		self.teitext = TEIEntry.objects.get(cts_urn=urn)
-		## self.teitext = get_object_or_404(TEIEntry, cts_urn=urn)
-		return TEISection.objects.filter(entry=self.teitext)
+		self.teientry = TEIEntry.objects.get(cts_urn=urn)
+		## self.teientry = get_object_or_404(TEIEntry, cts_urn=urn)
+		return TEISection.objects.filter(entry=self.teientry)
 
 	def get_context_data(self, **kwargs):
 		# Call the base implementation first to get a context
 		context = super(SectionListView, self).get_context_data(**kwargs)
-		context['teitext'] = self.teitext
+		context['teientry'] = self.teientry
 		return context
 
 class SectionTextDetailView(DetailView):

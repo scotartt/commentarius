@@ -13,6 +13,9 @@ body {
 	background-color: #f5f5f5;
 }*/
 
+.maintext {
+  font-size: 1.1em;
+}
 
 .theme-dropdown .dropdown-menu {
   position: static;
@@ -32,4 +35,82 @@ body {
   height: 60px;
   background-color: #f5f5f5;
   padding-top: 10px;
+}
+.child-list {
+  padding-left: 0;
+  margin: 0px 0px;
+  text-align: left;
+  list-style: none;
+}
+.child-list li {
+  display: block;
+}
+.section-list {
+  padding-left: 5px;
+  margin: 20px 20px;
+  text-align: left;
+  list-style: none;
+  font-size: 1.1em;
+}
+.section-list li {
+  display: block;
+}
+.text-list {
+  padding-left: 5px;
+  margin: 20px 20px;
+  text-align: left;
+  list-style: none;
+  font-size: 1.1em;
+}
+.text-list li {
+  display: block;
+  padding-top: 5px;
+}
+.pager {
+  padding-left: 0;
+  margin: 0px 0px 5px 0px;
+  text-align: center;
+  list-style: none;
+}
+.pager li {
+  display: inline;
+}
+.pager li > a,
+.pager li > span {
+  display: inline-block;
+  padding: 2px 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+  text-decoration: none;
+  background-color: #999;
+}
+.pager .next > a,
+.pager .next > span {
+  float: right;
+}
+.pager .previous > a,
+.pager .previous > span {
+  float: left;
+}
+.pager .selected > a,
+.pager .selected > a:focus,
+.pager .selected > span {
+  color: #eee;
+  background-color: #999;
+  font-size: 1.2em;
+}
+.pager .selected > a:hover {
+    background-color: #666;
+}
+.pager .disabled > a,
+.pager .disabled > a:hover,
+.pager .disabled > a:focus,
+.pager .disabled > span {
+  color: #999;
+  cursor: not-allowed;
+  background-color: #fff;
 }

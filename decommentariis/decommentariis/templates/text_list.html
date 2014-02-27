@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h2>Texts available</h2>
-	<ul>
-		{% for teientry in object_list %}
-		<li><a href='./{{ teientry.cts_urn }}/'>{{ teientry }}</a></li>
-		{% endfor %}
-	</ul>
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Texts available</h2>
+		<div class="row">
+			<div class="col-sm-12">
+			<ul class="text-list">
+					{% for teientry in object_list %}
+					<li class="text-entry"><a href='./{{ teientry.cts_urn }}/'>{{ teientry.author }} <em>{{ teientry.title}}</em> - {{ teientry.cts_urn }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

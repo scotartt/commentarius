@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h2>Texts available</h2>
-	<ul>
-		{% for teisection in object_list %}
-		<li><a href='/textdata/{{ teisection.cts_urn }}/'>Read {{ teisection.section_ref }}</a></li>
-		{% endfor %}
-	</ul>
+
+<div class="row">
+	<div class="col-sm-8">
+		<h2>{{ teientry.author }}</h2>
+		<p>{{ teientry.bibliographic_entry }}</p>
+		<p>CTS URN <a href="./">{{ teientry.cts_urn }}</a></p>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Sections</h3>
+				<ul class="section-list">
+					{% for teisection in object_list %}
+					<li class="section-entry"><a href='/textdata/{{ teisection.cts_urn }}/'>{{ teisection }}</a> &nbsp;&nbsp; </li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
 {% endblock %}

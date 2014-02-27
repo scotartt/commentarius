@@ -1,55 +1,81 @@
 {% extends 'base.html' %}
 
 {% block title %}
-	Commentarius - 
-	{{ object.cts_urn }}
+Commentarius - 
+{{ object.cts_urn }}
 {% endblock title %}
 
 {% block content %}
-	<div class="row">
-		<div class="col-md-1">
-		<p>{{ object.section_ref }}</p>
-		</div>
-		<div class="col-md-4">
-			<p>{{ object.entry.author }} 
-			<em>'{{ object.entry.title }}'</em></p>
-		</div>
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-1 small">
+		<p>{{ object.entry.author }}<em>'{{ object.entry.title }}'</em></p>
 	</div>
-	<div id="maincontent" class="row">
-		<div id="leftoftext" class="col-md-1">
+</div>
+
+<div class="row">
+	<div class="col-sm-6 small">
+		<ul class="pager small top">	
 			{% if section_prev %}
-			<p>Prev:<br/><a href='../{{ section_prev.cts_urn }}/'>{{ section_prev.section_ref }}</a></p>
+			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&larr; {{ section_prev.section_ref }}</a></li>
+			{% else %}
+			<li class="previous disabled"><a href='#'>&larr;</a></li>
 			{% endif %}
-		</div>
-		<div id="text" class="col-md-4">
-			{% autoescape off %}  {{ section_text }} {% endautoescape %}
-		</div>
-		<div id="rightoftext" class="col-md-1">
+			<li class="selected"><a href="./">{{ object.section_ref }}</a></li>
 			{% if section_next %}
-			<p>Next:<br/><a href='../{{ section_next.cts_urn }}/'>{{ section_next.section_ref }}</a></p>
+			<li class="next"><a href='../{{ section_next.cts_urn }}/'>{{ section_next.section_ref }} &rarr;</a></li>
+			{% else %}
+			<li class="next disabled"><a href='#'>&rarr;</a></li>
 			{% endif %}
-			{% if children %}
-			Children
-			<ul>
-				{% for child in children %}
-				<li><a href='../{{ child.cts_urn }}/'>{{ child.section_ref }}</a></li>
-				{% endfor %}
-			</ul>
-			{% endif %}
-		</div>
+		</ul>
 	</div>
-	
+</div>
+
+<div id="maincontent" class="row">
+	<div id="leftoftext" class="col-sm-1">
+		
+	</div>
+	<div id="text" class="col-sm-4 maintext">
+		{% autoescape off %}  {{ section_text }} {% endautoescape %}
+	</div>
+	<div id="rightoftext" class="col-sm-1">
+		{% if children %}
+		Children
+		<ul class="child-list small">
+		{% for child in children %}
+		<li class="child-item"><a href='../{{ child.cts_urn }}/'>{{ child.section_ref }}</a></li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-6 small">
+		<ul class="pager small bottom">	
+			{% if section_prev %}
+			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&larr; {{ section_prev.section_ref }}</a></li>
+			{% else %}
+			<li class="previous disabled"><a href='#'>&larr;</a></li>
+			{% endif %}
+			<li class="selected"><a href="./">{{ object.section_ref }}</a></li>
+			{% if section_next %}
+			<li class="next"><a href='../{{ section_next.cts_urn }}/'>{{ section_next.section_ref }} &rarr;</a></li>
+			{% else %}
+			<li class="next disabled"><a href='#'>&rarr;</a></li>
+			{% endif %}
+		</ul>
+	</div>
+</div>
 {% endblock %}
 
 {% block footer %}
-	<div id="parentnav" class="row">
-		<div class="col-md-6">
-			<p class="text-muted">
+<div id="parentnav" class="row">
+	<div class="col-sm-6">
+		<p class="text-muted">
 			text loc <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.entry.cts_urn }}</a>
 			{% for sect in section_path %}
-				:: <a href='../{{ sect.cts_urn }}/'>{{ sect.section_ref }}</a>
+			:: <a href='../{{ sect.cts_urn }}/'>{{ sect.section_ref }}</a>
 			{% endfor %}
-			</p>
-		</div>
+		</p>
 	</div>
+</div>
 {% endblock footer %}
