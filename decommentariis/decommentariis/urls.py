@@ -18,6 +18,10 @@ urlpatterns = patterns('decommentariis.views',
 	url(r'^textdata/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\.){2}[\w-]+:[\w\., ]+)/$', SectionTextDetailView.as_view()),
 )
 
+# urlpatterns += patterns('',
+# 	url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+# )
+
 urlpatterns += patterns('',
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^api/', include(v1_api.urls)),

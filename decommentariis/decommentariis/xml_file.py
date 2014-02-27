@@ -103,10 +103,16 @@ class TEIDataSource:
 		parser = self.parser()
 		root = etree.parse(fo, parser)
 		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/sourceDesc")
+
 		for e in src_elems:
 			self.source_desc += str(etree.tostring(e, pretty_print=True), encoding='utf-8')
 		if len(src_elems):
 			self.populate_bib_fields(src_elems[0])
+		if not self.author or not self.title:
+			alt_src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/titleStmt")
+			if len(alt_src_elems):
+				self.populate_bib_fields(alt_src_elems[0])
+
 		self.get_metadata_sections(root)
 		self.close_source(fo)
 

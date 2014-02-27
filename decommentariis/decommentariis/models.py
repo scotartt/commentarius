@@ -151,4 +151,9 @@ class TEISection(models.Model):
 	class Meta:
 		unique_together = ('entry', 'section_ref')
 
+class CommentaryEntry(models.Model):
+	commentary = models.TextField(null=False)
+	section = models.ForeignKey(TEISection)
+	
+
 

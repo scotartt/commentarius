@@ -5,6 +5,7 @@ sallust_cataline = "urn:cts:latinLit:phi0631.phi001.perseus-lat2"
 homer_iliad = "urn:cts:greekLit:tlg0012.tlg001.perseus-grc1"
 caesar_gallic = "urn:cts:latinLit:phi0448.phi001.perseus-lat1"
 cicero_derepublica ="urn:cts:latinLit:phi0474.phi043.perseus-lat1"
+cicero_timaeus = "urn:cts:latinLit:phi0474.phi072.perseus-lat1"
 junk_cts = "asjgk:sajgksa:asdgsag:.sagjksa"
 urncts_junk_cts = "urn:cts:asdgsag:.sagjksa"
 urnctslatinlit_junk_cts = "urn:cts:latinLit:phoo123.sagjksa"
@@ -62,6 +63,14 @@ class TestTEIDataSource(unittest.TestCase):
 		self.assertEqual(tds.delim, ',') #default
 		self.assertIsNotNone(tds.document_metastructure)
 		self.printdetail(tds)
+
+	def test_cicero_timaeus_author_title(self):
+		print("\n======================\n%s" % cicero_timaeus)
+		tds = TEIDataSource(cicero_timaeus)
+		self.assertIsNotNone(tds.title)
+		self.assertIsNotNone(tds.author)
+		self.printdetail(tds)
+
 
 	def test_strabo_load(self):
 		print("\n======================\n%s" % strabo_geo)
