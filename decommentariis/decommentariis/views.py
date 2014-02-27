@@ -44,6 +44,7 @@ class SectionTextDetailView(DetailView):
 			context['section_prev'] = siblings['prev']
 		if 'next' in siblings:
 			context['section_next'] = siblings['next']
+		context['children'] = self.object.children()
 		return context
 
 

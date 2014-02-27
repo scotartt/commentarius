@@ -182,9 +182,9 @@ class TEIDataSource:
 
 	def doc_struct(self):
 		"This method gets the list of valid references in the document. The references are formatted with the metadata specified delimiter, e.g. 1.2.3. There are two structures. One is a 'proper' structure i.e. a map of the document. The other is a simple 'flat' list of the valid reference strings."
+		if not self.delim:
+			self.delim = default_delim
 		delim = self.delim
-		if not delim:
-			delim = default_delim
 		self.document_metastructure = {}
 		self.document_metastructure['_metadata_structure_list'] = self.sections
 		self.document_metastructure['_metadata_structure_delim'] = delim

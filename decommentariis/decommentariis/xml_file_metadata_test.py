@@ -31,7 +31,7 @@ class TestTEIDataSource(unittest.TestCase):
 			i += 1
 			# print(str(i) + "=" + s)
 		self.assertEqual(i, 1)
-		self.assertEqual(tds.delim, None)
+		self.assertEqual(tds.delim, ',') #default
 		self.assertIsNotNone(tds.document_metastructure)
 		self.printdetail(tds)
 
@@ -59,7 +59,7 @@ class TestTEIDataSource(unittest.TestCase):
 			i += 1
 			#print(str(i) + "=" + s)
 		self.assertEqual(i, 2)
-		self.assertEqual(tds.delim, None)
+		self.assertEqual(tds.delim, ',') #default
 		self.assertIsNotNone(tds.document_metastructure)
 		self.printdetail(tds)
 

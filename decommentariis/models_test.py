@@ -9,6 +9,7 @@ from decommentariis.xml_file import TEIDataSource
 
 caesar_gallic = "urn:cts:latinLit:phi0448.phi001.perseus-lat1"
 sallust_cataline = "urn:cts:latinLit:phi0631.phi001.perseus-lat2"
+cicero_rhetoric = "urn:cts:latinLit:phi0474.phi037.perseus-lat1"
 
 class TestTEISection(unittest.TestCase):
 
@@ -16,6 +17,14 @@ class TestTEISection(unittest.TestCase):
 		section = caesar_gallic + ":1.1.1"
 		teisection = TEISection.objects.get(cts_urn=section)
 		self.assertIsNotNone(teisection)
+
+	def test_load_cicero_children1(self):
+		section = cicero_rhetoric + ":2"
+		teisection = TEISection.objects.get(cts_urn=section)
+		children = teisection.children()
+		self.assertIsNotNone(children)
+		self.assertEqual(367, len(children))
+		
 
 	def test_load_section_parents111(self):
 		section = caesar_gallic + ":1.1.1"

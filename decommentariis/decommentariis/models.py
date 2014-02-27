@@ -30,7 +30,6 @@ class TEIEntry(models.Model):
 		tei = TEIDataSource(self.cts_urn)
 		return tei.document_metastructure_flat #its a []
 
-
 	def loadURN(self):
 		tei = TEIDataSource(self.cts_urn)
 		self.metadata = json.dumps(tei.document_metastructure, sort_keys=True, indent=2, separators=(',', ': '))
@@ -64,6 +63,33 @@ class TEISection(models.Model):
 	def readData(self):
 		return self.tei().read_fragment(self.section_ref)
 
+	def children(self):
+		teiDS = self.tei()
+		sections = teiDS.document_metastructure_flat
+		level_count = len(self.section_ref.split(teiDS.delim))
+		index = sections.index(self.section_ref)
+		plusone = index+1
+		last = len(sections)
+		if plusone < last:
+			_nextsect = sections[plusone]
+			_nslevel_count = len(_nextsect.split(teiDS.delim))
+			if level_count >= _nslevel_count:
+				return []
+			queries = []
+			queries.append(Q(section_ref=_nextsect))
+			while level_count < _nslevel_count and plusone < last-1:
+				plusone += 1
+				_nextsect = sections[plusone]
+				_nslevel_count = len(_nextsect.split(teiDS.delim))
+				if level_count < _nslevel_count:
+					queries.append(Q(section_ref=_nextsect))
+			query = Q()
+			for q in queries:
+				query |= q
+			return list(TEISection.objects.filter(query, entry=self.entry))
+		else:
+			return []
+
 	def siblings(self):
 		teiDS = self.tei()
 		sections = teiDS.document_metastructure_flat
@@ -94,7 +120,6 @@ class TEISection(models.Model):
 				_nslevel_count = len(_nextsect.split(teiDS.delim))
 			if level_count == _nslevel_count and plusone < last: # if not there was never a match
 				siblings['next'] = TEISection.objects.get(section_ref=_nextsect, entry = self.entry)
-		
 		return siblings
 
 	def parents(self):
