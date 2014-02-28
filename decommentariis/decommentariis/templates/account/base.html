@@ -1,0 +1,53 @@
+{% load url from future %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="/static/theme/theme.css" rel="stylesheet">
+	<title>{% block head_title %}{% endblock %}</title>
+	{% block extra_head %}
+	{% endblock %}
+</head>
+<body role="document">
+	<div class="container-fluid">
+		{% block body %}
+		{% if messages %}
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="alert alert-danger">
+					<strong>Messages:</strong>
+					{% for message in messages %}
+					<br/>{{message}}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		
+		{% block content %}
+		{% endblock %}
+		{% endblock %}
+		{% block extra_body %}
+		{% endblock %}
+		<div class="row">
+			<div class="col-sm-6">
+				{% if user.is_authenticated %}
+				<p>You are logged in. You can:
+				<a href="{% url 'account_email' %}">Change Your Email</a>, or
+				<a href="{% url 'account_logout' %}">Log Out</a></p>
+				{% else %}
+				<p>You are not logged in. You can: 
+				<a href="{% url 'account_login' %}">Log In</a>, or
+				<a href="{% url 'account_signup' %}">Sign Up</a></p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<script src="/static/js/jquery-1.11.0.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>

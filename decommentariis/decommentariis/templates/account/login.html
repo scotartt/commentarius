@@ -1,0 +1,96 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+
+{% block head_title %}{% trans "Log In" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">{% trans "Log In" %}</h3>
+			</div>
+			<div class="panel-body">
+				<p>You have several options to log in.</p>
+				{% if socialaccount.providers  %}
+				<p>
+					{% blocktrans with site.name as site_name %}Please log in with one
+					of your existing third party accounts (the preferred way to login).{% endblocktrans %}
+				</p>
+				<div class="socialaccount_ballot">
+					<ul class="socialaccount_providers">
+						{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+					</ul>
+				</div>
+				<p>
+					{% blocktrans with site.name as site_name %}If you don't want to use one of your existing accounts, you can <a href="{{ signup_url }}">sign up</a> for a {{site_name}} account and then log in with the form on this page.{% endblocktrans %}
+				</p>
+				{% include "socialaccount/snippets/login_extra.html" %}
+				{% else %}
+				<p>
+					{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+				</p>
+				{% endif %}
+				<div class="login-or">
+					<p>Or, if you've already signed up, you can use the account that you've already created with the form on this page.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Account login</h3>
+			</div>
+			<div class="panel-body">
+				<form class="login form-inline" role="form" method="POST" action="{% url 'account_login' %}">
+					{% csrf_token %}
+					<div class="form-group">
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon">uname</span>
+							<label for="id_login" class="sr-only">Username:</label>
+							<input id="id_login" class="form-control" maxlength="254" name="login" type="text" placeholder="username"/>
+							<!-- { { form.username } } -->
+						</div>
+						<div class="input-group input-group-lg">
+							<span class="input-group-addon">psswd</span>
+							<label for="id_password" class="sr-only">Password:</label>
+							<input id="id_password" class="form-control" name="password" type="password" placeholder="password"/>
+							<!-- { { form.password } } -->
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="input-group">
+									<label for="id_remember">Remember Me</label>&nbsp;
+									<input id="id_remember" name="remember" type="checkbox" />
+								</div>
+								{% if redirect_field_value %}
+								<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+								{% endif %}
+							</div>
+							<div class="col-sm-6">
+								<button class="primaryAction btn btn-info pull-right" type="submit">{% trans "Log In" %}</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">{% trans "Forgot Your Password?" %}</h3>
+			</div>
+			<div class="panel-body">
+				<p><a class="button secondaryAction" href="{% url 'account_reset_password' %}">Click here if you have forgotten your password</a>.</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

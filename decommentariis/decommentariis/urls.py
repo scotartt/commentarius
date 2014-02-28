@@ -17,8 +17,7 @@ v1_api.register(TEISectionResource())
 urlpatterns = patterns('',
 	(r'^$', main_page),
 	# Login / logout.
-	(r'^login/$', 'django.contrib.auth.views.login'),
-	(r'^logout/$', logout_page),
+	#(r'^login/$', 'django.contrib.auth.views.login'),
 )
 
 urlpatterns += patterns('decommentariis.views',
@@ -35,4 +34,9 @@ urlpatterns += patterns('decommentariis.views',
 urlpatterns += patterns('',
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^api/', include(v1_api.urls)),
+)
+
+urlpatterns += patterns('',
+	(r'^logout/$', logout_page),
+	(r'^accounts/', include('allauth.urls')),
 )

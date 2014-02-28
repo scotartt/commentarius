@@ -159,5 +159,8 @@ class CommentaryEntry(models.Model):
 	section = models.ForeignKey(TEISection)
 	user = models.ForeignKey(User)
 	
+	class Meta:
+		unique_together = ('section', 'user')
+	
 
 
