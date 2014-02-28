@@ -51,12 +51,12 @@ INSTALLED_APPS = (
 	'allauth.account',
 	'allauth.socialaccount',
 	# 'allauth.socialaccount.providers.dropbox',
-	# 'allauth.socialaccount.providers.facebook',
+	#'allauth.socialaccount.providers.facebook',
 	# 'allauth.socialaccount.providers.github',
 	'allauth.socialaccount.providers.google',
 	# 'allauth.socialaccount.providers.instagram',
 	# 'allauth.socialaccount.providers.openid',
-	'allauth.socialaccount.providers.twitter',
+	#'allauth.socialaccount.providers.twitter',
 	'tastypie',
 )
 
