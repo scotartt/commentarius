@@ -33,8 +33,6 @@ TEMPLATE_DEBUG = True
 SITE_ID=1
 
 ALLOWED_HOSTS = [
-	'.decommentariis.net', # Allow domain and subdomains
-	'.decommentariis.net.', # Also allow FQDN and subdomains
 ]
 
 # LOGIN_URL='/login/'
