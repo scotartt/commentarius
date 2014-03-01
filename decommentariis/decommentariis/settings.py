@@ -23,10 +23,16 @@ SECRET_KEY = '3f*@sdc0#4+t69hozq%iy^-vv(nyua$03zq#c!s69(hdkq5$qn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CACHES = {
+	'default': {
+		'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+	}
+}
+
 TEMPLATE_LOADERS = (
 	'django.template.loaders.app_directories.Loader',
 	'django.template.loaders.filesystem.Loader',
-)
+	)
 
 TEMPLATE_DEBUG = True
 
@@ -59,7 +65,7 @@ INSTALLED_APPS = (
 	# 'allauth.socialaccount.providers.openid',
 	#'allauth.socialaccount.providers.twitter',
 	'tastypie',
-)
+	)
 
 MIDDLEWARE_CLASSES = (
 	'django.contrib.sessions.middleware.SessionMiddleware',
@@ -68,19 +74,19 @@ MIDDLEWARE_CLASSES = (
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+	)
 TEMPLATE_CONTEXT_PROCESSORS = (
 	"django.core.context_processors.request",
 	"django.contrib.auth.context_processors.auth",
 	"allauth.account.context_processors.account",
 	"allauth.socialaccount.context_processors.socialaccount",
-)
+	)
 AUTHENTICATION_BACKENDS = (
 	# Needed to login by username in Django admin, regardless of `allauth`
 	"django.contrib.auth.backends.ModelBackend",
 	# `allauth` specific authentication methods, such as login by e-mail
 	"allauth.account.auth_backends.AuthenticationBackend",
-)
+	)
 
 ROOT_URLCONF = 'decommentariis.urls'
 
@@ -91,10 +97,10 @@ WSGI_APPLICATION = 'decommentariis.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': os.path.join(BASE_DIR, 'decommentariis_db.sqlite3'),
-	}
+'default': {
+'ENGINE': 'django.db.backends.sqlite3',
+'NAME': os.path.join(BASE_DIR, 'decommentariis_db.sqlite3'),
+}
 }
 
 # Internationalization
