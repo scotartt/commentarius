@@ -110,10 +110,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+try:
+	from prod_settings import *
+except ImportError as e:
+	print("Error importing prod settings: {0}".format(str(e)))
 
 
