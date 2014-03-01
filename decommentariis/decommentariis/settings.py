@@ -116,8 +116,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-	from prod_settings import *
+	from decommentariis.prod_settings import *
 except ImportError as e:
 	print("Error importing prod settings: {0}".format(str(e)))
+except FileNotFoundError as e:
+	print("Missing file: {0}".format(str(e)))
 
 
