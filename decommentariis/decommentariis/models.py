@@ -44,6 +44,8 @@ class TEIEntry(models.Model):
 		self.bibliographic_entry = tei.print_bib_detail()
 		return tei.document_metastructure_flat
 
+	class Meta:
+		ordering = ['cts_urn']
 
 class TEISection(models.Model):
 	cts_urn = models.CharField(max_length=244, primary_key=True)
@@ -152,6 +154,7 @@ class TEISection(models.Model):
 
 	class Meta:
 		unique_together = ('entry', 'section_ref')
+		ordering = ['entry', 'cts_sequence']
 
 
 class CommentaryEntry(models.Model):

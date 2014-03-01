@@ -13,9 +13,11 @@ from decommentariis.forms import UserForm
 class TextListView(ListView):
 	model = TEIEntry
 	template_name = 'text_list.html'
+	paginate_by = 25
 
 class SectionListView(ListView):
 	template_name = 'section_list.html'
+	paginate_by = 25
 
 	def get_queryset(self):
 		urn = self.kwargs['urn']
@@ -46,7 +48,6 @@ class SectionTextDetailView(DetailView):
 		context['section_path'] = self.object.parents()
 		siblings = self.object.siblings()
 		if 'prev' in siblings:
-			print('prev whiizo')
 			context['section_prev'] = siblings['prev']
 		if 'next' in siblings:
 			context['section_next'] = siblings['next']
