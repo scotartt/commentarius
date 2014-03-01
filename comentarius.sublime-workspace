@@ -4,6 +4,158 @@
 		"selected_items":
 		[
 			[
+				"Co",
+				"CommentaryUserForm"
+			],
+			[
+				"form",
+				"FormView"
+			],
+			[
+				"Comm",
+				"CommentaryUserAdmin"
+			],
+			[
+				"Mo",
+				"ModelAdmin"
+			],
+			[
+				"author",
+				"author"
+			],
+			[
+				"url",
+				"urlpatterns"
+			],
+			[
+				"assert",
+				"assertTrue"
+			],
+			[
+				"_pre",
+				"_prevsectlevelcount"
+			],
+			[
+				"sibling",
+				"sibling_refs"
+			],
+			[
+				"parent",
+				"parentelement"
+			],
+			[
+				"ele",
+				"elements_len"
+			],
+			[
+				"assertIsNot",
+				"assertIsNotNone  (function)"
+			],
+			[
+				"T",
+				"TEISection"
+			],
+			[
+				"par",
+				"parent_section_ref"
+			],
+			[
+				"section",
+				"section_ref"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"TEI",
+				"TEISection"
+			],
+			[
+				"obj",
+				"objects"
+			],
+			[
+				"de",
+				"decommentariis"
+			],
+			[
+				"TEIS",
+				"TEISectionText"
+			],
+			[
+				"list",
+				"list_allowed_methods"
+			],
+			[
+				"resource",
+				"resource_name"
+			],
+			[
+				"TEISectio",
+				"TEISectionTextResource"
+			],
+			[
+				"tei",
+				"teientry"
+			],
+			[
+				"b",
+				"bibliographic_entry"
+			],
+			[
+				"text",
+				"text_list"
+			],
+			[
+				"def",
+				"default_delim"
+			],
+			[
+				"cts",
+				"cts_urn"
+			],
+			[
+				"sect",
+				"section_numbers"
+			],
+			[
+				"str",
+				"str2"
+			],
+			[
+				"assertN",
+				"assertIsNotNone"
+			],
+			[
+				"pro",
+				"propertius"
+			],
+			[
+				"con",
+				"contains"
+			],
+			[
+				"pub",
+				"pubPlace  (variable)"
+			],
+			[
+				"path",
+				"pathcomponents"
+			],
+			[
+				"rea",
+				"readlines  (function)"
+			],
+			[
+				"prin",
+				"printdetail"
+			],
+			[
+				"st",
+				"strabo_geo"
+			],
+			[
 				"docu",
 				"document_struct_flat  (variable)"
 			],
@@ -16,16 +168,8 @@
 				"child_tree_items"
 			],
 			[
-				"de",
-				"delim  (variable)"
-			],
-			[
 				"do",
 				"document_structure"
-			],
-			[
-				"assert",
-				"assertIsNotNone"
 			],
 			[
 				"d",
@@ -42,10 +186,6 @@
 			[
 				"div",
 				"div1"
-			],
-			[
-				"section",
-				"sections"
 			],
 			[
 				"assertIs",
@@ -72,20 +212,8 @@
 				"close_source"
 			],
 			[
-				"rea",
-				"read_doc_metadata  (function)"
-			],
-			[
 				"re",
 				"read_doc_metadata  (function)"
-			],
-			[
-				"sect",
-				"sect_elems"
-			],
-			[
-				"assertN",
-				"assertIsNone  (function)"
 			],
 			[
 				"assertE",
@@ -98,14 +226,6 @@
 			[
 				"to",
 				"tostring"
-			],
-			[
-				"cts",
-				"cts_uri_frag"
-			],
-			[
-				"path",
-				"path_component"
 			],
 			[
 				"bad",
@@ -240,34 +360,10 @@
 	"buffers":
 	[
 		{
-			"file": "decommentariis/decommentariis/xml_file.py",
+			"file": "decommentariis/decommentariis/settings.py",
 			"settings":
 			{
-				"buffer_size": 7188,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "decommentariis/decommentariis/sallust.json",
-			"settings":
-			{
-				"buffer_size": 258536,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "decommentariis/decommentariis/sallust_flat.json",
-			"settings":
-			{
-				"buffer_size": 29451,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 624,
+				"buffer_size": 3577,
 				"line_ending": "Unix"
 			}
 		}
@@ -279,20 +375,52 @@
 		"selected_items":
 		[
 			[
-				"XML",
-				"Indent XML"
+				"rein",
+				"Indentation: Reindent Lines"
 			],
 			[
-				"xml",
-				"Indent XML"
+				"re",
+				"Indentation: Reindent Lines"
 			],
 			[
 				"tabs",
 				"Indentation: Convert to Tabs"
 			],
 			[
+				"in",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"REIN",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Auto indent"
+			],
+			[
+				"reindent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"tab",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"TABS",
+				"Indentation: Convert to Tabs"
+			],
+			[
 				"pack",
 				"Package Control: Install Package"
+			],
+			[
+				"XML",
+				"Indent XML"
+			],
+			[
+				"xml",
+				"Indent XML"
 			],
 			[
 				"case",
@@ -350,10 +478,53 @@
 	},
 	"file_history":
 	[
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file_metadata_test.py",
-		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0474/phi043/phi0474.phi043.perseus-lat1.xml",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/base.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/login.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/commentarius_base.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/settings.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_list.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_text.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/activation_email_subject.txt",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/password_change_done.html",
+		"/Users/smcphee/Development/sources/commentarius/temp/base.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/text_list.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/login.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/urls.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/forms.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/activate.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/registration_form.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/activation_email.txt",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/admin.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/models.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/index.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/base.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/theme/theme.css",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/views.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file_test.py",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0893/phi004/phi0893.phi004.perseus-lat1.xml",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0474/phi072/phi0474.phi072.perseus-lat1.xml",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file_metadata_test.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/models_test.py",
+		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/models_test.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/import_cts_metadata.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/css/style-narrower.css",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/css/style.css",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/css/style-wide.css",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/css/style-narrow.css",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/css/style-mobile.css",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/init.js",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/css/style copy.css",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/api.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/sallust_flat.json",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/get_data.sh",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/greekLit/tlg0099/tlg001/tlg0099.tlg001.perseus-grc1.xml",
+		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/Python3.sublime-settings",
+		"/Users/smcphee/Development/sources/commentarius/data/get_data.sh",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/sallust.json",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/manage.py",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0474/phi043/phi0474.phi043.perseus-lat1.xml",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0448/phi001/phi0448.phi001.perseus-eng1.xml",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0448/phi001/phi0448.phi001.perseus-lat1.xml",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0631/phi001/phi0631.phi001.perseus-lat2.xml",
@@ -367,7 +538,6 @@
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/savecomment/models.py",
 		"/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site.py",
 		"/Users/smcphee/Sites/autonomous.org/mailme.php",
-		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/smcphee/Sites/autonomous.org/css/style.css",
 		"/Users/smcphee/Sites/autonomous.org/css/style-mobile.css",
 		"/Users/smcphee/Dropbox/ANCH/SOURCE TEXTS/perseus/hopper-texts/Classics/Caesar/opensource/caes.bg_lat.xml",
@@ -447,6 +617,57 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Sign In",
+			"sign in",
+			"Sign In",
+			"-md-",
+			"teitext",
+			"span",
+			"LOGIN",
+			"author",
+			"print",
+			"default_delim",
+			"navbar-nav",
+			"navbar-",
+			"print(str(p))",
+			"print(str(prev))",
+			"print(str(nxt))",
+			"_prevsectlevelcount",
+			"next",
+			"prev",
+			"s",
+			"sections",
+			"true",
+			"True",
+			"\n		",
+			"		<link href=\"/static/css/bootstrap-theme.min.css\" rel=\"stylesheet\">\n",
+			"js/",
+			"urn",
+			"teientry",
+			"default_delim",
+			"delim",
+			"tei_references",
+			"tei_resource",
+			"latin_lit",
+			"pubDate",
+			"pubPlace",
+			"xml_file.TEIDataSource",
+			"corpus_prefix",
+			"latin_corpus_prefix",
+			"document_struct",
+			"doc_struct",
+			"document_struct",
+			"document_struct ",
+			"struct",
+			"document_structure",
+			"document_metastructure",
+			"get_file_name",
+			"document_metastructureure",
+			"document_struct",
+			"xmsectionslist",
+			"sectionslist",
+			"print",
+			"file_name",
 			"tree_top_element",
 			"tree_top",
 			"children",
@@ -523,58 +744,7 @@
 			"darkorange",
 			"yellowgreen",
 			"steelblue",
-			"#7AA6DA",
-			"blue",
-			"lightyellow",
-			"aliceblue",
-			"azure",
-			"lightyellow",
-			"olivedrab",
-			"powderblue",
-			"lightyellow",
-			"aliceblue",
-			"newlinecount",
-			"insert_point",
-			"end_point",
-			"is_twonewlines",
-			"spaces",
-			"get_prepend_spaces",
-			"insert_point",
-			"buffer_size",
-			"= ",
-			"_s",
-			"title",
-			"text-case",
-			"title",
-			"}\n{",
-			"}\\n{",
-			"}",
-			"<!--\n\\latinquote\n{",
-			"@book",
-			"Annote = ",
-			",$\\n",
-			"\\{\\{(.*?)\\}\\}",
-			"Annote = \\{",
-			"Annote = \\{[\\w\\s]*?\\},$",
-			"Annote = \\{(.*?)\\},$",
-			"\\{\\{(.*?)\\}\\}",
-			"\\{\\{.*?\\}\\}",
-			"{{.*?}}",
-			"alt\\+f[\\d]",
-			"super+alt+n",
-			"super+alt+r",
-			"\n		",
-			"block",
-			"comment",
-			"block",
-			"ref_",
-			"self.view",
-			"caption",
-			"fn_match",
-			"\\[#(\\S+?)\\]",
-			"(\\s+?)\\[([^\\]]+?)\\]\\[#(\\S+?)\\]",
-			"\\s+?\\[([^\\]]+?)\\]\\[#(\\S+?)\\]",
-			"\\[#(\\S+?)\\]"
+			"#7AA6DA"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -582,6 +752,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"-sm-",
+			"TEIDataSource",
+			"document_metastructure",
 			"type=\"book\"",
 			">*",
 			",\\n",
@@ -610,19 +783,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "decommentariis/decommentariis/xml_file.py",
+					"file": "decommentariis/decommentariis/settings.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7188,
+						"buffer_size": 3577,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1146,
-								1146
+								578,
+								578
 							]
 						],
 						"settings":
@@ -732,315 +905,14 @@
 							},
 							"codeintel_tooltips": "popup",
 							"sublime_auto_complete": true,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 430.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "decommentariis/decommentariis/sallust.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 258536,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								48994,
-								48994
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "decommentariis/decommentariis/sallust_flat.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 29451,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 10463.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 624,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
