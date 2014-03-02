@@ -43,6 +43,8 @@ ALLOWED_HOSTS = [
 
 # LOGIN_URL='/login/'
 
+LOGIN_REDIRECT_URL='/' ## default redirect after success login if no "next"
+
 # Application definition
 
 INSTALLED_APPS = (

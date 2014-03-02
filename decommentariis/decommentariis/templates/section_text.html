@@ -16,15 +16,15 @@ Commentarius -
 	<div class="col-sm-6 small">
 		<ul class="pager small top">	
 			{% if section_prev %}
-			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&larr; {{ section_prev.section_ref }}</a></li>
+			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&laquo; {{ section_prev.section_ref }}</a></li>
 			{% else %}
-			<li class="previous disabled"><a href='#'>&larr;</a></li>
+			<li class="previous disabled"><a href='#'>&laquo;</a></li>
 			{% endif %}
 			<li class="selected"><a href="./">{{ object.section_ref }}</a></li>
 			{% if section_next %}
-			<li class="next"><a href='../{{ section_next.cts_urn }}/'>{{ section_next.section_ref }} &rarr;</a></li>
+			<li class="next"><a href='../{{ section_next.cts_urn }}/'>{{ section_next.section_ref }} &raquo;</a></li>
 			{% else %}
-			<li class="next disabled"><a href='#'>&rarr;</a></li>
+			<li class="next disabled"><a href='#'>&raquo;</a></li>
 			{% endif %}
 		</ul>
 	</div>
@@ -52,15 +52,15 @@ Commentarius -
 	<div class="col-sm-6 small">
 		<ul class="pager small bottom">	
 			{% if section_prev %}
-			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&larr; {{ section_prev.section_ref }}</a></li>
+			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&laquo; {{ section_prev.section_ref }}</a></li>
 			{% else %}
-			<li class="previous disabled"><a href='#'>&larr;</a></li>
+			<li class="previous disabled"><a href='#'>&laquo;</a></li>
 			{% endif %}
 			<li class="selected"><a href="./">{{ object.section_ref }}</a></li>
 			{% if section_next %}
-			<li class="next"><a href='../{{ section_next.cts_urn }}/'>{{ section_next.section_ref }} &rarr;</a></li>
+			<li class="next"><a href='../{{ section_next.cts_urn }}/'>{{ section_next.section_ref }} &raquo;</a></li>
 			{% else %}
-			<li class="next disabled"><a href='#'>&rarr;</a></li>
+			<li class="next disabled"><a href='#'>&raquo;</a></li>
 			{% endif %}
 		</ul>
 	</div>

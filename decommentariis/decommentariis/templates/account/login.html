@@ -54,7 +54,7 @@
 								<div class="input-group input-group-lg">
 									<span class="input-group-addon">uname</span>
 									<label for="id_login" class="sr-only">Username:</label>
-									<input id="id_login" class="form-control" maxlength="254" name="login" type="text" placeholder="username"/>
+									<input id="id_login" class="form-control" maxlength="30" name="login" type="text" placeholder="username"/>
 									<!-- { { form.username } } -->
 								</div>
 								<div class="input-group input-group-lg">
@@ -67,14 +67,14 @@
 									<div class="col-sm-6">
 										<div class="input-group">
 											<label for="id_remember">Remember Me</label>&nbsp;
-											<input id="id_remember" name="remember" type="checkbox" />
+											<input id="id_remember" name="remember" type="checkbox"/>
 										</div>
 										{% if redirect_field_value %}
 										<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
 										{% endif %}
 									</div>
 									<div class="col-sm-6">
-										<button class="primaryAction btn btn-info pull-right" type="submit">{% trans "Log In" %}</button>
+										<button class="primaryAction btn btn-info pull-right" type="submit">{% trans "Log In" %} &raquo;</button>
 									</div>
 								</div>
 							</div>
