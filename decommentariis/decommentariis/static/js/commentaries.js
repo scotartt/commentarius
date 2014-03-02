@@ -5,6 +5,19 @@
  if (typeof jQuery === 'undefined') { 
  	throw new Error('Commentary\'s JavaScript requires jQuery');
  }
+ // sending a csrftoken with every ajax request
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    crossDomain: false, // obviates need for sameOrigin test
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type)) {
+            xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
+        }
+    }
+});
 
  var commentaries = function (cts_urn) {
  	var theUrl = "/api/v1/sourcesection/" + cts_urn + "/?format=json";

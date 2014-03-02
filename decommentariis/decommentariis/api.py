@@ -39,7 +39,7 @@ class CommentaryEntryResource(ModelResource):
 		queryset = CommentaryEntry.objects.all()
 		resource_name = 'sourcecommentary'
 		list_allowed_methods = ['get', 'put', 'post']
-		authentication = MultiAuthentication(SessionAuthentication(), BasicAuthentication() )
+		authentication = SessionAuthentication()
 		authorization = DjangoAuthorization()
 		filtering = {
 			'section': ALL_WITH_RELATIONS,
@@ -57,7 +57,7 @@ class UserResource(ModelResource):
 		resource_name = 'user'
 		list_allowed_methods = ['get']
 		fields = ['username', 'first_name', 'last_name', 'id']
-		authentication = MultiAuthentication(SessionAuthentication(), BasicAuthentication() )
+		authentication = SessionAuthentication()
 		authorization = DjangoAuthorization()
 		filtering = {
 			'username': ALL,
