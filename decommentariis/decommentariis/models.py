@@ -161,9 +161,12 @@ class CommentaryEntry(models.Model):
 	commentary = models.TextField(null=False)
 	section = models.ForeignKey(TEISection)
 	user = models.ForeignKey(User)
+	creation_date = models.DateTimeField(default=now)
+	votes = models.IntegerField(default=0)
 	
 	class Meta:
 		unique_together = ('section', 'user')
+		ordering = ['-votes', 'creation_date']
 	
 
 

@@ -1,7 +1,7 @@
 {% extends 'commentarius_base.html' %}
 
 {% block title %}
-Commentarius - 
+decommentariis - {{ object.entry.author }} -
 {{ object.cts_urn }}
 {% endblock title %}
 
@@ -11,7 +11,6 @@ Commentarius -
 		<p>{{ object.entry.author }}<em>'{{ object.entry.title }}'</em></p>
 	</div>
 </div>
-
 <div class="row">
 	<div class="col-sm-6 small">
 		<ul class="pager small top">	
@@ -47,6 +46,18 @@ Commentarius -
 		</ul>
 		{% endif %}
 	</div>
+	<div  class="col-sm-6">
+		<table id="commentary-container" class="table table-striped table-hover table-condensed table-responsive">
+			<tbody>
+			<tr class="row small">
+				<th class="col-sm-9 small text-muted">User commentary items</th>
+				<th class="col-sm-2 small text-muted">User</th>
+				<th class="col-sm-1 small text-muted">Votes</th>
+			</tr>
+			<!-- this is where the action happens, requires javascript -->
+			</tbody>
+		</table>
+	</div>
 </div>
 <div class="row">
 	<div class="col-sm-6 small">
@@ -68,7 +79,8 @@ Commentarius -
 {% endblock %}
 
 {% block footer %}
-<div id="parentnav" class="row">
+</script>
+<div id="nav2ancestors-footer" class="row">
 	<div class="col-sm-6">
 		<p class="text-muted">
 			text loc <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.entry.cts_urn }}</a>
@@ -77,5 +89,15 @@ Commentarius -
 			{% endfor %}
 		</p>
 	</div>
+	<div class="col-sm-6">
+		<p class="text-muted">You are logged in as user '{{request.user.username}}'</p>
+	</div>
 </div>
+<script src="/static/js/commentaries.js">
+</script>
+<script>
+$('#commentary-container').ready(function(){
+    commentaries('{{ object.cts_urn }}');
+});
+</script>
 {% endblock footer %}
