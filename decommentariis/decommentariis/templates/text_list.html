@@ -1,38 +1,64 @@
 {% extends 'commentarius_base.html' %}
-
+{% load shorter_cts %}
 {% block content %}
 <div class="row">
 	<div class="col-sm-12">
-		<h2>Texts available</h2>
+		<h2>Editions available</h2>
 		<div class="row">
 			<div class="col-sm-12">
-			<ul class="text-list">
-					{% for teientry in object_list %}
-					<li class="text-entry"><a href='./{{ teientry.cts_urn }}/'>{{ teientry.author }} <em>{{ teientry.title}}</em> - {{ teientry.cts_urn }}</a></li>
-					{% endfor %}
-				</ul>
+				<table class="table table-responsive">
+					<thead>
+						<tr>
+							<th class="col-sm-3 text-right">Author</th>
+							<th class="col-sm-6">Edition Title</th>			
+							<th class="col-sm-3">CTS URN</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for teientry in object_list %}
+						<tr>
+							<td class="text-right">
+								{{ teientry.author|default:"(no author)" }}
+							</td>
+							<td>
+								<a href='./{{ teientry.cts_urn }}/'>
+									<em>{{ teientry.title|default:"(no title)" }}</em> 
+									{% if teientry.editor %}	
+									(editor {{ teientry.editor }}) 
+									{% elif teientry.publisher %}
+									(publisher {{ teientry.publisher }})
+									{% endif %}
+								</a>
+							</td>
+							<td class="small">
+								<a href='./{{ teientry.cts_urn }}/'>{{ teientry.cts_urn|prettyctsurn }}</a>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="col-sm-8">
-	{# .... **Now the pagination section** .... #}
-    {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="./?page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="./?page={{ page_obj.next_page_number }}">next</a>
-                {% endif %}
-            </span>
-        </div>
-    {% endif %}
+		{# .... **Now the pagination section** .... #}
+		{% if is_paginated %}
+		<div class="pagination">
+			<span class="page-links">
+				{% if page_obj.has_previous %}
+				<a href="./?page={{ page_obj.previous_page_number }}">previous</a>
+				{% endif %}
+				<span class="page-current">
+					Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+				</span>
+				{% if page_obj.has_next %}
+				<a href="./?page={{ page_obj.next_page_number }}">next</a>
+				{% endif %}
+			</span>
+		</div>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}

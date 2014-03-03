@@ -163,9 +163,11 @@ class CommentaryEntry(models.Model):
 	user = models.ForeignKey(User)
 	creation_date = models.DateTimeField(default=now)
 	votes = models.IntegerField(default=0)
+
+	def __str__(self):
+		return '{0} :: ({1}) >>> {2} :: {3} :: "{4}"'.format(self.section.entry, self.section.section_ref, self.user.username, self.creation_date, self.commentary)
 	
 	class Meta:
-		unique_together = ('section', 'user')
 		ordering = ['-votes', 'creation_date']
 	
 

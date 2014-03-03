@@ -1,5 +1,5 @@
 {% extends 'commentarius_base.html' %}
-
+{% load shorter_cts %}
 {% block title %}
 decommentariis - {{ object.entry.author }} -
 {{ object.cts_urn }}
@@ -47,6 +47,19 @@ decommentariis - {{ object.entry.author }} -
 		{% endif %}
 	</div>
 	<div id="commentary-outer-container" class="col-sm-6"> 
+		<table id="commentary-table" class="table table-condensed table-responsive">
+			<thead>
+				<tr class="row small" id="commentary-table-header">
+					<th class="col-sm-9 small text-muted">Commentary</th>
+					<th class="col-sm-2 small text-muted">User</th>
+					<th class="col-sm-1 small text-muted">+/-</th>
+				</tr>
+			</thead>
+			<tbody id="commentary-container">
+				<!-- this is where the action happens, requires javascript -->
+			</tbody>
+			<tfoot><tr class="row small active" id="commentary-form-click-target"><td colspan="3" class="col-sm-12 small text-muted">Add new commentary item</td></tr></tfoot>
+		</table>
 		<div id="hidey-form" class="small row">
 			<form action="/api/v1/sourcecommentary/" role="form" id="commentary-form">
 				{% csrf_token %}
@@ -64,16 +77,6 @@ decommentariis - {{ object.entry.author }} -
 				</div>
 			</form>
 		</div>
-		<table id="commentary-container" class="table table-striped table-hover table-condensed table-responsive">
-			<tbody>
-				<tr class="row small" id="commentary-table-header">
-					<th class="col-sm-9 small text-muted">User commentary items</th>
-					<th class="col-sm-2 small text-muted">User</th>
-					<th class="col-sm-1 small text-muted">Votes</th>
-				</tr>
-				<!-- this is where the action happens, requires javascript -->
-			</tbody>
-		</table>
 	</div>
 </div>
 <div class="row">
@@ -100,7 +103,7 @@ decommentariis - {{ object.entry.author }} -
 <div id="nav2ancestors-footer" class="row">
 	<div class="col-sm-6">
 		<p class="text-muted">
-			text loc <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.entry.cts_urn }}</a>
+			text loc <a href='/text/{{ object.entry.cts_urn }}/'>{{ object.entry.cts_urn|prettyctsurn }}</a>
 			{% for sect in section_path %}
 			:: <a href='../{{ sect.cts_urn }}/'>{{ sect.section_ref }}</a>
 			{% endfor %}
@@ -110,34 +113,17 @@ decommentariis - {{ object.entry.author }} -
 		<p class="text-muted">You are logged in as user '{{request.user.username}}'</p>
 	</div>
 </div>
-<script src="/static/js/commentaries.js">
-</script>
+<script src="/static/js/commentaries.js"></script>
 <script>
-	$('#commentary-container').ready(function(){
-		commentaries('{{ object.cts_urn }}');
-	});
-	$('commentary-outer-container').ready(function(){
-		userdetail('{{ request.user.username }}')
-	});
-	// wait for the button to be loaded, then plonk this function on it's click. 
-	$('#f_button_submit_id').ready(function() { 
-		$('#f_button_submit_id').css("background-color", "#ccc");
-		$(function() {
-			var fn=function(){
-				$('#f_button_submit_id').css("background-color", "#fcc");
-				make_comment($('#commentary-form'))
-			};
-			$('#f_button_submit_id').click(fn);
-		});
-	}); 
-	// table container
-	$('#commentary-table-header').ready(function() {
-		$(function() {
-			var fn=function() {
-				$('#hidey-form').slideToggle(400);
-			}
-			$('#commentary-table-header').click(fn);
-		});
-	});
+// pre-set the user's details.
+$('#commentary-outer-container').ready(function(){
+	userdetail('{{ request.user.username }}')
+});
+
+// when this container is ready fetch the commentaries
+$('#commentary-table').ready(function(){
+	commentaries('{{ object.cts_urn }}');
+});
 </script>
+
 {% endblock footer %}
