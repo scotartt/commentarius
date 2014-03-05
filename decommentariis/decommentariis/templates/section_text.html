@@ -60,24 +60,30 @@ decommentariis - {{ object.entry.author }} -
 			</tbody>
 			<tfoot><tr class="row small active" id="commentary-form-click-target"><td colspan="3" class="col-sm-12 small text-muted">Add new commentary item</td></tr></tfoot>
 		</table>
-		<div id="hidey-form" class="small row">
-			<form action="/api/v1/sourcecommentary/" role="form" id="commentary-form">
-				{% csrf_token %}
-				<div class="form-group">
-					<input id="f_cts_urn" type="hidden" value="{{ object.cts_urn }}"/>
-					<input id="f_section_input_id" type="hidden" name="section" value="/api/v1/sourcesection/{{ object.cts_urn }}/"/>
-					<input id="f_user_input_id" type="hidden" name="user" value=""/>
-					<div class="col-sm-10">
-						<label for="f_commentary" class="sr-only">comment:</label>
-						<textarea type="text" id="f_commentary" class="form-control input-sm"  name="commentary" rows="2"></textarea>
+		<span id="hidey-form">
+			<div id="form-row"  class="small row">
+				<form action="/api/v1/sourcecommentary/" role="form" id="commentary-form">
+					{% csrf_token %}
+					<div class="form-group">
+						<input id="f_cts_urn" type="hidden" value="{{ object.cts_urn }}"/>
+						<input id="f_section_input_id" type="hidden" name="section" value="/api/v1/sourcesection/{{ object.cts_urn }}/"/>
+						<input id="f_user_input_id" type="hidden" name="user" value=""/>
+						<div class="col-sm-10">
+							<label for="f_commentary" class="sr-only">comment:</label>
+							<textarea type="text" id="f_commentary" class="form-control input-sm"  name="commentary" rows="2"></textarea>
+						</div>
+						<div class="col-sm-2">
+							<input id="f_button_submit_id" type="button" value="comment" class="btn btn-sm pull-right"/>
+						</div>
 					</div>
-					<div class="col-sm-2">
-						<input id="f_button_submit_id" type="button" value="comment" class="btn btn-sm pull-right"/>
-					</div>
-				</div>
-			</form>
-		</div>
+				</form>
+			</div>
+			<div class="row small">
+				<div class="col-sm-10 small">Formatting guide: _<i>italics</i>_ ... **<b>bold</b>** ... press return/enter twice for paragraph. See <a href="http://daringfireball.net/projects/markdown/syntax" target="_new">Markdown syntax</a> for full guide.</div>
+			</div>
+		</span>
 	</div>
+</div>
 </div>
 <div class="row">
 	<div class="col-sm-6 small">

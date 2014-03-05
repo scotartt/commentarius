@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"username",
+				"usernamedetail"
+			],
+			[
+				"f_",
+				"f_button_submit_id"
+			],
+			[
+				"slide",
+				"slideUp  (function)"
+			],
+			[
+				"user",
+				"userjson"
+			],
+			[
+				"ajax",
+				"ajaxurl"
+			],
+			[
+				"div",
+				"divclass"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"comment",
+				"commentary_url"
+			],
+			[
+				"comm",
+				"commentary-container"
+			],
+			[
+				"re",
+				"register"
+			],
+			[
+				"For",
+				"ForeignKey"
+			],
+			[
 				"Co",
 				"CommentaryUserForm"
 			],
@@ -184,10 +228,6 @@
 				"sectionslist  (variable)"
 			],
 			[
-				"div",
-				"div1"
-			],
-			[
 				"assertIs",
 				"assertIsNotNone  (function)"
 			],
@@ -210,10 +250,6 @@
 			[
 				"close",
 				"close_source"
-			],
-			[
-				"re",
-				"read_doc_metadata  (function)"
 			],
 			[
 				"assertE",
@@ -360,10 +396,10 @@
 	"buffers":
 	[
 		{
-			"file": "decommentariis/decommentariis/settings.py",
+			"file": "decommentariis/decommentariis/templates/account/verified_email_required.html",
 			"settings":
 			{
-				"buffer_size": 3577,
+				"buffer_size": 822,
 				"line_ending": "Unix"
 			}
 		}
@@ -379,19 +415,35 @@
 				"Indentation: Reindent Lines"
 			],
 			[
-				"re",
-				"Indentation: Reindent Lines"
+				"sort",
+				"Sort Lines"
 			],
 			[
 				"tabs",
 				"Indentation: Convert to Tabs"
 			],
 			[
-				"in",
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"tab",
 				"Indentation: Convert to Tabs"
 			],
 			[
 				"REIN",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"in",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"reinde",
 				"Indentation: Reindent Lines"
 			],
 			[
@@ -401,10 +453,6 @@
 			[
 				"reindent",
 				"Indentation: Reindent Lines"
-			],
-			[
-				"tab",
-				"Indentation: Convert to Tabs"
 			],
 			[
 				"TABS",
@@ -478,29 +526,44 @@
 	},
 	"file_history":
 	[
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/admin.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_text.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/models.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/commentaries.js",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/re.js",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/api.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/text_list.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_list.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/index.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/theme/theme.css",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/commentarius_base.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templatetags/shorter_cts.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templatetags/__init__.py",
+		"/Users/smcphee/Development/python/lib/python3.3/site-packages/tastypie/authorization.py",
+		"/Users/smcphee/Development/python/lib/python3.3/site-packages/django/contrib/auth/models.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/urls.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/base.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/login.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/commentarius_base.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/signup.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/socialaccount/signup.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/logout.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/settings.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_list.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_text.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/prod_settings.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/views.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/404.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/500.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/production-settings.py",
+		"/Users/smcphee/Development/sources/commentarius/README.md",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/activation_email_subject.txt",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/password_change_done.html",
 		"/Users/smcphee/Development/sources/commentarius/temp/base.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/text_list.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/login.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/urls.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/forms.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/activate.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/registration_form.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/registration/activation_email.txt",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/admin.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/models.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/index.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/base.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/theme/theme.css",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/views.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file_test.py",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0893/phi004/phi0893.phi004.perseus-lat1.xml",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0474/phi072/phi0474.phi072.perseus-lat1.xml",
@@ -516,7 +579,6 @@
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/css/style-mobile.css",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/init.js",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/css/style copy.css",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/api.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/sallust_flat.json",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/get_data.sh",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/greekLit/tlg0099/tlg001/tlg0099.tlg001.perseus-grc1.xml",
@@ -534,7 +596,6 @@
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/greekLit/tlg0001/tlg001/tlg0001.tlg001.perseus-grc1.xml",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/savecomment/views.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/savecomment/serializers.py",
-		"/Users/smcphee/Development/python/lib/python3.3/site-packages/django/contrib/auth/models.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/savecomment/models.py",
 		"/Library/Frameworks/Python.framework/Versions/3.3/lib/python3.3/site.py",
 		"/Users/smcphee/Sites/autonomous.org/mailme.php",
@@ -592,13 +653,7 @@
 		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/03-PoliticsControlAndLandscape/Research/Jaeger2010.md",
 		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/03-PoliticsControlAndLandscape/Quotes/Livy Sections.md",
 		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/03-PoliticsControlAndLandscape/Research/Miles1995.md",
-		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/03-PoliticsControlAndLandscape/Research/Hanses2011.md",
-		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/03-PoliticsControlAndLandscape/Research/Lushkov2013.md",
-		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/readme.md",
-		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/03-PoliticsControlAndLandscape/Research/Krebs2006.md",
-		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/.gitignore",
-		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/99-Bibliography/Bibliography.md",
-		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/03-PoliticsControlAndLandscape/test.html/Landscape and Control/Landscape and Control.html"
+		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/03-PoliticsControlAndLandscape/Research/Hanses2011.md"
 	],
 	"find":
 	{
@@ -609,6 +664,7 @@
 		"height": 105.0,
 		"where_history":
 		[
+			"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account",
 			""
 		]
 	},
@@ -617,6 +673,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"divcontent",
+			"divclass",
+			"commentary_div",
+			"class",
+			"12",
+			"	def _short_cts(self):\n		s = self.cts_urn.split(\":\")[2:]\n		return s.join(\" \")",
+			"div",
+			"rowDiv",
+			"<br/>",
+			"As a final step, please complete the following form",
+			"what",
 			"Sign In",
 			"sign in",
 			"Sign In",
@@ -733,18 +800,7 @@
 			"small",
 			"container",
 			".box",
-			"box",
-			"#one",
-			"one",
-			"lightgreen",
-			"skyblue",
-			"deepskyblue",
-			"lightblue",
-			"deepskyblue",
-			"darkorange",
-			"yellowgreen",
-			"steelblue",
-			"#7AA6DA"
+			"box"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -752,6 +808,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
 			"-sm-",
 			"TEIDataSource",
 			"document_metastructure",
@@ -783,130 +840,25 @@
 			[
 				{
 					"buffer": 0,
-					"file": "decommentariis/decommentariis/settings.py",
-					"semi_transient": false,
+					"file": "decommentariis/decommentariis/templates/account/verified_email_required.html",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 3577,
+						"buffer_size": 822,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								578,
-								578
+								546,
+								546
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": false,
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -994,7 +946,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 263.0,
+	"side_bar_width": 377.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -5,6 +5,8 @@ from tastypie.authentication import BasicAuthentication, SessionAuthentication, 
 from tastypie.authorization import DjangoAuthorization
 from decommentariis.models import TEIEntry, TEISection, CommentaryEntry
 from django.contrib.auth.models import User
+import markdown
+import bleach
 
 class TEIEntryResource(ModelResource):
 	sections = fields.ToManyField('decommentariis.api.TEISectionResource', 'teisection_set', related_name='entry')
@@ -26,6 +28,9 @@ class TEISectionResource(ModelResource):
 		queryset = TEISection.objects.all()
 		resource_name = 'sourcesection'
 		list_allowed_methods = ['get']
+		filtering = {
+			'cts_urn': ALL,
+		}
 
 	def dehydrate(self, bundle):
 		#bundle.data['text_data'] = bundle.obj.readData()
@@ -47,7 +52,7 @@ class CommentaryEntryResource(ModelResource):
 		}
 
 	def dehydrate(self, bundle):
-		# bundle.data['text_data'] = bundle.obj.readData()
+		bundle.data['commentary'] = markdown.markdown(bundle.obj.commentary, encoding="utf-8", output_format="html5", safe_mode=False)
 		return bundle 
 
 class UserResource(ModelResource):
