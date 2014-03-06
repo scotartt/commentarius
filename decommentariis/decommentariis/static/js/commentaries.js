@@ -26,10 +26,10 @@ $('#hidey-form').ready(function(){
 
 // the button on the form needs to trigger this js function. 
 $('#f_button_submit_id').ready(function() { 
-	$('#f_button_submit_id').css("background-color", "#ccc");
+	//$('#f_button_submit_id').css("background-color", "#ccc");
 	$(function() {
 		var fn=function(){
-			$('#f_button_submit_id').css("background-color", "#fcc");
+			$('#f_button_submit_id').attr('disabled','disabled');
 			make_comment($('#commentary-form'))
 		};
 		$('#f_button_submit_id').click(fn);
@@ -140,8 +140,7 @@ var update_commentary_form = function(commentform) {
 	var cts_urn = commentform.find('#f_cts_urn').attr('value');
 	commentaries(cts_urn);
 	commentform.find('#f_commentary').val('');
-	//commentform.attr('hidden', 'hidden');
-	$('#f_button_submit_id').css("background-color", "#ccc");
+	$('#f_button_submit_id').removeAttr('disabled');
 	$('#hidey-form').slideUp(400);
 }
 

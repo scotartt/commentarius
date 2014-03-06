@@ -31,7 +31,7 @@ decommentariis - {{ object.entry.author }} -
 
 <div id="maincontent" class="row">
 	<div id="leftoftext" class="col-sm-1">
-		
+		&nbsp;
 	</div>
 	<div id="text" class="col-sm-4 maintext">
 		{% autoescape off %}  {{ section_text }} {% endautoescape %}
@@ -47,39 +47,45 @@ decommentariis - {{ object.entry.author }} -
 		{% endif %}
 	</div>
 	<div id="commentary-outer-container" class="col-sm-6"> 
-		<table id="commentary-table" class="table table-condensed table-responsive">
-			<thead>
-				<tr class="row small" id="commentary-table-header">
-					<th class="col-sm-9 small text-muted">Commentary</th>
-					<th class="col-sm-2 small text-muted">User</th>
-					<th class="col-sm-1 small text-muted">+/-</th>
-				</tr>
-			</thead>
-			<tbody id="commentary-container">
-				<!-- this is where the action happens, requires javascript -->
-			</tbody>
-			<tfoot><tr class="row small active" id="commentary-form-click-target"><td colspan="3" class="col-sm-12 small text-muted">Add new commentary item</td></tr></tfoot>
-		</table>
+		<div class="row">
+			<table id="commentary-table" class="table table-condensed table-responsive">
+				<thead>
+					<tr class="row small" id="commentary-table-header">
+						<th class="col-sm-9 small text-muted">Commentary</th>
+						<th class="col-sm-2 small text-muted">User</th>
+						<th class="col-sm-1 small text-muted">+/-</th>
+					</tr>
+				</thead>
+				<tbody id="commentary-container">
+					<!-- this is where the action happens, requires javascript -->
+				</tbody>
+				<tfoot><tr class="row small active" id="commentary-form-click-target"><td colspan="3" class="col-sm-12 small text-muted">Add new commentary item</td></tr></tfoot>
+			</table>
+		</div>
 		<span id="hidey-form">
-			<div id="form-row"  class="small row">
+			<div id="form-row"  class="row">
 				<form action="/api/v1/sourcecommentary/" role="form" id="commentary-form">
 					{% csrf_token %}
-					<div class="form-group">
-						<input id="f_cts_urn" type="hidden" value="{{ object.cts_urn }}"/>
+					<!-- div class="form-group" -->
+					<div class="col-sm-12">
+						<label for="f_commentary" class="sr-only">comment:</label>
+
+						<textarea type="text" id="f_commentary" class="form-control input-sm"  name="commentary" rows="4"></textarea>
+
+						<p><input id="f_cts_urn" type="hidden" value="{{ object.cts_urn }}"/>
 						<input id="f_section_input_id" type="hidden" name="section" value="/api/v1/sourcesection/{{ object.cts_urn }}/"/>
-						<input id="f_user_input_id" type="hidden" name="user" value=""/>
-						<div class="col-sm-10">
-							<label for="f_commentary" class="sr-only">comment:</label>
-							<textarea type="text" id="f_commentary" class="form-control input-sm"  name="commentary" rows="2"></textarea>
-						</div>
-						<div class="col-sm-2">
-							<input id="f_button_submit_id" type="button" value="comment" class="btn btn-sm pull-right"/>
-						</div>
+						<input id="f_user_input_id" type="hidden" name="user" value=""/></p>
 					</div>
+					<!-- /div -->
 				</form>
 			</div>
-			<div class="row small">
-				<div class="col-sm-10 small">Formatting guide: _<i>italics</i>_ ... **<b>bold</b>** ... press return/enter twice for paragraph. See <a href="http://daringfireball.net/projects/markdown/syntax" target="_new">Markdown syntax</a> for full guide.</div>
+			<div class="row">
+				<div class="col-sm-10 small">
+					Formatting guide: _<i>italics</i>_ ... **<b>bold</b>** ... press return/enter twice for paragraph. See <a href="http://daringfireball.net/projects/markdown/syntax" target="_new">Markdown syntax</a> for full guide.
+				</div>
+				<div class="col-sm-2">
+					<input id="f_button_submit_id" type="button" value="comment" class="btn btn-xs btn-primary"/>
+				</div>
 			</div>
 		</span>
 	</div>
