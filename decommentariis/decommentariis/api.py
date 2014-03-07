@@ -52,7 +52,8 @@ class CommentaryEntryResource(ModelResource):
 		}
 
 	def dehydrate(self, bundle):
-		bundle.data['commentary'] = markdown.markdown(bundle.obj.commentary, encoding="utf-8", output_format="html5", safe_mode=False)
+		bundle.data['commentary.html'] = markdown.markdown(bundle.obj.commentary, encoding="utf-8", output_format="html5", safe_mode=False)
+		bundle.data['commentary.md'] = bundle.obj.commentary
 		return bundle 
 
 class UserResource(ModelResource):

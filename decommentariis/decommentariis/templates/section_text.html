@@ -129,7 +129,7 @@ decommentariis - {{ object.entry.author }} -
 <script>
 // pre-set the user's details.
 $('#commentary-outer-container').ready(function(){
-	userdetail('{{ request.user.username }}')
+	setuserdetail();
 });
 
 // when this container is ready fetch the commentaries

@@ -77,13 +77,14 @@ var commentary_and_user = function(json) {
 	$.ajax({
 		url: userUrl,
 		success:function(data){
-			commentary(json, data);
+			commentaryitem(json, data);
 		}
 	});
 }
 
-var commentary = function(commentjson, userjson) {
+var commentaryitem = function(commentjson, userjson) {
 	// alert(JSON.stringify(json));
+	var uname_login = getuserdetail();
 	var fname = userjson['first_name']
 	var lname = userjson['last_name']
 	var uname = userjson['username']
@@ -101,7 +102,7 @@ var commentary = function(commentjson, userjson) {
 	"<tr class='row small'>",
 	commentary_td.call({
 		"tdclass":"col-sm-9",
-		"tdcontent": commentjson['commentary']  
+		"tdcontent": commentjson['commentary.html']  
 	}),
 	commentary_td.call({
 		"tdclass":"col-sm-2",
@@ -124,15 +125,20 @@ var commentary_td = function () {
 	].join('');
 };
 
-var userdetail = function(username) {
-	var userUrl = "/api/v1/user/?username=" + username;
+var setuserdetail = function() {
+	var username = getuserdetail();
+	var userQueryUrl = "/api/v1/user/?username=" + username;
 	$.ajax({
-		url: userUrl,
+		url: userQueryUrl,
 		success:function(data){
 			var user_resource_uri = data['objects'][0]['resource_uri']
 			$('#f_user_input_id').attr( 'value', user_resource_uri )
 		}
 	});
+}
+
+var getuserdetail = function() {
+	return $('#user-username').text();
 }
 
 var update_commentary_form = function(commentform) {
@@ -158,11 +164,13 @@ var make_comment = function(commentform) {
 		"csrfmiddlewaretoken": csrfmiddlewaretoken
 	});
 
-	// alert(data);
+	sendcomment(ajaxurl, 'POST', data, commentform);
+}
 
+var sendcomment = function(ajaxurl, methodtype, data, commentform) {
 	$.ajax({
 		url: ajaxurl,
-		type: 'POST',
+		type: methodtype,
 		contentType: 'application/json',
 		data: data,
 		dataType: 'json',
@@ -171,24 +179,33 @@ var make_comment = function(commentform) {
 			alert(text);
 		},
 		statusCode: {
+			200: function() {
+				update_commentary_form(commentform)
+			},
 			201: function() {
 				update_commentary_form(commentform)
 			},
 			400: function() {
-				alert( "commentary not posted: 400 bad request" );
+				error( "commentary not posted: 400 bad request" );
 			},
 			401: function() {
-				alert( "unauthorised to post commentary" );
+				error( "unauthorised to post commentary" );
 			},
 			403: function() {
-				alert( "forbidden to post commentary" );
+				error( "forbidden to post commentary" );
 			},
 			404: function() {
-				alert( "commentary not posted: 404 not found" );
+				error( "commentary not posted: 404 not found" );
 			},
 			500: function() {
-				alert( "server error prevented commentary posting" );
+				error( "server error prevented commentary posting" );
 			},
 		}
 	});
 }
+
+var error = function(msg) {
+	alert(msg); // work out something nicer later.
+	//var alert = '<div class="alert alert-danger">' + msg + '.</div>'
+}
+
