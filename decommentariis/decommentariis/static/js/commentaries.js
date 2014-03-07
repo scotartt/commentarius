@@ -3,7 +3,7 @@
  */
 
  if (typeof jQuery === 'undefined') { 
- 	throw new Error('Commentary\'s JavaScript requires jQuery');
+	throw new Error('Commentary\'s JavaScript requires jQuery');
  }
  // sending a csrftoken with every ajax request
  function csrfSafeMethod(method) {
@@ -96,12 +96,17 @@ var commentaryitem = function(commentjson, userjson) {
 	} else {
 		usernamedetail = "unknown";
 	}
+
+	var editclass = "";
+	if (uname_login === uname) {
+		editclass = " edit_area";
+	} 
 	
 
 	var rowTR = [
 	"<tr class='row small'>",
 	commentary_td.call({
-		"tdclass":"col-sm-9",
+		"tdclass":"col-sm-9" + editclass,
 		"tdcontent": commentjson['commentary.html']  
 	}),
 	commentary_td.call({
@@ -114,6 +119,16 @@ var commentaryitem = function(commentjson, userjson) {
 	}),
 	"</tr>"
 	].join("");
+
+	if (editclass !== "") {
+		$(rowTR).editable( "", {
+			type      : 'textarea',
+			cancel    : 'Cancel',
+			submit    : 'OK',
+			tooltip   : 'Click to edit...'
+		});
+	}
+
 	$('#commentary-container').append(rowTR)
 }
 

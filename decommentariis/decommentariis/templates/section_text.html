@@ -11,6 +11,7 @@ decommentariis - {{ object.entry.author }} -
 		<p>{{ object.entry.author }}<em>'{{ object.entry.title }}'</em></p>
 	</div>
 </div>
+
 <div class="row">
 	<div class="col-sm-6 small">
 		<ul class="pager small top">	
@@ -62,6 +63,7 @@ decommentariis - {{ object.entry.author }} -
 				<tfoot><tr class="row small active" id="commentary-form-click-target"><td colspan="3" class="col-sm-12 small text-muted">Add new commentary item</td></tr></tfoot>
 			</table>
 		</div>
+
 		<span id="hidey-form">
 			<div id="form-row"  class="row">
 				<form action="/api/v1/sourcecommentary/" role="form" id="commentary-form">
@@ -72,11 +74,12 @@ decommentariis - {{ object.entry.author }} -
 
 						<textarea type="text" id="f_commentary" class="form-control input-sm"  name="commentary" rows="4"></textarea>
 
-						<p><input id="f_cts_urn" type="hidden" value="{{ object.cts_urn }}"/>
-						<input id="f_section_input_id" type="hidden" name="section" value="/api/v1/sourcesection/{{ object.cts_urn }}/"/>
-						<input id="f_user_input_id" type="hidden" name="user" value=""/></p>
+						<p>
+							<input id="f_cts_urn" type="hidden" value="{{ object.cts_urn }}"/>
+							<input id="f_section_input_id" type="hidden" name="section" value="/api/v1/sourcesection/{{ object.cts_urn }}/"/>
+							<input id="f_user_input_id" type="hidden" name="user" value=""/>
+						</p>
 					</div>
-					<!-- /div -->
 				</form>
 			</div>
 			<div class="row">
@@ -89,7 +92,6 @@ decommentariis - {{ object.entry.author }} -
 			</div>
 		</span>
 	</div>
-</div>
 </div>
 <div class="row">
 	<div class="col-sm-6 small">
@@ -111,7 +113,6 @@ decommentariis - {{ object.entry.author }} -
 {% endblock %}
 
 {% block footer %}
-</script>
 <div id="nav2ancestors-footer" class="row">
 	<div class="col-sm-6">
 		<p class="text-muted">
