@@ -42,22 +42,24 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-8">
+	<div class="col-sm-8 col-sm-offset-2">
 		{# .... **Now the pagination section** .... #}
 		{% if is_paginated %}
-		<div class="pagination">
-			<span class="page-links">
-				{% if page_obj.has_previous %}
-				<a href="./?page={{ page_obj.previous_page_number }}">previous</a>
-				{% endif %}
-				<span class="page-current">
-					Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-				</span>
-				{% if page_obj.has_next %}
-				<a href="./?page={{ page_obj.next_page_number }}">next</a>
-				{% endif %}
-			</span>
-		</div>
+		<ul class="pagination">
+			<li class="previous"><a href="./?page=1">(1) &laquo;&laquo; first</a></li>
+			{% if page_obj.has_previous %}
+			<li><a href="./?page={{ page_obj.previous_page_number }}">({{ page_obj.previous_page_number }}) &laquo; previous</a></li>
+			{% else %}
+			<li class="disabled"><a href='#'>&laquo;</a></li>
+			{% endif %}
+			<li class="text-info"><a href="./?page={{ page_obj.number }}">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a></li>
+			{% if page_obj.has_next %}
+			<li><a href="./?page={{ page_obj.next_page_number }}">next &raquo; ({{ page_obj.next_page_number }})</a></li>
+			{% else %}
+			<li class="disabled"><a href='#'>&raquo;</a></li>
+			{% endif %}
+			<li class="next"><a href="./?page={{ page_obj.paginator.num_pages }}">last &raquo;&raquo; ({{ page_obj.paginator.num_pages }})</a></li>
+		</ul>
 		{% endif %}
 	</div>
 </div>

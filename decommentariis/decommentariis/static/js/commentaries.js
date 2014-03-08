@@ -106,23 +106,25 @@ var commentaryitem = function(commentjson, userjson) {
 	var rowTR = [
 	"<tr class='row small'>",
 	commentary_td.call({
-		"tdclass":"col-sm-9",
+		"tdclass":"col-sm-9 commentary-text",
 		"tdcontent": commentjson['commentary.html'] ,
 		"editclass": editclass,
 
 	}),
 	commentary_td.call({
-		"tdclass":"col-sm-2",
+		"tdclass":"col-sm-2 uname",
 		"tdcontent":  usernamedetail + " <span hidden='hidden'>(" + userjson['id'] + ")<span>",
 		"editclass": "",
 	}),
 	commentary_td.call({
-		"tdclass":"col-sm-1",
+		"tdclass":"col-sm-1 votes",
 		"tdcontent": commentjson['votes'] + '',
 		"editclass": "",
 	}),
 	"</tr>"
 	].join("");
+
+	//md_instructions div (insert it)
 
 	$('#commentary-container').append(rowTR).find(".edit_area").each(function() {
 		$(this).editable(function(value, settings) { 
@@ -130,7 +132,8 @@ var commentaryitem = function(commentjson, userjson) {
 			var postdata = {};
 			postdata['commentary'] = value;
 			$(this).attr('disabled', true);
-			var commentaryform = $('#commentary-form')
+			var commentaryform = $('#commentary-form');
+			$('#hidey-form').slideUp(10);
 			sendcomment(ajaxurl, 'PUT', JSON.stringify(postdata), commentaryform);
 			return(value);
 		}, 
@@ -140,7 +143,7 @@ var commentaryitem = function(commentjson, userjson) {
 			submit  : 'Save',
 			tooltip : 'Click to edit your own commentary...',
 			style   : 'inherit',
-			rows    : 4,
+			// rows    : 4,
 
 		});
 	});
