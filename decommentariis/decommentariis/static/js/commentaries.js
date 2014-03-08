@@ -99,44 +99,60 @@ var commentaryitem = function(commentjson, userjson) {
 
 	var editclass = "";
 	if (uname_login === uname) {
-		editclass = " edit_area";
+		editclass = "edit_area ";
 	} 
 	
 
 	var rowTR = [
 	"<tr class='row small'>",
 	commentary_td.call({
-		"tdclass":"col-sm-9" + editclass,
-		"tdcontent": commentjson['commentary.html']  
+		"tdclass":"col-sm-9",
+		"tdcontent": commentjson['commentary.html'] ,
+		"editclass": editclass,
+
 	}),
 	commentary_td.call({
 		"tdclass":"col-sm-2",
-		"tdcontent":  usernamedetail + " <span hidden='hidden'>(" + userjson['id'] + ")<span>"
+		"tdcontent":  usernamedetail + " <span hidden='hidden'>(" + userjson['id'] + ")<span>",
+		"editclass": "",
 	}),
 	commentary_td.call({
 		"tdclass":"col-sm-1",
-		"tdcontent": commentjson['votes'] + ''
+		"tdcontent": commentjson['votes'] + '',
+		"editclass": "",
 	}),
 	"</tr>"
 	].join("");
 
-	if (editclass !== "") {
-		$(rowTR).editable( "", {
-			type      : 'textarea',
-			cancel    : 'Cancel',
-			submit    : 'OK',
-			tooltip   : 'Click to edit...'
-		});
-	}
+	$('#commentary-container').append(rowTR).find(".edit_area").each(function() {
+		$(this).editable(function(value, settings) { 
+			var ajaxurl = commentjson['resource_uri'];
+			var postdata = {};
+			postdata['commentary'] = value;
+			$(this).attr('disabled', true);
+			var commentaryform = $('#commentary-form')
+			sendcomment(ajaxurl, 'PUT', JSON.stringify(postdata), commentaryform);
+			return(value);
+		}, 
+		{
+			data    : commentjson['commentary.md'],
+			type    : 'textarea',
+			submit  : 'Save',
+			tooltip : 'Click to edit your own commentary...',
+			style   : 'inherit',
+			rows    : 4,
 
-	$('#commentary-container').append(rowTR)
+		});
+	});
+
+	// $('#commentary-container').append(rowTR)
 }
 
 var commentary_td = function () {
 	return [
-	"<td class='", this.tdclass, " small'>",
+	"<td class='",this.tdclass," small'><div class='",this.editclass,"small' >",
 	this.tdcontent,
-	"</td>"
+	"</div></td>"
 	].join('');
 };
 
@@ -190,30 +206,95 @@ var sendcomment = function(ajaxurl, methodtype, data, commentform) {
 		data: data,
 		dataType: 'json',
 		processData: false,
-		success: function(response, text, object) {
-			alert(text);
-		},
 		statusCode: {
 			200: function() {
+				//console.log("200 is success");
 				update_commentary_form(commentform)
 			},
 			201: function() {
+				//console.log("201 is success");
+				update_commentary_form(commentform)
+			},
+			204: function() {
+				//console.log("204 is success");
+				update_commentary_form(commentform)
+			},
+			205: function() {
+				//console.log("205 is success");
+				update_commentary_form(commentform)
+			},
+			206: function() {
+				//console.log("206 is success");
 				update_commentary_form(commentform)
 			},
 			400: function() {
-				error( "commentary not posted: 400 bad request" );
+				error( "Commentary not posted: 400 Bad Request (the gods were not pleased by your sacrifice and the request was denied)" );
 			},
 			401: function() {
-				error( "unauthorised to post commentary" );
+				error( "Not authorised to post commentary (the gods would prefer you don't do that right now)" );
 			},
 			403: function() {
-				error( "forbidden to post commentary" );
+				error( "Forbidden to post commentary (the gods forbid this from happening)" );
 			},
 			404: function() {
-				error( "commentary not posted: 404 not found" );
+				error( "Commentary not posted: 404 not found (the gods can't be found)" );
+			},
+			405: function() {
+				error( "Commentary not posted: HTTP Error Status 405 (the gods forbid the method of scarfice you are using)" );
+			},
+			406: function() {
+				error( "Commentary not posted: HTTP Error Status 406 (the gods do not find your sacrifice acceptable)" );
+			},
+			407: function() {
+				error( "Commentary not posted: HTTP Error Status 407 (the gods deny your proxy is authentic)" );
+			},
+			408: function() {
+				error( "Commentary not posted: HTTP Error Status 408 (the gods are busy battling titans and could not find the time for your request)" );
+			},
+			409: function() {
+				error( "Commentary not posted: HTTP Error Status 409 (the gods are in conflict)" );
+			},
+			410: function() {
+				error( "Commentary not posted: HTTP Error Status 410 (the gods are gone (see also: Sophocles))" );
+			},
+			411: function() {
+				error( "Commentary not posted: HTTP Error Status 411 (the gods demand a sacrifice of appropriate length)" );
+			},
+			412: function() {
+				error( "Commentary not posted: HTTP Error Status 412 (the gods demand preconditions which were not satisfied)" );
+			},
+			413: function() {
+				error( "Commentary not posted: HTTP Error Status 413 (the gods have determined your sacrificial entity was too large)" );
+			},
+			414: function() {
+				error( "Commentary not posted: HTTP Error Status 414 (the gods found your prayers went for too long and refused to accept them)" );
+			},
+			415: function() {
+				error( "Commentary not posted: HTTP Error Status 415 (the gods don't accept this type of sacrifice)" );
+			},
+			416: function() {
+				error( "Commentary not posted: HTTP Error Status 416 (the gods cannot satisfy the range of your requests)" );
+			},
+			417: function() {
+				error( "Commentary not posted: HTTP Error Status 417 (the gods were expecting something else)" );
 			},
 			500: function() {
-				error( "server error prevented commentary posting" );
+				error( "Server error: 500 Internal Error (the gods punish hubris)" );
+			},
+			501: function() {
+				error( "Server error: 501 Not Implemented (the gods have not implemented this type of sacrifice)" );
+			},
+			502: function() {
+				error( "Server error: 502 Bad Gateway (the gods tried to relay your request and were denied)" );
+			},
+			503: function() {
+				error( "Server error: 503 Service Unavailable (the gods are getting too many sacrifices right now to deal with yours, tray again later)" );
+			},
+			504: function() {
+				error( "Server error: 504 Gateway Timeout (the gods tried to relay your request but the other gods aren't listening)" );
+			},
+			505: function() {
+				error( "Server error: 505 HTTP Version Not Supported (the gods don't like that method)" );
 			},
 		}
 	});

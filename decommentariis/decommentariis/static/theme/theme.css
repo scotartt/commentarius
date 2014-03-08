@@ -22,11 +22,22 @@ body {
   border: none;
   border-left: 1px dotted #999;
 }
-#commentary-container > tr > td > h1, h2, h3, h4 {
+#commentary-container h1 {
+  font-size: 85%;
+  font-weight: bold;
+  font-variant: small-caps;
+  color: #333;
+}
+#commentary-container h2 {
   font-size: 80%;
   font-weight: bold;
   font-variant: small-caps;
-  color: #999
+  color: #333;
+}
+#commentary-container h3 {
+  font-size: 80%;
+  font-variant: small-caps;
+  color: #333;
 }
 
 .theme-dropdown .dropdown-menu {
