@@ -5,6 +5,8 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from decommentariis.xml_file import TEIDataSource
+from decommentariis.signals import *
+
 
 class TEIEntry(models.Model):
 	cts_urn = models.CharField(max_length=200, primary_key=True)

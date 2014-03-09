@@ -61,6 +61,9 @@ var populate = function(json) {
 	//alert(JSON.stringify(json['user_commentaries']));
 	var user_commentaries = json['user_commentaries'];
 	$('#commentary-container').empty();
+	/* or in one call:
+	   /api/v1/sourcecommentary/?section__cts_urn=<cts_urn>
+	 */
 	for (var i=0; i<user_commentaries.length; i++) {
 		var commentary_url = user_commentaries[i];
 		$.ajax({

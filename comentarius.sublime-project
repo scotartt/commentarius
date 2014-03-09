@@ -8,6 +8,10 @@
 		{
 			"follow_symlinks": true,
 			"path": "/Users/smcphee/Development/python/lib/python3.3/site-packages/django"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/Users/smcphee/Development/python/lib/python3.3/site-packages/allauth"
 		}
 	]
 }

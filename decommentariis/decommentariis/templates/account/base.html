@@ -38,7 +38,8 @@
 			<div class="col-sm-6">
 				{% if user.is_authenticated %}
 				<p>You are logged in. You can:
-				<a href="{% url 'account_email' %}">Change Your Email</a>, or
+				<a href="{% url 'account_change_password' %}">Change your password</a>, 
+				<a href="{% url 'account_email' %}">Manage Your Email</a>, or
 				<a href="{% url 'account_logout' %}">Log Out</a></p>
 				{% else %}
 				<p>You are not logged in. You can: 
