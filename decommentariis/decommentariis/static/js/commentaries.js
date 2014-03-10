@@ -63,8 +63,8 @@ var populate = function(json) {
 	$('#commentary-container').empty();
 	/* or in one call:
 	   /api/v1/sourcecommentary/?section__cts_urn=<cts_urn>
-	 */
-	for (var i=0; i<user_commentaries.length; i++) {
+	   */
+	   for (var i=0; i<user_commentaries.length; i++) {
 		var commentary_url = user_commentaries[i];
 		$.ajax({
 			url: commentary_url,
@@ -72,20 +72,20 @@ var populate = function(json) {
 				commentary_and_user(data);
 			}
 		});
+	   }
 	}
-}
 
-var commentary_and_user = function(json) {
-	var userUrl = json['user'];
-	$.ajax({
-		url: userUrl,
-		success:function(data){
-			commentaryitem(json, data);
-		}
-	});
-}
+	var commentary_and_user = function(json) {
+		var userUrl = json['user'];
+		$.ajax({
+			url: userUrl,
+			success:function(data){
+				commentaryitem(json, data);
+			}
+		});
+	}
 
-var commentaryitem = function(commentjson, userjson) {
+	var commentaryitem = function(commentjson, userjson) {
 	// alert(JSON.stringify(json));
 	var uname_login = getuserdetail();
 	var fname = userjson['first_name']
@@ -100,63 +100,77 @@ var commentaryitem = function(commentjson, userjson) {
 		usernamedetail = "unknown";
 	}
 
-	var editclass = "";
-	if (uname_login === uname) {
-		editclass = "edit_area ";
-	} 
 	
+	var divclasstext = "expander ";
+	var iseditable = (uname_login === uname);
+	if (iseditable) {
+		divclasstext = " edit_area ";
+	}
 
 	var rowTR = [
 	"<tr class='row small'>",
 	commentary_td.call({
-		"tdclass":"col-sm-9 commentary-text",
+		"tdclass":"col-sm-9 commentary-text ",
 		"tdcontent": commentjson['commentary.html'] ,
-		"editclass": editclass,
-
+		"contentclass": divclasstext,
+		"iseditable": iseditable,
 	}),
 	commentary_td.call({
 		"tdclass":"col-sm-2 uname",
 		"tdcontent":  usernamedetail + " <span hidden='hidden'>(" + userjson['id'] + ")<span>",
-		"editclass": "",
+		"contentclass": "",
+		"iseditable": false,
 	}),
 	commentary_td.call({
 		"tdclass":"col-sm-1 votes",
 		"tdcontent": commentjson['votes'] + '',
-		"editclass": "",
+		"contentclass": "",
+		"iseditable": false,
 	}),
 	"</tr>"
 	].join("");
 
-	//md_instructions div (insert it)
-
-	$('#commentary-container').append(rowTR).find(".edit_area").each(function() {
-		$(this).editable(function(value, settings) { 
-			var ajaxurl = commentjson['resource_uri'];
-			var postdata = {};
-			postdata['commentary'] = value;
-			$(this).attr('disabled', true);
-			var commentaryform = $('#commentary-form');
-			$('#hidey-form').slideUp(10);
-			sendcomment(ajaxurl, 'PUT', JSON.stringify(postdata), commentaryform);
-			return(value);
-		}, 
-		{
-			data    : commentjson['commentary.md'],
-			type    : 'textarea',
-			submit  : 'Save',
-			tooltip : 'Click to edit your own commentary...',
-			style   : 'inherit',
-			// rows    : 4,
-
-		});
-	});
-
-	// $('#commentary-container').append(rowTR)
+	if (iseditable) {
+		$('#commentary-container').append(rowTR).find(".edit_area").each(
+			function() {
+				$(this).editable(function(value, settings) { 
+					var ajaxurl = commentjson['resource_uri'];
+					var postdata = {};
+					postdata['commentary'] = value;
+					$(this).attr('disabled', true);
+					var commentaryform = $('#commentary-form');
+					$('#hidey-form').slideUp(10);
+					sendcomment(ajaxurl, 'PUT', JSON.stringify(postdata), commentaryform);
+					return(value);
+				}, 
+				{
+					data    : commentjson['commentary.md'],
+					type    : 'textarea',
+					submit  : 'Save',
+					tooltip : 'Click to edit your own commentary...',
+					style   : 'inherit',
+				}); //end $(this).editable(function()) {...});
+			} // end the outer function() { ... } (passed to .each())
+		); // end each( ... );
+	} else {
+		$('#commentary-container').append(rowTR).find(".expander").each(
+			function() {
+				$(this).expander({
+					slicePoint: 150,
+					expandEffect: 'fadeIn',
+					expandSpeed: 250,
+					collapseEffect: 'fadeOut',
+					collapseSpeed: 200,
+				}); //end $(this).expander({ ... });
+			} // end function{ ... } in each()
+		); //end each( ... );
+	}
 }
 
 var commentary_td = function () {
 	return [
-	"<td class='",this.tdclass," small'><div class='",this.editclass,"small' >",
+	"<td class='",this.tdclass," small'>",
+	"<div class='",this.contentclass,"small' editable='",this.iseditable,"'>",
 	this.tdcontent,
 	"</div></td>"
 	].join('');
