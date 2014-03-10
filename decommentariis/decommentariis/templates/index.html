@@ -11,7 +11,7 @@
 	<script src="/static/js/bootstrap.min.js"></script>
 </head>
 <body role="document">
-<!-- Fixed navbar -->
+	<!-- Fixed navbar -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -44,16 +44,15 @@
 				<h1>de commentariis α<small> (on commentaries)</small></h1>
 			</div>
 			<p>Welcome to De Commentariis, crowd-sourcing commentaries &mdash; alpha edition.  This (prototype) site is all about commentaries on ancient texts. Here you can construct your own commentaries on ancient texts, and view commentaries others have made.</p>
-			<div class="row">
-				<div class="col-md-6">
-					<p><a href="/text/" id="click-button" class="btn btn-primary btn-lg pull-right">Available works &raquo;</a></p>
-				</div>
-				<div class="col-md-6">
-					<p>Some recommended starting items: <a href="./text/urn:cts:latinLit:phi0448.phi001.perseus-lat1/">Caesar, Gallic Wars</a>. <a href="./text/urn:cts:latinLit:phi0631.phi001.perseus-lat2/">Sallust, Catiline's Conspiracy</a>. <a href="./text/urn:cts:latinLit:phi0474.phi043.perseus-lat1/">Cicero, On The Republic</a>.</p>
-				</div>
+		</div>
+		<div class="row">
+		<div class="col-md-6 lead">
+				<p>Some recommended starting items: <a href="./text/urn:cts:latinLit:phi0448.phi001.perseus-lat1/">Caesar, Gallic Wars</a>. <a href="./text/urn:cts:latinLit:phi0631.phi001.perseus-lat2/">Sallust, Catiline's Conspiracy</a>. <a href="./text/urn:cts:latinLit:phi0474.phi043.perseus-lat1/">Cicero, On The Republic</a>.</p>
+			</div>
+			<div class="col-md-6">
+				<button href="/text/" id="click-button" class="btn btn-primary btn-lg">Available works &raquo;</button>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-md-6">
 				<h2>features</h2>
@@ -124,19 +123,29 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
+	<script>
+		$('#click-button').ready(function() {
+			$(function() {
+				var fn=function() {
+					window.location.href = $('#click-button').attr('href');
+				}
+				$('#click-button').click(fn);
+			});
+		});
+</script>
+<script type="text/javascript">
 
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-8726619-4']);
-		_gaq.push(['_trackPageview']);
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-8726619-4']);
+	_gaq.push(['_trackPageview']);
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 
-	</script>
+</script>
 </body>
 
 </html>

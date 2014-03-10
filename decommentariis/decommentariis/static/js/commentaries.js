@@ -3,7 +3,7 @@
  */
 
  if (typeof jQuery === 'undefined') { 
-	throw new Error('Commentary\'s JavaScript requires jQuery');
+	throw new Error('De Commentariis JavaScript requires jQuery');
  }
  // sending a csrftoken with every ajax request
  function csrfSafeMethod(method) {
