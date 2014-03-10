@@ -9,41 +9,51 @@
 {% block content %}
 <div class="row">
 	<div class="col-sm-6">
-		<div class="panel panel-primary">
+		<div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">{% trans "Log In" %}</h3>
+				<h3 class="panel-title">{% trans "Social Log In" %}</h3>
 			</div>
 			<div class="panel-body">
 				<p>You have several options to log in.</p>
 				{% if socialaccount.providers  %}
-				<p>
+				<p class="lead">
 					{% blocktrans with site.name as site_name %}Please log in with one
 					of your existing third party accounts (the preferred way to login).{% endblocktrans %}
 				</p>
-				<div class="socialaccount_ballot">
+				<div class="socialaccount_ballot lead">
 					<ul class="socialaccount_providers">
 						{% include "socialaccount/snippets/provider_list.html" with process="login" %}
 					</ul>
 				</div>
 				<p>
-					{% blocktrans with site.name as site_name %}If you don't want to use one of your existing accounts, you can <a href="{{ signup_url }}">sign up</a> for a {{site_name}} account and then log in with the form on this page.{% endblocktrans %}
+					{% blocktrans with site.name as site_name %}If you don't want to use one of your existing social accounts, <a href="{{ signup_url }}">you can sign up for a {{site_name}} account</a> and then log in with the form on this page.{% endblocktrans %}
 				</p>
 				{% include "socialaccount/snippets/login_extra.html" %}
 				{% else %}
-				<p>
+				<p class="lead">
 					{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
 				</p>
 				{% endif %}
 				<div class="login-or">
-					<p>Or, if you've already signed up, you can use the account that you've already created with the form on this page.</p>
+					<p>Or, if you've signed up at some point before, you can use the account that you've already created with the form on this page.</p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="col-sm-6">
+		{% if form.errors %}
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="panel panel-default">
+				<div class="alert alert-danger">
+					<strong>Login failed!</strong> There was an issue with your login. Please review the problems below.<br/>
+					{{ form.errors }}
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">Account login</h3>
 					</div>
@@ -74,7 +84,7 @@
 										{% endif %}
 									</div>
 									<div class="col-sm-6">
-										<button class="primaryAction btn btn-info pull-right" type="submit">{% trans "Log In" %} &raquo;</button>
+										<button class="primaryAction btn btn-primary pull-right" type="submit">{% trans "Log In" %} &raquo;</button>
 									</div>
 								</div>
 							</div>
@@ -85,7 +95,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="panel panel-default">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">{% trans "Forgot Your Password?" %}</h3>
 					</div>

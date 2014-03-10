@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /accounts/
+Disallow: /textdata/
+Disallow: /api/

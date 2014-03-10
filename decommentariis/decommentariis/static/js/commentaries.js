@@ -161,6 +161,9 @@ var populate = function(json) {
 					expandSpeed: 250,
 					collapseEffect: 'fadeOut',
 					collapseSpeed: 200,
+					moreClass: 'read-more text-info',
+        			lessClass: 'read-less text-info',
+        			expandPrefix: ' … ',
 				}); //end $(this).expander({ ... });
 			} // end function{ ... } in each()
 		); //end each( ... );

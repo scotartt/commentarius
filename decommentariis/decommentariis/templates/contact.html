@@ -1,23 +1,18 @@
 <!DOCTYPE html>
-{% load url from future %}
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- link href="/static/css/bootstrap.min.css" rel="stylesheet" -->
-	<!-- link href="/static/css/bootstrap-theme.min.css" rel="stylesheet" -->
 	<link href="/static/css/bootstrap-readable.min.css" rel="stylesheet">
 	<link href="/static/theme/theme.css" rel="stylesheet">
 	<script src="/static/js/jquery-1.11.0.min.js"></script>
+	<title>de commentariis</title>
 	<script src="/static/js/bootstrap.min.js"></script>
-	<title>{% block title %}de commentariis{% endblock title %}</title>
-	<!-- just to make sure it's set every single page.
-		{% csrf_token %}
-	-->
+	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 </head>
 <body role="document">
-	<!-- Fixed navbar -->
+<!-- Fixed navbar -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -45,28 +40,47 @@
 		</div>
 	</div>
 	<div class="container-fluid" role="main">
-		{% block content %}there is no content here{% endblock content %}
-	</div>
-	<div id="footer">
-		<div class="container">
-			{% block footer %}
-			<div id="nav2ancestors-footer" class="row">
-				<div class="col-sm-6">
+		<div class="jumbotron">
+			<div class="page-header">
+				<h3>contact <small>de commentariis</small></h3>
+			</div>
+				<ul class='list-inline lead'>
+					<li>email: 
+		<script type="text/javascript">
+		//<![CDATA[
+		<!--
+		var x="function f(x){var i,o=\"\",ol=x.length,l=ol;while(x.charCodeAt(l/13)!" +
+		"=48){try{x+=x;l+=l;}catch(e){}}for(i=l-1;i>=0;i--){o+=x.charAt(i);}return o" +
+		".substr(0,ol);}f(\")421,\\\"OCIXRQ710\\\\BPB600\\\\000\\\\t\\\\n\\\\100\\\\" +
+		"MD020\\\\310\\\\010\\\\220\\\\>*39676330\\\\w3120\\\\jq610\\\\\\\"\\\\9&<,8" +
+		"%/$%(500\\\\e!700\\\\`530\\\\}ZRIUO230\\\\330\\\\dZYV230\\\\_[P]Hn^EBXH\\\\" +
+		"\\\\ICHILADD%qipr{t:K+sqaz1q3,%bgo}auq+pmglu530\\\\220\\\\030\\\\\\\"(f};o " +
+		"nruter};))++y(^)i(tAedoCrahc.x(edoCrahCmorf.gnirtS=+o;721=%y{)++i;l<i;0=i(r" +
+		"of;htgnel.x=l,\\\"\\\"=o,i rav{)y,x(f noitcnuf\")"                           ;
+		while(x=eval(x));
+		//-->
+		//]]>
+		</script>
 
-				</div>
-				<div class="col-sm-6 ">
-					<ol class="text-muted breadcrumb">
-						<span class="pull-right">You are logged in as user '{{request.user.username}}'</span>
-					</ol>
+					</li>
+					<li>| twitter: <a href="http://twitter.com/scotartt">@scotartt</a></li>
+					<li>| google+: <a href="https://plus.google.com/+ScotMcphee">+ScotMcphee</a>
+				</ul>
+
+		</div>
+
+		<div id="footer">
+			<div class="container">
+				<div id="maincontent" class="row">
+					<div id="text" class="col-md-6">
+						Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
+					</div>
+					<div id="text" class="col-md-6">This site's source code available with a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>
+					</div>
 				</div>
 			</div>
-			{% endblock footer %}
 		</div>
 	</div>
-	<span id="user-username" hidden="true">{{request.user.username}}</span>
-	<script src="/static/js/jquery.cookie.js"></script>
-	<script src="/static/js/jquery.jeditable.mini.js"></script>
-	<script src="/static/js/jquery.expander.min.js"></script>
 	<script type="text/javascript">
 
 		var _gaq = _gaq || [];
@@ -81,4 +95,5 @@
 
 	</script>
 </body>
+
 </html>

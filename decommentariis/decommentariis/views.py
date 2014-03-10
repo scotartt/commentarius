@@ -58,14 +58,20 @@ class SectionTextDetailView(DetailView):
 ## old school views
 
 def main_page(request):
-    return render_to_response('index.html')
+	return render_to_response('index.html')
+
+def about_page(request):
+	return render_to_response('about.html')
+	
+def contact_page(request):
+	return render_to_response('contact.html')
 
 def logout_page(request):
-    """
-    Log users out and re-direct them to the main page.
-    """
-    logout(request)
-    return HttpResponseRedirect('/')
+	"""
+	Log users out and re-direct them to the main page.
+	"""
+	logout(request)
+	return HttpResponseRedirect('/')
 
 
 

@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import TemplateView
 from tastypie.api import Api
 from decommentariis.api import TEIEntryResource, TEISectionResource, CommentaryEntryResource, UserResource
-from decommentariis.views import main_page, logout_page, TextListView, SectionListView, SectionTextDetailView
-#from decommentariis.views import TextListView, SectionListView, SectionTextDetailView
+from decommentariis.views import main_page, about_page, contact_page
+from decommentariis.views import TextListView, SectionListView, SectionTextDetailView
 
 admin.autodiscover()
 
@@ -18,8 +18,8 @@ v1_api.register(UserResource())
 
 urlpatterns = patterns('',
 	(r'^$', main_page),
-	# Login / logout.
-	#(r'^login/$', 'django.contrib.auth.views.login'),
+	(r'^about/$', about_page),
+	(r'^about/contact/$', contact_page),
 )
 
 urlpatterns += patterns('decommentariis.views',
@@ -39,6 +39,5 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('',
-	(r'^logout/$', logout_page),
 	(r'^accounts/', include('allauth.urls')),
 )
