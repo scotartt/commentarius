@@ -49,6 +49,9 @@ $('#commentary-form-click-target').ready(function() {
 // functions below here
 var commentaries = function (cts_urn) {
 	var theUrl = "/api/v1/sourcesection/" + cts_urn + "/?format=json";
+	/* or in one call:
+	   /api/v1/sourcecommentary/?section__cts_urn=<cts_urn>
+	   */
 	$.ajax({
 		url: theUrl,
 		success:function(data){
@@ -57,35 +60,44 @@ var commentaries = function (cts_urn) {
 	});
 }
 
+var idify = function(s) {
+	if (s != null) {
+		return "id" + s.replace(/[^A-Za-z0-9:_-]/g, '_');
+	} else {
+		return "";
+	}
+}
+
 var populate = function(json) {
-	//alert(JSON.stringify(json['user_commentaries']));
 	var user_commentaries = json['user_commentaries'];
 	$('#commentary-container').empty();
-	/* or in one call:
-	   /api/v1/sourcecommentary/?section__cts_urn=<cts_urn>
-	   */
-	   for (var i=0; i<user_commentaries.length; i++) {
+	for (var i=0; i<user_commentaries.length; i++) {
 		var commentary_url = user_commentaries[i];
+		var theid = idify(commentary_url);
+		var rowTR = ["<tr class='row small commentary-item-row' id='", theid,"'/>"].join("");
+		console.log(rowTR);
+		$('#commentary-container').append(rowTR);
+		$('#'+theid).slideUp(0);
 		$.ajax({
 			url: commentary_url,
-			success:function(data){
-				commentary_and_user(data);
-			}
-		});
-	   }
-	}
-
-	var commentary_and_user = function(json) {
-		var userUrl = json['user'];
-		$.ajax({
-			url: userUrl,
-			success:function(data){
-				commentaryitem(json, data);
+			success:function(data) {
+				commentary_and_user(data, i);
 			}
 		});
 	}
+}
 
-	var commentaryitem = function(commentjson, userjson) {
+var commentary_and_user = function(json) {
+	var userUrl = json['user'];
+	$.ajax({
+		url: userUrl,
+		success:function(data){
+			commentaryitem(json, data);
+		}
+	});
+}
+
+var commentaryitem = function(commentjson, userjson, ordinal) {
 	// alert(JSON.stringify(json));
 	var uname_login = getuserdetail();
 	var fname = userjson['first_name']
@@ -100,38 +112,38 @@ var populate = function(json) {
 		usernamedetail = "unknown";
 	}
 
-	
 	var divclasstext = "expander ";
 	var iseditable = (uname_login === uname);
 	if (iseditable) {
 		divclasstext = " edit_area ";
 	}
 
-	var rowTR = [
-	"<tr class='row small'>",
-	commentary_td.call({
-		"tdclass":"col-sm-9 commentary-text ",
-		"tdcontent": commentjson['commentary.html'] ,
-		"contentclass": divclasstext,
-		"iseditable": iseditable,
-	}),
-	commentary_td.call({
+	var theid = idify(commentjson['resource_uri']);
+	var rowTR = $('#'+theid);
+
+	rowTR.append(commentary_td.call({
 		"tdclass":"col-sm-2 uname",
 		"tdcontent":  usernamedetail + " <span hidden='hidden'>(" + userjson['id'] + ")<span>",
 		"contentclass": "",
 		"iseditable": false,
-	}),
-	commentary_td.call({
+	}));
+
+	rowTR.append(commentary_td.call({
+		"tdclass":"col-sm-9 commentary-text ",
+		"tdcontent": commentjson['commentary.html'] ,
+		"contentclass": divclasstext,
+		"iseditable": iseditable,
+	}));
+
+	rowTR.append(commentary_td.call({
 		"tdclass":"col-sm-1 votes",
 		"tdcontent": commentjson['votes'] + '',
 		"contentclass": "",
 		"iseditable": false,
-	}),
-	"</tr>"
-	].join("");
+	}));
 
 	if (iseditable) {
-		$('#commentary-container').append(rowTR).find(".edit_area").each(
+		rowTR.find(".edit_area").each(
 			function() {
 				$(this).editable(function(value, settings) { 
 					var ajaxurl = commentjson['resource_uri'];
@@ -153,14 +165,14 @@ var populate = function(json) {
 			} // end the outer function() { ... } (passed to .each())
 		); // end each( ... );
 	} else {
-		$('#commentary-container').append(rowTR).find(".expander").each(
+		rowTR.find(".expander").each(
 			function() {
 				$(this).expander({
 					slicePoint: 150,
 					expandEffect: 'fadeIn',
 					expandSpeed: 250,
 					collapseEffect: 'fadeOut',
-					collapseSpeed: 200,
+					collapseSpeed: 250,
 					moreClass: 'read-more text-info',
         			lessClass: 'read-less text-info',
         			expandPrefix: ' … ',
@@ -168,6 +180,8 @@ var populate = function(json) {
 			} // end function{ ... } in each()
 		); //end each( ... );
 	}
+	// rowTR.removeAttr('hidden');
+	rowTR.slideDown(400);
 }
 
 var commentary_td = function () {
@@ -178,6 +192,11 @@ var commentary_td = function () {
 	"</div></td>"
 	].join('');
 };
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
 
 var setuserdetail = function() {
 	var username = getuserdetail();
@@ -217,7 +236,6 @@ var make_comment = function(commentform) {
 		"user": userurl,
 		"csrfmiddlewaretoken": csrfmiddlewaretoken
 	});
-
 	sendcomment(ajaxurl, 'POST', data, commentform);
 }
 
