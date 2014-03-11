@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 </head>
 <body role="document">
-<!-- Fixed navbar -->
+	<!-- Fixed navbar -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -28,13 +28,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/text/">Text editions</a></li>
 					<li><a href="/about/">About</a></li>
-					<li><a href="/about/contact">Contact</a></li>
-					{% if user.is_authenticated %}
-					<li><a href="{% url 'account_logout' %}">Log Out {{request.user.username}}</a></li>
-					{% else %}
-					<li><a href="{% url 'account_login' %}">Log In</a></li>
-					<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-					{% endif %}
+					<li class="active"><a href="/about/contact">Contact</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -44,39 +38,36 @@
 			<div class="page-header">
 				<h3>contact <small>de commentariis</small></h3>
 			</div>
-				<ul class='list-inline lead'>
-					<li>email: 
-		<script type="text/javascript">
-		//<![CDATA[
-		<!--
-		var x="function f(x){var i,o=\"\",ol=x.length,l=ol;while(x.charCodeAt(l/13)!" +
-		"=48){try{x+=x;l+=l;}catch(e){}}for(i=l-1;i>=0;i--){o+=x.charAt(i);}return o" +
-		".substr(0,ol);}f(\")421,\\\"OCIXRQ710\\\\BPB600\\\\000\\\\t\\\\n\\\\100\\\\" +
-		"MD020\\\\310\\\\010\\\\220\\\\>*39676330\\\\w3120\\\\jq610\\\\\\\"\\\\9&<,8" +
-		"%/$%(500\\\\e!700\\\\`530\\\\}ZRIUO230\\\\330\\\\dZYV230\\\\_[P]Hn^EBXH\\\\" +
-		"\\\\ICHILADD%qipr{t:K+sqaz1q3,%bgo}auq+pmglu530\\\\220\\\\030\\\\\\\"(f};o " +
-		"nruter};))++y(^)i(tAedoCrahc.x(edoCrahCmorf.gnirtS=+o;721=%y{)++i;l<i;0=i(r" +
-		"of;htgnel.x=l,\\\"\\\"=o,i rav{)y,x(f noitcnuf\")"                           ;
-		while(x=eval(x));
-		//-->
-		//]]>
-		</script>
-
-					</li>
-					<li>| twitter: <a href="http://twitter.com/scotartt">@scotartt</a></li>
-					<li>| google+: <a href="https://plus.google.com/+ScotMcphee">+ScotMcphee</a>
-				</ul>
-
+			<ul class='list-inline lead'>
+				<li>email: 
+					<script type="text/javascript">
+			//<![CDATA[
+			<!--
+			var x="function f(x){var i,o=\"\",ol=x.length,l=ol;while(x.charCodeAt(l/13)!" +
+				"=48){try{x+=x;l+=l;}catch(e){}}for(i=l-1;i>=0;i--){o+=x.charAt(i);}return o" +
+				".substr(0,ol);}f(\")421,\\\"OCIXRQ710\\\\BPB600\\\\000\\\\t\\\\n\\\\100\\\\" +
+				"MD020\\\\310\\\\010\\\\220\\\\>*39676330\\\\w3120\\\\jq610\\\\\\\"\\\\9&<,8" +
+				"%/$%(500\\\\e!700\\\\`530\\\\}ZRIUO230\\\\330\\\\dZYV230\\\\_[P]Hn^EBXH\\\\" +
+				"\\\\ICHILADD%qipr{t:K+sqaz1q3,%bgo}auq+pmglu530\\\\220\\\\030\\\\\\\"(f};o " +
+				"nruter};))++y(^)i(tAedoCrahc.x(edoCrahCmorf.gnirtS=+o;721=%y{)++i;l<i;0=i(r" +
+				"of;htgnel.x=l,\\\"\\\"=o,i rav{)y,x(f noitcnuf\")"                           ;
+				while(x=eval(x));
+			//-->
+			//]]>
+					</script>
+				</li>
+				<li>| twitter: <a href="http://twitter.com/scotartt">@scotartt</a></li>
+				<li>| google+: <a href="https://plus.google.com/+ScotMcphee">+ScotMcphee</a></li>
+			</ul>
 		</div>
-
-		<div id="footer">
-			<div class="container">
-				<div id="maincontent" class="row">
-					<div id="text" class="col-md-6">
-						Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
-					</div>
-					<div id="text" class="col-md-6">This site's source code available with a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>
-					</div>
+	</div>
+	<div id="footer">
+		<div class="container">
+			<div id="maincontent" class="row small">
+				<div id="text" class="col-md-6">
+					Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
+				</div>
+				<div id="text" class="col-md-6">Source code available under a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>.
 				</div>
 			</div>
 		</div>
@@ -95,5 +86,4 @@
 
 	</script>
 </body>
-
 </html>

@@ -62,11 +62,11 @@ decommentariis - {{ object.entry.author }} -
 				<tbody id="commentary-container">
 					<!-- this is where the action happens, requires javascript -->
 				</tbody>
-				<tfoot><tr class="row active" id="commentary-form-click-target"><td colspan="3" class="col-sm-12 small text-primary">Click here to add new commentary item</td></tr></tfoot>
+				<tfoot><tr class="row active" id="commentary-form-click-target" hidden="hidden"><td colspan="3" class="col-sm-12 small text-primary">Click here to add new commentary item</td></tr></tfoot>
 			</table>
 		</div>
 
-		<span id="hidey-form">
+		<span id="hidey-form" hidden="hidden">
 			<div id="form-row"  class="row">
 				<form action="/api/v1/sourcecommentary/" role="form" id="commentary-form">
 					{% csrf_token %}

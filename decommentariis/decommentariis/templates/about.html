@@ -11,7 +11,7 @@
 	<script src="/static/js/bootstrap.min.js"></script>
 </head>
 <body role="document">
-<!-- Fixed navbar -->
+	<!-- Fixed navbar -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -26,14 +26,8 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/text/">Text editions</a></li>
-					<li><a href="/about/">About</a></li>
+					<li class="active"><a href="/about/">About</a></li>
 					<li><a href="/about/contact">Contact</a></li>
-					{% if user.is_authenticated %}
-					<li><a href="{% url 'account_logout' %}">Log Out {{request.user.username}}</a></li>
-					{% else %}
-					<li><a href="{% url 'account_login' %}">Log In</a></li>
-					<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-					{% endif %}
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -43,13 +37,13 @@
 			<div class="page-header">
 				<h3>de commentariis α<small> (on commentaries)</small></h3>
 			</div>
-			<p>This α/β version web app enables users to 'crowd-source' commentaries on ancient texts. Here you can construct your own commentaries on ancient texts, and view commentaries others have made. We will soon bring online features for instructors in the Classical Languages to help their advanced classes not only read their assigned texts, but develop ways to critically engage with those texts, both in understanding linguistic constructions and engaging with historical context and textual reception.</p>
+			<p>This α/β version web app enables users to 'crowd-source' commentaries on ancient texts. You can construct your own commentaries on ancient texts, and view commentaries others have made. We will soon bring online features for instructors in the Classical Languages to help their advanced classes not only read their assigned texts, but develop ways to critically engage with those texts, both in understanding linguistic constructions and engaging with historical context and textual reception.</p>
 		</div>
 
 		<div class="row">
 			<div class="col-md-6">
 				<h2>features</h2>
-				<ul class="list-unstyled">
+				<ul class="list">
 					<li>Create and Edit your own commentary items on any available ancient text</li>
 					<li>View other commentary items created by other users</li>
 					<li>Vote items from other users to increase their reputation (soon)</li>
@@ -80,7 +74,7 @@
 						<li>This means you agree your constributions are licenced to Commentarius using a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
 						<li>The licence means that other people can make use of your commentary, but they are legally obliged to give you credit, and they must licence their derivative work under the same terms.</li>
 					</ol>
-					<li>No liability is assumed by Commentarius or its developer(s). No warranty or representation is made as to its reliability or fitness for purpose.</li>
+					<li>No liability is assumed by De Commentarius or its developer(s). No warranty or representation is made as to its reliability or fitness for purpose.</li>
 				</ol>
 			</div>
 			<div class="col-md-6">
@@ -91,31 +85,49 @@
 					<p>Materials within the Perseus DL have varying copyright status: please contact the project for more information about a specific component or object. Copyright is protected by the copyright laws of the United States and the Universal Copyright Convention.</p>
 					<p>Unless otherwise indicated, all contents of this repository are licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License. You must offer Perseus any modifications you make. Perseus provides credit for all accepted changes.</p>
 				</blockquote>
+				<div class="col-md-12 small">
+					<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a><br/>The text contents of this <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-6">
-				&nbsp;
-			</div>
-
-			<div class="col-md-6">
-				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+			<div class="col-md-12 text-muted">			
+				<ul class="list-inline">
+					<li class="text-primary">Technology stack</li>
+					<li>&mdash; <em>back end</em> Python 3.3</li>
+					<li>Django 1.6.2</li>
+					<li>Django Tasty Pie</li>
+					<li>Django All Auth</li>
+					<li>lxml xpath</li>
+					<li>&mdash; <em>front end</em> html5</li>
+					<li>jQuery</li>
+					<li>REST / json</li>
+					<li>Twitter Bootstrap</li>
+					<li>Thomas Park's bootstrap-readable theme</li>
+					<li>&mdash; <em>hosted on</em> AWS</li>
+					<li>EC2 (ubuntu)</li>
+					<li>RDS (postgres)</li>
+					<li>&mdash; <em>built with</em> Sublime Text 3 editor</li>
+					<li>git</li>
+					<li>github</li>
+					<li>Atlassian SourceTree</li>
+				</ul>
 			</div>
 		</div>
-
-		<div id="footer">
-			<div class="container">
-				<div id="maincontent" class="row">
-					<div id="text" class="col-md-6">
-						Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
-					</div>
-					<div id="text" class="col-md-6">This site's source code available with a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>
-					</div>
+	</div>
+	<div id="footer">
+		<div class="container">
+			<div id="maincontent" class="row small">
+				<div id="text" class="col-md-6">
+					Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
+				</div>
+				<div id="text" class="col-md-6">Source code available under a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>.
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<script type="text/javascript">
 
 		var _gaq = _gaq || [];

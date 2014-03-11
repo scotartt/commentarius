@@ -28,12 +28,6 @@
 					<li><a href="/text/">Text editions</a></li>
 					<li><a href="/about/">About</a></li>
 					<li><a href="/about/contact">Contact</a></li>
-					{% if user.is_authenticated %}
-					<li><a href="{% url 'account_logout' %}">Log Out {{request.user.username}}</a></li>
-					{% else %}
-					<li><a href="{% url 'account_login' %}">Log In</a></li>
-					<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-					{% endif %}
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -53,73 +47,20 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="row">
-			<div class="col-md-6">
-				<h2>features</h2>
-				<ul class="list-unstyled">
-					<li>Create and Edit your own commentary items on any available ancient text</li>
-					<li>View other commentary items created by other users</li>
-					<li>Vote items from other users to increase their reputation (soon)</li>
-					<li>Filter items by reputation level (soon)</li>
-					<li>Collate all your own commentaries for view/print (soon)</li>
-					<li>View individual users commentaries (soon)</li>
-					<li>Teachers and Lecturers can create cohorts for their classes (soon)</li>
-				</ul>
-			</div>
-			<div class="col-md-6">
-				<h3>a note about the works available</h3>
-				<p>
-					We are reliant on works and editions from the Perseus project (see credits) which have been ported to the standard "CTS XML TEI" format. There are many texts which are missing, especially Greek ones (we also haven't yet done the job of converting the Greek text in Betacode format to Unicode, so it looks like gibberish). Also some editions claim to be in the database but no actual text is available due to various parsing errors. Poetry formats are particularly tricky. These sorts of errors will gradually be corrected over time, please have patience. The project founder is a Livy specialist and Livy isn't yet available so please have pity!
-				</p>
-			</div>
-		</div>
 
 		<div class="row">
-			<div class="col-md-6">
-				<h3>terms &amp; conditions</h3>
-				<p>N.B. This site is currently α / β. It might go down or be unavailable for indeterminate time periods. Currently it is for demonstration purposes only.</p>
-				<p>By using this site you agree that:</p>
-				<ol>
-					<li>You represent that all commentaries you create and place in this repository are entirely your own original work and your own copyright.</li>
-					<li>The source text data is taken from an open source respository (see credits) which imposes a moral obligation on the site developer and yourself for reciprocal return of materials.</li> 
-					<ol type="a">
-						<li>Therefore you agree to license your content back under similar terms to the source texts.</li>
-						<li>This means you agree your constributions are licenced to Commentarius using a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</li>
-						<li>The licence means that other people can make use of your commentary, but they are legally obliged to give you credit, and they must licence their derivative work under the same terms.</li>
-					</ol>
-					<li>No liability is assumed by Commentarius or its developer(s). No warranty or representation is made as to its reliability or fitness for purpose.</li>
-				</ol>
-			</div>
-			<div class="col-md-6">
-				<h3>credits</h3>
-				<p>Ancient text data is licensed from the <a href="http://www.perseus.tufts.edu/hopper/">Perseus Digital Library</a> and taken from their <a href="https://github.com/PerseusDL/canonical">github repository</a>, with the following license conditions:</p>
-				<blockquote class="small">
-					<p>Tufts University holds the overall copyright to the Perseus Digital Library; the materials therein (including all texts, translations, images, descriptions, drawings, etc.) are provided for the personal use of students, scholars, and the public.</p>
-					<p>Materials within the Perseus DL have varying copyright status: please contact the project for more information about a specific component or object. Copyright is protected by the copyright laws of the United States and the Universal Copyright Convention.</p>
-					<p>Unless otherwise indicated, all contents of this repository are licensed under a Creative Commons Attribution-ShareAlike 3.0 United States License. You must offer Perseus any modifications you make. Perseus provides credit for all accepted changes.</p>
-				</blockquote>
+			<div class="col-md-8 col-md-offset-2 small">
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a><br/>The text contents of this <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-md-6">
-				&nbsp;
-			</div>
-
-			<div class="col-md-6">
-				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-			</div>
-		</div>
-
-		<div id="footer">
-			<div class="container">
-				<div id="maincontent" class="row">
-					<div id="text" class="col-md-6">
-						Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
-					</div>
-					<div id="text" class="col-md-6">This site's source code available with a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>
-					</div>
+	</div>
+	<div id="footer">
+		<div class="container">
+			<div id="maincontent" class="row small">
+				<div id="text" class="col-md-6">
+					Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
+				</div>
+				<div id="text" class="col-md-6">Source code available under a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>.
 				</div>
 			</div>
 		</div>

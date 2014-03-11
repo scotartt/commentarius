@@ -21,7 +21,8 @@ $.ajaxSetup({
 
 // set the form element to initially slide up.
 $('#hidey-form').ready(function(){
-	$('#hidey-form').slideUp(100);
+	$('#hidey-form').removeAttr('hidden');
+	$('#hidey-form').slideUp(0);
 });
 
 // the button on the form needs to trigger this js function. 
@@ -44,6 +45,7 @@ $('#commentary-form-click-target').ready(function() {
 		}
 		$('#commentary-form-click-target').click(fn);
 	});
+	$('#commentary-form-click-target').removeAttr('hidden');
 });
 
 // functions below here
