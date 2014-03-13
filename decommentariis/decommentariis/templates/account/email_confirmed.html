@@ -7,11 +7,28 @@
 
 
 {% block content %}
+{% if form.errors %}
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<div class="alert alert-danger">
+			<strong>Address verification email failed!</strong> There was a problem with your verification. It looks like it didn't process.<br/>
+			{{ form.errors }}
+		</div>
+	</div>
+</div>
+{% endif %}
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h1 class="panel-title">{% trans "Confirm E-mail Address" %}</h1>
+			</div>
+			<div class="panel-body">
+				{% user_display email_address.user as user_display %}
 
-<h1>{% trans "Confirm E-mail Address" %}</h1>
-
-{% user_display email_address.user as user_display %}
-        
-<p>{% blocktrans with email_address.email as email %}You have confirmed that <a href="mailto:{{email}}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
-
+				<p>{% blocktrans with email_address.email as email %}You have confirmed that <a href="mailto:{{email}}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
