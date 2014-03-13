@@ -6,36 +6,28 @@ from django.dispatch import receiver
 # intercept signals from allauth
 #
 
+# user has confirmed the email manually
 @receiver(email_confirmed)
-def email_confirmed_(sender, email_address, **kwargs):
-	print(email_address.email + " confirmed email.")
-	query = {'email': email_address.email}
-	if email_address.primary:
+def email_confirmed_(sender, email_address, **kwargs) :
+	#print(email_address.email + " confirmed email.")
+	query = {'email' : email_address.email}
+	if email_address.primary :
 		user = User.objects.get(**query)
-		print(str(user) + " confirmed primary email.")
+		#print(str(user) + " confirmed primary email.")
 		group = Group.objects.get(name='AllowedCommentary')
 		user.groups.add(group)
 
-
+# when a user signs up
 @receiver(user_signed_up)
-def user_signed_up_(sender, request, user, **kwargs):
-	print(str(user) + " signed up")
+def user_signed_up_(sender, request, user, **kwargs) :
+	# print("SIGN UP " + str(user) + " signed up and kwargs=" + str(kwargs))
+	social_login = kwargs.get('sociallogin', None)
+	if social_login :
+		social_account = social_login.account
+		if social_account :
+			if 'verified_email' in social_account.extra_data :
+				if social_account.extra_data['verified_email'] == True:
+					group = Group.objects.get(name='AllowedCommentary')
+					user.groups.add(group)
 
-
-@receiver(user_logged_in)
-def user_logged_in_(sender, request, user, **kwargs):
-	print("'{0}' logged in".format(user.username))
-	groups = user.groups.all()
-	for g in groups:
-		print("group name=" + g.name)
-		for p in g.permissions.all():
-			print(str(p) + " codename=" + p.codename)
-
-@receiver(email_changed)
-def email_changed_(sender, request, user, from_email_address, to_email_address, **kwargs):
-	print("'{0}' changed the email address from {1} to {2}".format(user.username, from_email_address, to_email_address))
-
-@receiver(email_removed)
-def email_changed_(sender, request, user, email_address, **kwargs):
-	print("'{0}' removed the email address {1}".format(user.username, email_address))
 
