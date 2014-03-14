@@ -102,38 +102,43 @@ class TEIDataSource:
 		fo = self.open_source()
 		parser = self.parser()
 		root = etree.parse(fo, parser)
-		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/sourceDesc")
-
+		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/titleStmt | /TEI.2/teiHeader/fileDesc/sourceDesc")
+		## get them all. first one found for each field wins.
 		for e in src_elems:
 			self.source_desc += str(etree.tostring(e, pretty_print=True), encoding='utf-8')
-		if len(src_elems):
 			self.populate_bib_fields(src_elems[0])
-		if not self.author or not self.title:
-			alt_src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/titleStmt")
-			if len(alt_src_elems):
-				self.populate_bib_fields(alt_src_elems[0])
-
 		self.get_metadata_sections(root)
 		self.close_source(fo)
 
 	def populate_bib_fields(self, e):
 		authorE = e.xpath(".//author")
-		if len(authorE):
+		if len(authorE) and not self.author:
 			self.author = authorE[0].text
+
 		titleE = e.xpath(".//title")
-		if len(titleE):
+		if len(titleE) and not self.title:
 			self.title = titleE[0].text
+		# elif len(titleE):
+		# 	for t in titleE:
+		# 		self.title += " " + t.text
+
 		publisherE = e.xpath(".//publisher")
-		if len(publisherE):
+		if len(publisherE) and not self.publisher:
 			self.publisher = publisherE[0].text
+		# elif len(publisherE):
+		# 	for p in publisherE:
+		# 		self.publisher += " " + p.text
+
 		dateE = e.xpath(".//date")
-		if len(dateE):
+		if len(dateE) and not self.date:
 			self.date = dateE[0].text
+
 		editorE = e.xpath(".//editor")
-		if len(editorE):
+		if len(editorE) and not self.editor:
 			self.editor = editorE[0].text
+
 		pubPlaceE = e.xpath(".//pubPlace")
-		if len(pubPlaceE):
+		if len(pubPlaceE) and not self.pubPlace:
 			self.pubPlace = pubPlaceE[0].text
 
 	def get_metadata_sections(self, root):

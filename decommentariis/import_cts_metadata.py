@@ -17,7 +17,6 @@ def open_source(path, filename):
 def save_sections(section_numbers, entry):
 	if section_numbers and (len(section_numbers)):
 		i = 10
-
 		for section in section_numbers:
 			teiSection = None
 			urn = '{0}:{1}'.format(entry.cts_urn, section)
@@ -35,6 +34,10 @@ def save_sections(section_numbers, entry):
 			teiSection.cts_sequence = i
 			teiSection.save()
 			i += 10
+	else :
+		# no section numbers, delete entry, it's pointless.
+		print('DELETE {0}\n\t{1}'.format(entry.cts_urn, entry.bibliographic_entry))
+		entry.delete()
 
 def savedb(urn):
 	entry = None
