@@ -75,7 +75,7 @@ div2, div3 {
 	margin-top: 0.5em;
 }
 div1:before, div2:before, div3:before {
-	content: attr(type) ' ' attr(n);
+	content: attr(type) ' ' attr(n) ' ' attr(met) ' ';
 	color: #999;
 }
 del {
