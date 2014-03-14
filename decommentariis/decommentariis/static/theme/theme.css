@@ -18,17 +18,21 @@ l {
 	display:block;
 }
 l:after {
-	content:'(' attr(n) ')';
+	content: attr(n);
 	float:right;
 	font-size: 80%;
-	color: #999;
-	
+	color: #999;	
 }
 
 lg, lb {
 	display:block;
 	margin-top: 0.8em;
 }
+milestone {
+	display:block;
+	margin-top: 0.5em;
+}
+
 /* 
 <sp><speaker>Sosia</speaker>
 <l part="M" n="551.1">Sequ&oacute;r, subsequ&oacute;r te.</l></sp>
@@ -59,7 +63,27 @@ sp lb:before {
 	font-size: 80%;
 	color: #999;
 }
-
+/*  <div2 type="chapter" n="pr">
+    <div3 type="section" n="1"> */
+div1, div2, div3 {
+	display:block;
+}
+div1 {
+	margin-top: 0.8em;
+}
+div2, div3 {
+	margin-top: 0.5em;
+}
+div1:before, div2:before, div3:before {
+	content: attr(type) ' ' attr(n);
+	color: #999;
+}
+del {
+	text-transform: inherit;
+	text-decoration: inherit;
+	font-style: italic;
+	color: inherit;
+}
 
 .maintext {
 	font-size: 1.1em;
