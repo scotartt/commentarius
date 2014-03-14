@@ -102,7 +102,14 @@ class TEIDataSource:
 		fo = self.open_source()
 		parser = self.parser()
 		root = etree.parse(fo, parser)
-		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/titleStmt | /TEI.2/teiHeader/fileDesc/sourceDesc")
+		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/titleStmt")
+		# | /TEI.2/teiHeader/fileDesc/sourceDesc")
+		## get them all. first one found for each field wins.
+		for e in src_elems:
+			self.source_desc += str(etree.tostring(e, pretty_print=True), encoding='utf-8')
+			self.populate_bib_fields(src_elems[0])
+		src_elems = root.xpath("/TEI.2/teiHeader/fileDesc/sourceDesc")
+		# | /TEI.2/teiHeader/fileDesc/sourceDesc")
 		## get them all. first one found for each field wins.
 		for e in src_elems:
 			self.source_desc += str(etree.tostring(e, pretty_print=True), encoding='utf-8')
@@ -115,19 +122,21 @@ class TEIDataSource:
 		if len(authorE) and not self.author:
 			self.author = authorE[0].text
 
-		titleE = e.xpath(".//title")
+		titleE = e.xpath(".//title[@type != 'sub']")
 		if len(titleE) and not self.title:
 			self.title = titleE[0].text
-		# elif len(titleE):
-		# 	for t in titleE:
-		# 		self.title += " " + t.text
+		
 
 		publisherE = e.xpath(".//publisher")
 		if len(publisherE) and not self.publisher:
-			self.publisher = publisherE[0].text
-		# elif len(publisherE):
-		# 	for p in publisherE:
-		# 		self.publisher += " " + p.text
+			self.publisher = ""
+			i = 0
+			for p in publisherE:
+				if i > 0:
+					self.publisher += ", "
+				self.publisher += p.text
+				i += 1
+		# end
 
 		dateE = e.xpath(".//date")
 		if len(dateE) and not self.date:
@@ -135,11 +144,27 @@ class TEIDataSource:
 
 		editorE = e.xpath(".//editor")
 		if len(editorE) and not self.editor:
-			self.editor = editorE[0].text
+			self.editor = ""
+			i = 0
+			for ed in editorE:
+				if i > 0:
+					self.editor += ", "
+				self.editor += ed.text
+				i += 1
+		# end
 
 		pubPlaceE = e.xpath(".//pubPlace")
 		if len(pubPlaceE) and not self.pubPlace:
-			self.pubPlace = pubPlaceE[0].text
+			self.pubPlace = ""
+			i = 0
+			for pp in pubPlaceE:
+				if i > 0:
+					self.pubPlace += ", "
+				self.pubPlace += pp.text
+				i += 1
+		# end
+
+	# end function
 
 	def get_metadata_sections(self, root):
 		"this method extracts the metadata about the document sections."

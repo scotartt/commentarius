@@ -25,8 +25,8 @@ urlpatterns = patterns('',
 urlpatterns += patterns('decommentariis.views',
 	# a CTS URN looks like this 'urn:cts:latinLit:phi0631.phi001.perseus-lat2'
 	url(r'^text/$', TextListView.as_view()),
-	url(r'^text/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\.){2}[\w-]+)/$', SectionListView.as_view()),
-	url(r'^textdata/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\.){2}[\w-]+:[\w\., ()]+)/$', login_required(SectionTextDetailView.as_view())),
+	url(r'^text/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\w{0,3}\.){2}[\w-]+)/$', SectionListView.as_view()),
+	url(r'^textdata/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\w{0,3}\.){2}[\w-]+:[\w\., ()]+)/$', login_required(SectionTextDetailView.as_view())),
 )
 
 # urlpatterns += patterns('',
