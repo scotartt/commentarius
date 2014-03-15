@@ -94,10 +94,14 @@ milestone:before {
 	content: attr(unit) ' ' attr(n);
 	color: #999;
 }
-milestone[unit='para']:before {
+milestone[unit='para']:before, 
+milestone[unit="stephpage"]:before, 
+milestone[unit="tlnum"]:before {
 	visibility: hidden;
 	float:right;
 }
+
+
 note[rend='marg'] {
 	visibility: hidden;
 	float:right;
@@ -151,6 +155,10 @@ note cit {
 	float: inherit;
 	margin-left: 0em;
 	font-size: inherit;
+}
+
+.no-space-before {
+	margin-top: 0;
 }
 
 .maintext {

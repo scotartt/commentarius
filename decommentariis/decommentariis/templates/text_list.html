@@ -1,44 +1,70 @@
 {% extends 'commentarius_base.html' %}
 {% load shorter_cts %}
+{% block title %}
+{% if selected_author  %}
+{{ selected_author }}
+{% else %}
+Editions available
+{% endif %}
+ &mdash;  de commentariis
+{% endblock title %}
+
 {% block content %}
 <div class="row">
+	<div class="col-sm-4">
+		<h2 class="no-space-before">Editions available</h2>
+	</div>
+	<div class="col-sm-8">
+		<form class="form-inline pull-right">
+			<select class="form-control form-control-sm" id="authorselect" data-style="btn-success" name="author">
+				<option value=''>(select author)</option>
+				{% for author in author_list %}
+				{% if author == selected_author  %}
+				<option selected="selected" value="{{ author }}">{{ author }}</option>
+				{% else %}
+				<option value="{{ author }}">{{ author }}</option>
+				{% endif %}
+				{% endfor %}
+			</select>
+			<button type="submit" class="btn btn-success">Find Selected</button>
+			<a href="./" class="btn btn-default">All Authors</a>
+		</form>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-sm-12">
-		<h2>Editions available</h2>
-		<div class="row">
-			<div class="col-sm-12">
-				<table class="table table-responsive">
-					<thead>
-						<tr>
-							<th class="col-sm-3 text-right">Author</th>
-							<th class="col-sm-6">Edition Title</th>			
-							<th class="col-sm-3">CTS URN</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for teientry in object_list %}
-						<tr>
-							<td class="text-right">
-								{{ teientry.author|default:"(no author)" }}
-							</td>
-							<td>
-								<a href='./{{ teientry.cts_urn }}/'>
-									<em>{{ teientry.title|default:"(no title)" }}</em> 
-									{% if teientry.editor %}	
-									(editor {{ teientry.editor }}) 
-									{% elif teientry.publisher %}
-									(publisher {{ teientry.publisher }})
-									{% endif %}
-								</a>
-							</td>
-							<td class="small">
-								<a href='./{{ teientry.cts_urn }}/'>{{ teientry.cts_urn|prettyctsurn }}</a>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-		</div>
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th class="col-sm-3 text-right">Author</th>
+					<th class="col-sm-6">Edition Title</th>			
+					<th class="col-sm-3">CTS URN</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for teientry in object_list %}
+				<tr>
+					<td class="text-right">
+						{{ teientry.author|default:"(no author)" }}
+					</td>
+					<td>
+						<a href='./{{ teientry.cts_urn }}/'>
+							<em>{{ teientry.title|default:"(no title)" }}</em> 
+							{% if teientry.editor %}	
+							(editor {{ teientry.editor }}) 
+							{% elif teientry.publisher %}
+							(publisher {{ teientry.publisher }})
+							{% endif %}
+						</a>
+					</td>
+					<td class="small">
+						<a href='./{{ teientry.cts_urn }}/'>{{ teientry.cts_urn|prettyctsurn }}</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
 </div>
 <div class="row">
@@ -63,4 +89,9 @@
 		{% endif %}
 	</div>
 </div>
+<ul class="list-inline small" hidden='hidden'>
+	{% for author in author_list %}
+	<li>{{ author }};</li>
+	{% endfor %}
+</ul>
 {% endblock %}

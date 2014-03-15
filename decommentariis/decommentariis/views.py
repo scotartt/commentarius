@@ -10,46 +10,64 @@ from decommentariis.models import TEIEntry, TEISection
 from decommentariis.xml_file import TEIDataSource
 from decommentariis.forms import UserForm
 
-class TextListView(ListView):
+class TextListView(ListView) :
 	model = TEIEntry
 	template_name = 'text_list.html'
 	paginate_by = 25
+	selected_author = None
 
-class SectionListView(ListView):
+	def get_context_data(self, **kwargs) :
+		context = super(TextListView, self).get_context_data(**kwargs)
+		authorsqueryset = TEIEntry.objects.exclude(author=None).order_by('author').values_list('author', flat=True).distinct()
+		context['author_list'] = authorsqueryset
+		context['selected_author'] = self.selected_author
+		return context
+
+	def get_queryset(self) :
+		if 'author' in self.request.GET and self.request.GET['author'] :
+			self.selected_author = self.request.GET['author']
+			self.paginate_by = 0
+			return TEIEntry.objects.filter(author=self.selected_author)
+		else :
+			self.paginate_by = 25
+			return TEIEntry.objects.all()
+
+
+class SectionListView(ListView) :
 	template_name = 'section_list.html'
 	paginate_by = 25
 
-	def get_queryset(self):
+	def get_queryset(self) :
 		urn = self.kwargs['urn']
 		self.teientry = TEIEntry.objects.get(cts_urn=urn)
 		## self.teientry = get_object_or_404(TEIEntry, cts_urn=urn)
 		return TEISection.objects.filter(entry=self.teientry)
 
-	def get_context_data(self, **kwargs):
+	def get_context_data(self, **kwargs) :
 		# Call the base implementation first to get a context
 		context = super(SectionListView, self).get_context_data(**kwargs)
 		context['teientry'] = self.teientry
 		return context
 
-class SectionTextDetailView(DetailView):
+class SectionTextDetailView(DetailView) :
 	template_name = 'section_text.html'
 
-	def get_queryset(self):
+	def get_queryset(self) :
 		urn = self.kwargs['urn']
 		return TEISection.objects.filter(cts_urn=urn)
 
-	def get_object(self):
+	def get_object(self) :
 		urn = self.kwargs['urn']
 		return TEISection.objects.get(cts_urn=urn)
 
-	def get_context_data(self, **kwargs):
+	def get_context_data(self, **kwargs) :
 		context = super(SectionTextDetailView, self).get_context_data(**kwargs)
 		context['section_text'] = self.object.readData()
 		context['section_path'] = self.object.parents()
 		siblings = self.object.siblings()
-		if 'prev' in siblings:
+		if 'prev' in siblings :
 			context['section_prev'] = siblings['prev']
-		if 'next' in siblings:
+		if 'next' in siblings :
 			context['section_next'] = siblings['next']
 		context['children'] = self.object.children()
 		return context
@@ -57,16 +75,16 @@ class SectionTextDetailView(DetailView):
 
 ## old school views
 
-def main_page(request):
+def main_page(request) :
 	return render_to_response('index.html')
 
-def about_page(request):
+def about_page(request) :
 	return render_to_response('about.html')
 	
-def contact_page(request):
+def contact_page(request) :
 	return render_to_response('contact.html')
 
-def logout_page(request):
+def logout_page(request) :
 	"""
 	Log users out and re-direct them to the main page.
 	"""
