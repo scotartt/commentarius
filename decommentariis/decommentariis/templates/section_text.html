@@ -7,14 +7,14 @@ decommentariis - {{ object.entry.author }} -
 
 {% block content %}
 <div class="row">
-	<div class="col-sm-4 col-sm-offset-1 small">
-		<p>{{ object.entry.author }}<em>'{{ object.entry.title }}'</em></p>
+	<div class="col-sm-6">
+		<h4>{{ object.entry.author }} <small> &mdash; {{ object.entry.title }}</small></h4>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-sm-5">
-		<ul class="pager top">	
+		<ul class="pager top pager-info">	
 			{% if section_prev %}
 			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&laquo; {{ section_prev.section_ref }}</a></li>
 			{% else %}
@@ -96,7 +96,7 @@ decommentariis - {{ object.entry.author }} -
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-6">
+	<div class="col-sm-5">
 		<ul class="pager bottom">	
 			{% if section_prev %}
 			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&laquo; {{ section_prev.section_ref }}</a></li>

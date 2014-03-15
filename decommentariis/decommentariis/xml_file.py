@@ -127,21 +127,24 @@ class TEIDataSource:
 			self.title = ""
 			i = 0
 			for t in titleE:
-				if i > 0:
-					self.title += "; "
-				self.title += t.text
-				i += 1
-				
+				if t.text:
+					if i > 0:
+						self.title += "; "
+					self.title += t.text
+					i += 1
+		# end
+			
 		if not self.title or len(self.title) < 3:
 			titleE = e.xpath(".//title[not(@type)]")
 			if len(titleE):
 				self.title = ""
 				i = 0
 				for t in titleE:
-					if i > 0:
-						self.title += "; "
-					self.title += t.text
-					i += 1
+					if t.text:
+						if i > 0:
+							self.title += "; "
+						self.title += t.text
+						i += 1
 		# end
 		
 
@@ -150,10 +153,11 @@ class TEIDataSource:
 			self.publisher = ""
 			i = 0
 			for p in publisherE:
-				if i > 0:
-					self.publisher += ", "
-				self.publisher += p.text
-				i += 1
+				if p.text:
+					if i > 0:
+						self.publisher += ", "
+					self.publisher += p.text
+					i += 1
 		# end
 
 		dateE = e.xpath(".//date")
@@ -165,10 +169,11 @@ class TEIDataSource:
 			self.editor = ""
 			i = 0
 			for ed in editorE:
-				if i > 0:
-					self.editor += ", "
-				self.editor += ed.text
-				i += 1
+				if ed.text:
+					if i > 0:
+						self.editor += ", "
+					self.editor += ed.text
+					i += 1
 		# end
 
 		pubPlaceE = e.xpath(".//pubPlace")
@@ -176,10 +181,11 @@ class TEIDataSource:
 			self.pubPlace = ""
 			i = 0
 			for pp in pubPlaceE:
-				if i > 0:
-					self.pubPlace += ", "
-				self.pubPlace += pp.text
-				i += 1
+				if pp.text:
+					if i > 0:
+						self.pubPlace += ", "
+					self.pubPlace += pp.text
+					i += 1
 		# end
 
 	# end function

@@ -89,6 +89,28 @@ del {
 	font-style: italic;
 	color: inherit;
 }
+/*  <milestone unit="section" n="1"/> */
+milestone:before {
+	content: attr(unit) ' ' attr(n);
+	color: #999;
+}
+milestone[unit='para']:before {
+	visibility: hidden;
+	float:right;
+}
+note {
+	visibility: hidden;
+	float:right;
+}
+cit {
+	/* visibility: hidden;*/
+	float:right;
+	color: #999;
+}
+cit note {
+	visibility: inherit;
+	float: inherit;
+}
 
 .maintext {
 	font-size: 1.1em;
