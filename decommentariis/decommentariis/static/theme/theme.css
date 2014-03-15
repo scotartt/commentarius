@@ -29,7 +29,7 @@ lg, lb {
 	margin-top: 0.8em;
 }
 lb:before, lg:before {
-	content: attr(n);
+	content: attr(n) ' ';
 	font-size: 80%;
 	color: #999;
 }
