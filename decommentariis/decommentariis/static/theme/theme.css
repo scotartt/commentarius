@@ -28,6 +28,11 @@ lg, lb {
 	display:block;
 	margin-top: 0.8em;
 }
+lb:before, lg:before {
+	content: attr(n);
+	font-size: 80%;
+	color: #999;
+}
 milestone {
 	display:block;
 	margin-top: 0.5em;
