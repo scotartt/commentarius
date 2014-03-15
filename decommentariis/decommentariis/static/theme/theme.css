@@ -29,7 +29,7 @@ lg, lb {
 	margin-top: 0.8em;
 }
 lb:before, lg:before {
-	content: attr(n) ' ';
+	content: attr(n) '  ';
 	font-size: 80%;
 	color: #999;
 }
@@ -64,7 +64,7 @@ sp lb {
 	margin-top: 0.3em;
 }
 sp lb:before {
-	content: '[' attr(ed) ' ' attr(n) ']';
+	content: '[' attr(ed) ' ' attr(n) '] ';
 	font-size: 80%;
 	color: #999;
 }
@@ -91,7 +91,7 @@ del {
 }
 /*  <milestone unit="section" n="1"/> */
 milestone:before {
-	content: attr(unit) ' ' attr(n);
+	content: attr(unit) ' ' attr(n) ' ';
 	color: #999;
 }
 milestone[unit='para']:before, 
@@ -100,7 +100,6 @@ milestone[unit="tlnum"]:before {
 	visibility: hidden;
 	float:right;
 }
-
 
 note[rend='marg'] {
 	visibility: hidden;
