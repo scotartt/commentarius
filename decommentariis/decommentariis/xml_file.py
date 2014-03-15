@@ -124,7 +124,25 @@ class TEIDataSource:
 
 		titleE = e.xpath(".//title[@type != 'sub']")
 		if len(titleE) and not self.title:
-			self.title = titleE[0].text
+			self.title = ""
+			i = 0
+			for t in titleE:
+				if i > 0:
+					self.title += "; "
+				self.title += t.text
+				i += 1
+				
+		if not self.title or len(self.title) < 3:
+			titleE = e.xpath(".//title[not(@type)]")
+			if len(titleE):
+				self.title = ""
+				i = 0
+				for t in titleE:
+					if i > 0:
+						self.title += "; "
+					self.title += t.text
+					i += 1
+		# end
 		
 
 		publisherE = e.xpath(".//publisher")
