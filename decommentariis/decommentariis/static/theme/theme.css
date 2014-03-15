@@ -98,18 +98,59 @@ milestone[unit='para']:before {
 	visibility: hidden;
 	float:right;
 }
-note {
+note[rend='marg'] {
 	visibility: hidden;
 	float:right;
 }
-cit {
-	/* visibility: hidden;*/
-	float:right;
+note {
+	/*border: 1px dashed;*/
+	display:block;
 	color: #999;
+	margin-left: 1em;
+	font-size: 0.8em;
+	float:right;
+}
+cit {
+	/*border: 1px dashed;*/
+	display:block;
+	color: #999;
+	margin-left: 1em;
+	font-size: 0.8em;
+	float:right;
+}
+cit title {
+	display:inline;
+	color: inherit;
+	font-size: inherit;
+	float: inherit;
+}
+cit quote {
+	display:inline;
+	color: inherit;
+	font-size: inherit;
+	float: inherit;
+}
+cit l {
+	display:inline;
+	color: inherit;
+	font-size: inherit;
+	float: inherit;
 }
 cit note {
+	border:none;
 	visibility: inherit;
+	display: inherit;
 	float: inherit;
+	margin-left: 0em;
+	font-size: inherit;
+}
+note cit {
+	border:none;
+	visibility: inherit;
+	display:inherit;
+	float: inherit;
+	margin-left: 0em;
+	font-size: inherit;
 }
 
 .maintext {
