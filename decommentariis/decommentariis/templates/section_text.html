@@ -6,14 +6,14 @@ decommentariis - {{ object.entry.author }} -
 {% endblock title %}
 
 {% block content %}
-<div class="row">
-	<div class="col-sm-6">
+<div class="row ">
+	<div class="col-sm-6 vertical-five">
 		<h4>{{ object.entry.author }} <small> &mdash; {{ object.entry.title }}</small></h4>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-sm-5">
+	<div class="col-sm-5  vertical-five">
 		<ul class="pager top pager-info">	
 			{% if section_prev %}
 			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&laquo; {{ section_prev.section_ref }}</a></li>
@@ -28,26 +28,30 @@ decommentariis - {{ object.entry.author }} -
 			{% endif %}
 		</ul>
 	</div>
+	<div class="col-sm-1  vertical-five">
+		{% if children %}
+		<div class="btn-group">
+			<button type="button" class="btn btn-default btn-sm pull-right dropdown-toggle children-dropdown" data-toggle="dropdown">
+				Sections <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				{% for child in children %}
+				<li class="child-item"><a href='../{{ child.cts_urn }}/'>{{ child.section_ref }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% else %}
+		&nbsp;
+		{% endif %}
+	</div>
 </div>
 
 <div id="maincontent" class="row">
-
-	<div id="text" class="col-sm-5 maintext">
+	<div id="text" class="col-sm-6 maintext">
 		{% autoescape off %}  {{ section_text }} {% endautoescape %}
 	</div>
-	<div id="rightoftext" class="col-sm-1">
-		{% if children %}
-		Children
-		<ul class="child-list small">
-			{% for child in children %}
-			<li class="child-item"><a href='../{{ child.cts_urn }}/'>{{ child.section_ref }}</a></li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-	</div>
-
 	<div id="commentary-outer-container" class="col-sm-6"> 
-		<div class="row">
+		<div class="row no-fifteen">
 			<table id="commentary-table" class="table table-condensed table-responsive">
 				<thead>
 					<tr class="row small" id="commentary-table-header">
@@ -59,40 +63,38 @@ decommentariis - {{ object.entry.author }} -
 				<tbody id="commentary-container">
 					<!-- this is where the action happens, requires javascript -->
 				</tbody>
-				<tfoot><tr class="row active" id="commentary-form-click-target" hidden="hidden"><td colspan="3" class="col-sm-12 small text-primary">Click here to add new commentary item</td></tr></tfoot>
 			</table>
+			<button class="btn btn-default btn-sm btn-block" id="commentary-form-click-target">Add commentary</button>
 		</div>
-
 		<span id="hidey-form" hidden="hidden">
 			<div id="form-row"  class="row">
 				<form action="/api/v1/sourcecommentary/" role="form" id="commentary-form">
-					{% csrf_token %}
 					<!-- div class="form-group" -->
 					<div class="col-sm-12">
-						<legend>New commentary</legend>
+						<legend>Add New Commentary</legend>
 						<label for="f_commentary" class="sr-only">comment:</label>
 
 						<textarea type="text" id="f_commentary" class="form-control input-sm"  name="commentary" rows="4"></textarea>
 
-						<p>
+						<span>
+							{% csrf_token %}
 							<input id="f_cts_urn" type="hidden" value="{{ object.cts_urn }}"/>
 							<input id="f_section_input_id" type="hidden" name="section" value="/api/v1/sourcesection/{{ object.cts_urn }}/"/>
 							<input id="f_user_input_id" type="hidden" name="user" value=""/>
-						</p>
+						</span>
 
 					</div>
 				</form>
 			</div>
-			<div class="row">
-				<div class="col-sm-9 small" id="md_instructions">
+			<div class="row vertical-five">
+				<div class="col-sm-9 small vertical-five" id="md_instructions">
 					Formatting guide: _<i>italics</i>_ ... **<b>bold</b>** ... press return/enter twice for paragraph. See <a href="http://daringfireball.net/projects/markdown/syntax" target="_new">Markdown syntax</a> for full guide.
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-3 vertical-five">
 					<input id="f_button_submit_id" type="button" value="save comment" class="btn btn-sm btn-primary pull-right"/>
 				</div>
 			</div>
 		</span>
-		
 	</div>
 </div>
 <div class="row">
@@ -127,7 +129,7 @@ decommentariis - {{ object.entry.author }} -
 	</div>
 	<div class="col-sm-6 ">
 		<ol class="text-muted breadcrumb">
-		<span class="pull-right">You are logged in as user '{{request.user.username}}'</span>
+			<span class="pull-right">You are logged in as user '{{request.user.username}}'</span>
 		</ol>
 	</div>
 </div>

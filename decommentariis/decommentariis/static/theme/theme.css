@@ -159,6 +159,10 @@ note cit {
 .no-space-before {
 	margin-top: 0;
 }
+.vertical-five {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 
 .maintext {
 	font-size: 1.1em;
@@ -173,6 +177,26 @@ note cit {
 	font-size: 80%;
 	border: none;
 	border-left: 2px solid #4582ec;
+}
+.no-fifteen {
+	margin-right: 0;
+	margin-left: 0;
+}
+#commentary-form-click-target:hover {
+	cursor: pointer;
+}
+#commentary-form legend {
+	margin: 5px 5px;
+	font-size: 14px;
+}
+#hidey-form {
+	margin-top: 15px;
+	padding: 5px 10px;
+	border: 1px solid #4582ec;
+	border-radius: 5px;
+}
+#commentary-table {
+	margin: 5px 5px;
 }
 #commentary-table-header .text-muted {
 	font-variant: small-caps;  
@@ -274,8 +298,8 @@ form.editable > button {
 	padding-top: 5px;
 }
 .pager {
-	padding-left: 0;
-	margin: 0px 0px 5px 0px;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
 	text-align: center;
 	list-style: none;
 }
@@ -285,7 +309,7 @@ form.editable > button {
 .pager li > a,
 .pager li > span {
 	display: inline-block;
-	padding: 2px 5px;
+	padding: 1px 5px;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	border-radius: 5px;
@@ -321,6 +345,14 @@ form.editable > button {
 	cursor: not-allowed;
 	background-color: #fff;
 }
+.children-dropdown {	
+	display: inline-block;
+	padding: 1px 5px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+
 .form-inline {
 	margin:5px 3px;
 }
