@@ -12,8 +12,8 @@ decommentariis - {{ object.entry.author }} -
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-sm-5  vertical-five">
+<div class="row" id="section-nav">
+	<div class="col-sm-5 vertical-five padding-be-gone">
 		<ul class="pager top pager-info">	
 			{% if section_prev %}
 			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&laquo; {{ section_prev.section_ref }}</a></li>
@@ -28,10 +28,10 @@ decommentariis - {{ object.entry.author }} -
 			{% endif %}
 		</ul>
 	</div>
-	<div class="col-sm-1  vertical-five">
+	<div class="col-sm-1  vertical-five padding-begone">
 		{% if children %}
 		<div class="btn-group">
-			<button type="button" class="btn btn-default btn-sm pull-right dropdown-toggle children-dropdown" data-toggle="dropdown">
+			<button type="button" class="btn btn-default btn-sm btn-block dropdown-toggle pull-right children-dropdown" data-toggle="dropdown">
 				Sections <span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">

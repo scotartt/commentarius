@@ -163,6 +163,9 @@ note cit {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+.left-five {
+	margin-left: 5px;
+}
 
 .maintext {
 	font-size: 1.1em;
@@ -182,6 +185,18 @@ note cit {
 	margin-right: 0;
 	margin-left: 0;
 }
+.padding-be-gone {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#section-nav {
+	/* border: 1px solid #ddd; 
+	border-radius: 5px; */
+	margin-left: 0px;
+	margin-right: 0px;
+	/* background-color: #4582ec; */
+}
+
 #commentary-form-click-target:hover {
 	cursor: pointer;
 }
@@ -192,11 +207,16 @@ note cit {
 #hidey-form {
 	margin-top: 15px;
 	padding: 5px 10px;
-	border: 1px solid #4582ec;
+	border: 1px solid #ddd; 
 	border-radius: 5px;
 }
 #commentary-table {
-	margin: 5px 5px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 5px;
+	margin-bottom: 	15px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
 }
 #commentary-table-header .text-muted {
 	font-variant: small-caps;  
