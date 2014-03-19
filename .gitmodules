@@ -1,4 +1,0 @@
-[submodule "data/canonical"]
-	path = data/canonical
-	url = https://github.com/scotartt/canonical.git
-	branch = master

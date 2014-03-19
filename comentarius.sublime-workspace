@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"paddin",
+				"padding-left"
+			],
+			[
+				"border-r",
+				"border-right:   (property)"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
 				"margin-top",
 				"margin-top:   (property)"
 			],
@@ -471,38 +483,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "decommentariis/decommentariis/templates/section_text.html",
-			"settings":
-			{
-				"buffer_size": 5213,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "decommentariis/decommentariis/models.py",
-			"settings":
-			{
-				"buffer_size": 5771,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "decommentariis/decommentariis/static/theme/theme.css",
-			"settings":
-			{
-				"buffer_size": 5636,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "decommentariis/decommentariis/static/js/commentaries.js",
-			"settings":
-			{
-				"buffer_size": 10655,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/Pandown/Pandown HTML.sublime-build",
 	"command_palette":
@@ -630,10 +610,12 @@
 	},
 	"file_history":
 	[
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/commentaries.js",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/theme/theme.css",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_text.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/models.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/contact.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/views.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/models.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/urls.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/text_list.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/commentarius_base.html",
@@ -641,7 +623,6 @@
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templatetags/shorter_cts.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/settings.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_list.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_text.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/index.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/import_cts_metadata.py",
@@ -676,7 +657,6 @@
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/password_reset.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/logout.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/base.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/commentaries.js",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/robots.txt",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/jquery.expander.js",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/prod_settings.py",
@@ -940,340 +920,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "decommentariis/decommentariis/templates/section_text.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5213,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2495,
-								2495
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1398.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "decommentariis/decommentariis/models.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5771,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								292,
-								292
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "decommentariis/decommentariis/static/theme/theme.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5636,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2871,
-								2871
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"auto_indent": true,
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4129.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "decommentariis/decommentariis/static/js/commentaries.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10655,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3107,
-								3116
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2311.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
 			]
 		}
 	],
