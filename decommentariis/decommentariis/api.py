@@ -3,7 +3,10 @@ from tastypie import fields
 from tastypie.resources import Resource, ModelResource, ALL, ALL_WITH_RELATIONS
 from tastypie.authentication import BasicAuthentication, SessionAuthentication, MultiAuthentication 
 from tastypie.authorization import DjangoAuthorization
+from tastypie.authorization import Authorization
+from tastypie.exceptions import Unauthorized
 from decommentariis.models import TEIEntry, TEISection, CommentaryEntry
+from decommentariis.api_authorization import UpdateUserObjectsOnlyAuthorization
 from django.contrib.auth.models import User
 import markdown
 import bleach
@@ -45,7 +48,7 @@ class CommentaryEntryResource(ModelResource):
 		resource_name = 'sourcecommentary'
 		list_allowed_methods = ['get', 'put', 'post']
 		authentication = SessionAuthentication()
-		authorization = DjangoAuthorization()
+		authorization = UpdateUserObjectsOnlyAuthorization()
 		filtering = {
 			'section': ALL_WITH_RELATIONS,
 			'user': ALL_WITH_RELATIONS,
@@ -55,6 +58,8 @@ class CommentaryEntryResource(ModelResource):
 		bundle.data['commentary.html'] = markdown.markdown(bundle.obj.commentary, encoding="utf-8", output_format="html5", safe_mode=False)
 		bundle.data['commentary.md'] = bundle.obj.commentary
 		return bundle 
+
+
 
 class UserResource(ModelResource):
 	pass
