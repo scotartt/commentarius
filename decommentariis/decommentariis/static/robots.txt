@@ -1,4 +1,29 @@
-User-agent: *
+User-agent: Googlebot
 Disallow: /accounts/
 Disallow: /textdata/
 Disallow: /api/
+
+User-agent: bingbot
+Disallow: /accounts/
+Disallow: /textdata/
+Disallow: /api/
+
+User-agent: DuckDuckBot
+Disallow: /accounts/
+Disallow: /textdata/
+Disallow: /api/
+
+User-agent: archive.org_bot
+Disallow: /accounts/
+Disallow: /textdata/
+Disallow: /api/
+
+User-agent: *
+Crawl-delay: 30
+Disallow: /text/
+Disallow: /accounts/
+Disallow: /textdata/
+Disallow: /api/
+
+User-agent: SiteExplorer
+Disallow: /
