@@ -2,6 +2,7 @@ import json
 from tastypie.utils.timezone import now
 from django.db import models
 from django.db.models import Q
+from django.db.models import F
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from decommentariis.xml_file import TEIDataSource
@@ -166,6 +167,12 @@ class CommentaryEntry(models.Model):
 	creation_date = models.DateTimeField(default=now)
 	votes = models.IntegerField(default=0)
 
+	def count_votes(self):
+		self.votes = len(self.commentaryentryvoter_set.all());
+		self.save()
+		# print("votes counted at " + str(self.votes))
+
+
 	def __str__(self):
 		return '{0} :: ({1}) >>> {2} :: {3} :: "{4}"'.format(self.section.entry, self.section.section_ref, self.user.username, self.creation_date, self.commentary)
 	class Meta:
@@ -175,6 +182,17 @@ class CommentaryEntryVoter(models.Model):
 	entry = models.ForeignKey(CommentaryEntry)
 	user = models.ForeignKey(User)
 	vote_date = models.DateTimeField(default=now)
+
+	def save(self, *args, **kwargs):
+		self.entry.count_votes()
+		super(CommentaryEntryVoter, self).save(*args, **kwargs) 
+		# Call the "real" save() method.
+		
+
+	def delete(self, *args, **kwargs):
+		super(CommentaryEntryVoter, self).delete(*args, **kwargs) 
+		self.entry.count_votes()
+
 	class Meta:
 		unique_together = ('entry', 'user')
 

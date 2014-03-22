@@ -51,9 +51,7 @@ $('#commentary-form-click-target').ready(function() {
 // functions below here
 var commentaries = function (cts_urn) {
 	var theUrl = "/api/v1/sourcesection/" + cts_urn + "/?format=json";
-	/* or in one call:
-	   /api/v1/sourcecommentary/?section__cts_urn=<cts_urn>
-	   */
+	//   /api/v1/sourcecommentary/?section__cts_urn=<cts_urn>
 	$.ajax({
 		url: theUrl,
 		success:function(data){
@@ -82,10 +80,27 @@ var populate = function(json) {
 		$.ajax({
 			url: commentary_url,
 			success:function(data) {
-				commentary_and_user(data, i);
+				commentary_and_user(data);
 			}
 		});
 	}
+}
+
+var update_single_entry = function(commentary_url) {
+	var theid = '#' + idify(commentary_url);
+	if ($(theid) == null || $(theid).length === 0) {
+		console.log("in here");
+		var rowTR = ["<tr class='row small commentary-item-row' id='", theid,"'/>"].join("");
+		$('#commentary-container').append(rowTR);
+		console.log(rowTR);
+	} 
+	$.ajax({
+		url: commentary_url,
+		success:function(data) {
+			commentary_and_user(data);
+		}
+	});
+
 }
 
 var commentary_and_user = function(json) {
@@ -121,6 +136,7 @@ var commentaryitem = function(commentjson, userjson) {
 
 	var theid = idify(commentjson['resource_uri']);
 	var rowTR = $('#'+theid);
+	rowTR.empty();
 
 	rowTR.append(commentary_td.call({
 		"tdclass":"col-sm-2 uname",
@@ -209,15 +225,16 @@ var make_vote_button = function(commentjson, rowTR, iseditable, theid) {
 	}
 	var btnclass ="btn-default";
 	var userisowner = "";
-	if (iseditable) {
-		userisowner = 'disabled="disabled"';
-	} else if (has_voted) {
+	if (has_voted) {
 		btnclass = "btn-success";
-	} 
-
+	} else if (commentjson['votes'] > 0) {
+		btnclass = "btn-primary";
+	}
 	if (self_voted) {
 		userisowner = 'disabled="disabled"';
 		btnclass = "btn-warning";
+	} else if (iseditable) {
+		userisowner = 'disabled="disabled"';
 	}
 
 	rowTR.append(voterbutton.call({
@@ -229,12 +246,60 @@ var make_vote_button = function(commentjson, rowTR, iseditable, theid) {
 		"user_uri": user_resource_uri,
 		"vote_uri": existing_vote_uri,
 	}));
+	rowTR.find(".btn-vote").each(
+		function() {
+			$(this).click(
+				function() {
+					var commentaryform = $('#commentary-form');
+					var csrfmiddlewaretoken = commentaryform.find("[name='csrfmiddlewaretoken']").attr('value');
+					var commentary_uri = $(this).attr('commentary_uri')
+					if ($(this).attr('vote_uri') !== 'false' ) {
+						var voteapiuri = $(this).attr('vote_uri');
+						$.ajax({
+							url: voteapiuri,
+							type: 'DELETE',
+							success:function(data){
+								update_single_entry(commentary_uri);
+							},
+							error:function(jqXHR, textStatus, errorThrown) {
+								console.log(jqXHR);
+								update_single_entry(commentary_uri);
+							},
+						})
+					} else {
+						// have to post a new vote
+						var data = JSON.stringify({
+							"voter": $(this).attr('user_uri'),
+							"entry": commentary_uri,
+							"csrfmiddlewaretoken": csrfmiddlewaretoken,
+						});
+
+						var voteapiuri = "/api/v1/voter/";
+						$.ajax({
+							url: voteapiuri,
+							type: 'POST',
+							contentType: 'application/json',
+							data: data,
+							dataType: 'json',
+							success:function(data){
+								update_single_entry(commentary_uri);
+							},
+							error:function(jqXHR, textStatus, errorThrown) {
+								console.log(jqXHR);
+								update_single_entry(commentary_uri);
+							},
+						});
+					}
+				}
+			)
+		}
+	);
 }
 
 var voterbutton = function() {
 	return ['<td class="col-sm-2 votes small">', 
 		'<div class="input-group" id="',this.voterid,'">',
-		'<button class="vote-btn btn btn-xs ', this.btnclass, '" ', this.userisowner, 
+		'<button class="btn-vote btn btn-xs ', this.btnclass, '" ', this.userisowner, 
 		' user_uri="',this.user_uri,'"',
 		' commentary_uri="', this.commentary_uri,'"',
 		' vote_uri="',this.vote_uri,'"',
