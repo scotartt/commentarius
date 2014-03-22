@@ -168,9 +168,14 @@ class CommentaryEntry(models.Model):
 
 	def __str__(self):
 		return '{0} :: ({1}) >>> {2} :: {3} :: "{4}"'.format(self.section.entry, self.section.section_ref, self.user.username, self.creation_date, self.commentary)
-	
 	class Meta:
 		ordering = ['-votes', 'creation_date']
 	
+class CommentaryEntryVoter(models.Model):
+	entry = models.ForeignKey(CommentaryEntry)
+	user = models.ForeignKey(User)
+	vote_date = models.DateTimeField(default=now)
+	class Meta:
+		unique_together = ('entry', 'user')
 
 

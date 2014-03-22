@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"ob",
+				"object_list"
+			],
+			[
+				"read",
+				"read_list"
+			],
+			[
 				"paddin",
 				"padding-left"
 			],
@@ -483,13 +491,25 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "decommentariis/decommentariis/urls.py",
+			"settings":
+			{
+				"buffer_size": 1589,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/Pandown/Pandown HTML.sublime-build",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 287.0,
 		"selected_items":
 		[
+			[
+				"tabs",
+				"Indentation: Convert to Tabs"
+			],
 			[
 				"pack",
 				"Package Control: Install Package"
@@ -501,10 +521,6 @@
 			[
 				"rein",
 				"Indentation: Reindent Lines"
-			],
-			[
-				"tabs",
-				"Indentation: Convert to Tabs"
 			],
 			[
 				"tab",
@@ -610,6 +626,11 @@
 	},
 	"file_history":
 	[
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/robots.txt",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/api_authorization.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/api.py",
+		"/Users/smcphee/Development/python/lib/python3.3/site-packages/tastypie/authorization.py",
+		"/Users/smcphee/Development/python/lib/python3.3/site-packages/tastypie/resources.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/commentaries.js",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/theme/theme.css",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_text.html",
@@ -657,7 +678,6 @@
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/password_reset.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/logout.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/base.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/robots.txt",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/jquery.expander.js",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/prod_settings.py",
 		"/Users/smcphee/Dropbox/AmazonWebServices/ssl.key",
@@ -667,7 +687,6 @@
 		"/Users/smcphee/Development/python/lib/python3.3/site-packages/allauth/models.py",
 		"/Users/smcphee/Development/python/lib/python3.3/site-packages/allauth/account/signals.py",
 		"/Users/smcphee/Development/python/lib/python3.3/site-packages/allauth/socialaccount/signals.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/api.py",
 		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/Pandown/Pandown.sublime-settings",
 		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0631/phi001/phi0631.phi001.perseus-lat2.xml",
@@ -675,7 +694,6 @@
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/admin.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/re.js",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templatetags/__init__.py",
-		"/Users/smcphee/Development/python/lib/python3.3/site-packages/tastypie/authorization.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/account/socialaccount/signup.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/production-settings.py",
 		"/Users/smcphee/Development/sources/commentarius/README.md",
@@ -735,9 +753,7 @@
 		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/PandocReferencr/PandocReferencr.py",
 		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/PandocReferencr/README.md",
 		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/PandocAcademic/ColorScheme/The-Wine-Dark-Sea.tmTheme",
-		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/PandocAcademic/ColorScheme/Pastels-On-Dark-adapted.tmTheme",
-		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/PandocReferencr/PandocInsertRef.py",
-		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/User/JSON.sublime-settings"
+		"/Users/smcphee/Dropbox/Libraries/Sublime Text 3/Packages/PandocAcademic/ColorScheme/Pastels-On-Dark-adapted.tmTheme"
 	],
 	"find":
 	{
@@ -757,6 +773,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"super",
 			"font",
 			"small",
 			"breadcrumb",
@@ -883,8 +900,7 @@
 			"			#print(str(i) + \" = \" + xpathstr)\n",
 			"div1s",
 			"ddict",
-			"d",
-			"recursion_of_elements"
+			"d"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -920,8 +936,39 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "decommentariis/decommentariis/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1589,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1288,
+								1288
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": false,
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 216.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
