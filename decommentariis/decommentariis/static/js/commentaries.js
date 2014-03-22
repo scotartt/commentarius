@@ -77,7 +77,6 @@ var populate = function(json) {
 		var commentary_url = user_commentaries[i];
 		var theid = idify(commentary_url);
 		var rowTR = ["<tr class='row small commentary-item-row' id='", theid,"'/>"].join("");
-		console.log(rowTR);
 		$('#commentary-container').append(rowTR);
 		$('#'+theid).slideUp(0);
 		$.ajax({
@@ -104,7 +103,6 @@ var commentaryitem = function(commentjson, userjson) {
 	var fname = userjson['first_name'];
 	var lname = userjson['last_name'];
 	var uname = userjson['username'];
-	var voterlist = commentjson['voters'];
 
 	var usernamedetail;
 	if (fname === "" && lname === "" && !(uname === "")) {
@@ -138,11 +136,7 @@ var commentaryitem = function(commentjson, userjson) {
 		"iseditable": iseditable,
 	}));
 
-	rowTR.append(voterbutton.call({
-		"votes": voterlist.length + '',
-		"voterid": 'votes_' + theid,
-		"btnclass": 'btn-default',
-	}));
+	make_vote_button(commentjson, rowTR, iseditable, theid);
 
 	if (iseditable) {
 		rowTR.find(".edit_area").each(
@@ -195,10 +189,56 @@ var commentary_td = function () {
 	].join('');
 }
 
+var make_vote_button = function(commentjson, rowTR, iseditable, theid) {
+	var voterlist = commentjson['voters'];
+	var user_resource_uri = $('#f_user_input_id').attr('value');
+	// why are where using uri here and username elsewhere?
+	var has_voted = false;
+	var self_voted = false;
+	var existing_vote_uri = false;
+	for (var i = 0; i < voterlist.length; i++)  {
+		rowTR.append("<span hidden='hidden' class='voteid' voter='" + voterlist[i].voter + "'/>")
+		if (user_resource_uri === voterlist[i].voter) {
+			has_voted = true;
+			existing_vote_uri = voterlist[i].resource_uri;
+			/* this user voted for this comment already */
+		} else if (commentjson['user'] === voterlist[i].voter) {
+			self_voted = true; 
+			/* all voting by all users will be disabled, user voted for self.*/
+		}
+	}
+	var btnclass ="btn-default";
+	var userisowner = "";
+	if (iseditable) {
+		userisowner = 'disabled="disabled"';
+	} else if (has_voted) {
+		btnclass = "btn-success";
+	} 
+
+	if (self_voted) {
+		userisowner = 'disabled="disabled"';
+		btnclass = "btn-warning";
+	}
+
+	rowTR.append(voterbutton.call({
+		"votes": commentjson['votes'] + '',
+		"voterid": 'votes_' + theid,
+		"btnclass": btnclass,
+		"userisowner": userisowner,
+		"commentary_uri": commentjson['resource_uri'],
+		"user_uri": user_resource_uri,
+		"vote_uri": existing_vote_uri,
+	}));
+}
+
 var voterbutton = function() {
 	return ['<td class="col-sm-2 votes small">', 
 		'<div class="input-group" id="',this.voterid,'">',
-		'<button class="btn btn-xs ', this.btnclass, '">',
+		'<button class="vote-btn btn btn-xs ', this.btnclass, '" ', this.userisowner, 
+		' user_uri="',this.user_uri,'"',
+		' commentary_uri="', this.commentary_uri,'"',
+		' vote_uri="',this.vote_uri,'"',
+		' >',
 		'<span class="glyphicon glyphicon-thumbs-up"></span>',
 		'&nbsp;',
 		this.votes,

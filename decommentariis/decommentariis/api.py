@@ -42,8 +42,8 @@ class TEISectionResource(ModelResource):
 class CommentaryEntryResource(ModelResource):
 	section = fields.ForeignKey(TEISectionResource, 'section', related_name='user_commentaries')
 	user = fields.ForeignKey('decommentariis.api.UserResource', 'user')
-	voters = fields.ToManyField('decommentariis.api.CommentaryEntryVoterResource', 'commentaryentryvoter_set', related_name='entry')
-
+	voters = fields.ToManyField('decommentariis.api.CommentaryEntryVoterResource', 'commentaryentryvoter_set', related_name='entry', null=True, full=True)
+	
 	class Meta:
 		queryset = CommentaryEntry.objects.all()
 		resource_name = 'sourcecommentary'
@@ -53,7 +53,7 @@ class CommentaryEntryResource(ModelResource):
 		filtering = {
 			'section': ALL_WITH_RELATIONS,
 			'user': ALL_WITH_RELATIONS,
-			'voters': ALL_WITH_RELATIONS,
+			'id' : ALL,
 		}
 
 	def dehydrate(self, bundle):
@@ -63,7 +63,7 @@ class CommentaryEntryResource(ModelResource):
 
 class CommentaryEntryVoterResource(ModelResource):
 	voter = fields.ForeignKey('decommentariis.api.UserResource', 'user')
-	entry = fields.ForeignKey(TEIEntryResource, 'entry', related_name='voters')
+	entry = fields.ForeignKey(CommentaryEntryResource, 'entry', related_name='voters')
 	class Meta:
 		queryset = CommentaryEntryVoter.objects.all()
 		resource_name = "voter"
