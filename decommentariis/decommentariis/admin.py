@@ -6,8 +6,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 
-from decommentariis.models import TEIEntry, TEISection, CommentaryEntry
-
+from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, CommentaryEntryVoter
 
 class TEIEntryAdmin(admin.ModelAdmin):
 	pass
@@ -15,13 +14,17 @@ class TEIEntryAdmin(admin.ModelAdmin):
 class TEISectionAdmin(admin.ModelAdmin):
 	pass
 
-
 class CommentaryEntryAdmin(admin.ModelAdmin):
+	fields = ['user', 'section', 'creation_date', 'votes', 'commentary']
+
+class CommentaryEntryVoterAdmin(admin.ModelAdmin):
 	pass
+
 
 admin.site.register(TEIEntry, TEIEntryAdmin)
 admin.site.register(TEISection, TEISectionAdmin)
 admin.site.register(CommentaryEntry, CommentaryEntryAdmin)
+admin.site.register(CommentaryEntryVoter, CommentaryEntryVoterAdmin)
 
 class GroupAdminForm(forms.ModelForm):
 	users = forms.ModelMultipleChoiceField(

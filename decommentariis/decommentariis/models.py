@@ -174,7 +174,8 @@ class CommentaryEntry(models.Model):
 
 
 	def __str__(self):
-		return '{0} :: ({1}) >>> {2} :: {3} :: "{4}"'.format(self.section.entry, self.section.section_ref, self.user.username, self.creation_date, self.commentary)
+		return '{0} :: ({1}) >>> {2} :: {3}'.format(self.section.entry, self.section.section_ref, self.user.username, self.creation_date)
+
 	class Meta:
 		ordering = ['-votes', 'creation_date']
 	
@@ -182,6 +183,9 @@ class CommentaryEntryVoter(models.Model):
 	entry = models.ForeignKey(CommentaryEntry)
 	user = models.ForeignKey(User)
 	vote_date = models.DateTimeField(default=now)
+
+	def __str__(self):
+		return '{0} :: ({1}) >>> {2}'.format(self.user.username, self.vote_date, self.entry)
 
 	def save(self, *args, **kwargs):
 		self.entry.count_votes()
