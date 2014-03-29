@@ -189,13 +189,6 @@ note cit {
 	padding-left: 0px;
 	padding-right: 0px;
 }
-#section-nav {
-	/* border: 1px solid #ddd; 
-	border-radius: 5px; */
-	margin-left: 0px;
-	margin-right: 0px;
-	/* background-color: #4582ec; */
-}
 
 #commentary-form-click-target:hover {
 	cursor: pointer;

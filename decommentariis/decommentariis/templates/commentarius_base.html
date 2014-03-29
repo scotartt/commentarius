@@ -48,14 +48,14 @@
 		{% block content %}there is no content here{% endblock content %}
 	</div>
 	<div id="footer">
-		<div class="container">
+		<div class="container ">
 			{% block footer %}
 			<div id="nav2ancestors-footer" class="row">
 				<div class="col-sm-6">
 
 				</div>
-				<div class="col-sm-6 ">
-					<ol class="text-muted breadcrumb">
+				<div class="col-sm-6 hidden-xs">
+					<ol class="text-muted breadcrumb ">
 						<span class="pull-right">You are logged in as user '{{request.user.username}}'</span>
 					</ol>
 				</div>

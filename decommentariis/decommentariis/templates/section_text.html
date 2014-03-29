@@ -6,13 +6,13 @@ decommentariis - {{ object.entry.author }} -
 {% endblock title %}
 
 {% block content %}
-<div class="row ">
+<div class="row">
 	<div class="col-sm-6 vertical-five">
 		<h4>{{ object.entry.author }} <small> &mdash; {{ object.entry.title }}</small></h4>
 	</div>
 </div>
 
-<div class="row" id="section-nav">
+<div class="row no-fifteen" id="section-nav">
 	<div class="col-sm-5 vertical-five padding-be-gone">
 		<ul class="pager top pager-info">	
 			{% if section_prev %}
@@ -28,7 +28,7 @@ decommentariis - {{ object.entry.author }} -
 			{% endif %}
 		</ul>
 	</div>
-	<div class="col-sm-1  vertical-five padding-begone">
+	<div class="col-sm-1 vertical-five padding-be-gone">
 		{% if children %}
 		<div class="btn-group">
 			<button type="button" class="btn btn-default btn-sm btn-block dropdown-toggle pull-right children-dropdown" data-toggle="dropdown">
@@ -53,11 +53,11 @@ decommentariis - {{ object.entry.author }} -
 	<div id="commentary-outer-container" class="col-sm-6"> 
 		<div class="row no-fifteen">
 			<table id="commentary-table" class="table table-condensed table-responsive">
-				<thead>
+				<thead id="commentary-table-thead">
 					<tr class="row small" id="commentary-table-header">
 						<th class="col-sm-2 small text-primary">User</th>
-						<th class="col-sm-9 small text-primary">Commentary</th>
-						<th class="col-sm-1 small text-primary">+/-</th>
+						<th class="col-sm-8 small text-primary">Commentary</th>
+						<th class="col-sm-2 small text-primary">+/-</th>
 					</tr>
 				</thead>
 				<tbody id="commentary-container">
@@ -97,9 +97,9 @@ decommentariis - {{ object.entry.author }} -
 		</span>
 	</div>
 </div>
-<div class="row">
-	<div class="col-sm-5">
-		<ul class="pager bottom">	
+<div class="row no-fifteen">
+	<div class="col-sm-5 vertical-five padding-be-gone">
+		<ul class="pager bottom pager-info">	
 			{% if section_prev %}
 			<li class="previous"><a href='../{{ section_prev.cts_urn }}/'>&laquo; {{ section_prev.section_ref }}</a></li>
 			{% else %}
@@ -117,17 +117,17 @@ decommentariis - {{ object.entry.author }} -
 {% endblock %}
 
 {% block footer %}
-<div id="nav2ancestors-footer" class="row">
-	<div class="col-sm-6">
+<div id="nav2ancestors-footer" class="row small">
+	<div class="col-sm-12">
 		<ol class="text-info breadcrumb">
 			Location: 
 			<li><a href='/text/{{ object.entry.cts_urn }}/'>{{ object.entry.cts_urn|prettyctsurn }}</a></li>
 			{% for sect in section_path %}
-			<li{% if forloop.last %} class='active'{% endif %}><a href='../{{ sect.cts_urn }}/'>{{ sect.section_ref }}</a></li>
+			<li {% if forloop.last %} class='active'{% endif %}><a href='../{{ sect.cts_urn }}/'>{{ sect.section_ref }}</a></li>
 			{% endfor %}
 		</ol>
 	</div>
-	<div class="col-sm-6 ">
+	<div class="hidden" hidden="hidden">
 		<ol class="text-muted breadcrumb">
 			<span class="pull-right">You are logged in as user '{{request.user.username}}'</span>
 		</ol>
