@@ -14,52 +14,66 @@
 	{% endblock %}
 </head>
 <body role="document">
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">de commentariis</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/text/">Text editions</a></li>
+					<li><a href="/about/">About</a></li>
+					<li><a href="/about/contact/">Contact</a></li>
+					<li class="dropdown">
+          				<a href="#" class="dropdown-toggle small" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span><span class="sr-only">Configuration menu</span> <b class="caret"></b></a>
+          				<ul class="dropdown-menu">
+							{% if user.is_authenticated %}
+							<li><a href="#">Logged in as {{request.user.username}}</a></li>
+							<li class="divider"></li>
+							<li><a href="{% url 'account_change_password' %}">Change your password</a></li> 
+							<li><a href="{% url 'account_email' %}">Manage Your Email</a></li>
+							<li><a href="{% url 'account_logout' %}">Log Out</a></li>
+							{% else %}
+							<li><a href="{% url 'account_login' %}">Log In</a></li>
+							<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+							{% endif %}
+						</ul>
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+	<!-- end navbar -->
 	<div class="container-fluid">
-		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/">de commentariis</a>
-				</div>
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="/text/">Text editions</a></li>
-						<li><a href="/about/">About</a></li>
-						<li><a href="/about/contact">Contact</a></li>
-						{% if user.is_authenticated %}
-						<li><a href="{% url 'account_logout' %}">Log Out {{request.user.username}}</a></li>
-						{% else %}
-						<li><a href="{% url 'account_login' %}">Log In</a></li>
-						<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-						{% endif %}
-					</ul>
-				</div><!--/.nav-collapse -->
-			</div>
-		</div>
 		{% block body %}
-		{% if messages %}
-		<div class="row">
-			<div class="col-sm-8 col-sm-offset-2">
-				<div class="alert alert-danger">
-					<strong>Messages:</strong>
-					{% for message in messages %}
-					<br/>{{message}}
-					{% endfor %}
+			{% if messages %}
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="alert alert-danger">
+						<strong>Messages:</strong>
+						{% for message in messages %}
+						<br/>{{message}}
+						{% endfor %}
+					</div>
 				</div>
 			</div>
-		</div>
-		{% endif %}
-		
-		{% block content %}
+			{% endif %}
+			
+			{% block content %}
+
+			{% endblock %}
 		{% endblock %}
-		{% endblock %}
+
 		{% block extra_body %}
 		{% endblock %}
+		
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
 				{% if user.is_authenticated %}

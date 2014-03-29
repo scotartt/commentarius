@@ -1,89 +1,66 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="/static/css/bootstrap-readable.min.css" rel="stylesheet">
-	<link href="/static/theme/theme.css" rel="stylesheet">
-	<script src="/static/js/jquery-1.11.0.min.js"></script>
-	<title>de commentariis</title>
-	<script src="/static/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-</head>
-<body role="document">
-	<!-- Fixed navbar -->
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">de commentariis</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/text/">Text editions</a></li>
-					<li><a href="/about/">About</a></li>
-					<li class="active"><a href="/about/contact">Contact</a></li>
-				</ul>
-			</div><!--/.nav-collapse -->
+{% extends "commentarius_base.html" %}
+{% block title %}Contact de commentariis{% endblock title %}
+
+{% block menu %}
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">de commentariis</a>
 		</div>
-	</div>
-	<div class="container-fluid" role="main">
-		<div class="jumbotron">
-			<div class="page-header">
-				<h3>contact <small>de commentariis</small></h3>
-			</div>
-			<ul class='list-inline lead'>
-				<li>email: 
-					<script type="text/javascript">
-			//<![CDATA[
-			<!--
-			var x="function f(x){var i,o=\"\",ol=x.length,l=ol;while(x.charCodeAt(l/13)!" +
-				"=48){try{x+=x;l+=l;}catch(e){}}for(i=l-1;i>=0;i--){o+=x.charAt(i);}return o" +
-				".substr(0,ol);}f(\")421,\\\"OCIXRQ710\\\\BPB600\\\\000\\\\t\\\\n\\\\100\\\\" +
-				"MD020\\\\310\\\\010\\\\220\\\\>*39676330\\\\w3120\\\\jq610\\\\\\\"\\\\9&<,8" +
-				"%/$%(500\\\\e!700\\\\`530\\\\}ZRIUO230\\\\330\\\\dZYV230\\\\_[P]Hn^EBXH\\\\" +
-				"\\\\ICHILADD%qipr{t:K+sqaz1q3,%bgo}auq+pmglu530\\\\220\\\\030\\\\\\\"(f};o " +
-				"nruter};))++y(^)i(tAedoCrahc.x(edoCrahCmorf.gnirtS=+o;721=%y{)++i;l<i;0=i(r" +
-				"of;htgnel.x=l,\\\"\\\"=o,i rav{)y,x(f noitcnuf\")"                           ;
-				while(x=eval(x));
-			//-->
-			//]]>
-					</script>
-				</li>
-				<li>| twitter: <a href="https://twitter.com/decommentariis">@decommentariis</a></li>
-				<li>| google+: <a href="https://google.com/+DecommentariisNetApp">+DecommentariisNetApp</a></li>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/text/">Text editions</a></li>
+				<li><a href="/about/">About</a></li>
+				<li class="active"><a href="/about/contact/">Contact</a></li>
 			</ul>
-		</div>
+		</div><!--/.nav-collapse -->
 	</div>
-	<div id="footer">
-		<div class="container">
-			<div id="maincontent" class="row small">
-				<div id="text" class="col-md-6">
-					Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
-				</div>
-				<div id="text" class="col-md-6">Source code available under a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>.
-				</div>
-			</div>
-		</div>
+</div>
+<!-- end navbar -->
+{% endblock menu %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="page-header">
+		<h3>contact <small>de commentariis</small></h3>
 	</div>
-	<script type="text/javascript">
+	<ul class='list-inline lead'>
+		<li>email: 
+			<script type="text/javascript">
+	//<![CDATA[
+	<!--
+	var x="function f(x){var i,o=\"\",ol=x.length,l=ol;while(x.charCodeAt(l/13)!" +
+		"=48){try{x+=x;l+=l;}catch(e){}}for(i=l-1;i>=0;i--){o+=x.charAt(i);}return o" +
+		".substr(0,ol);}f(\")421,\\\"OCIXRQ710\\\\BPB600\\\\000\\\\t\\\\n\\\\100\\\\" +
+		"MD020\\\\310\\\\010\\\\220\\\\>*39676330\\\\w3120\\\\jq610\\\\\\\"\\\\9&<,8" +
+		"%/$%(500\\\\e!700\\\\`530\\\\}ZRIUO230\\\\330\\\\dZYV230\\\\_[P]Hn^EBXH\\\\" +
+		"\\\\ICHILADD%qipr{t:K+sqaz1q3,%bgo}auq+pmglu530\\\\220\\\\030\\\\\\\"(f};o " +
+		"nruter};))++y(^)i(tAedoCrahc.x(edoCrahCmorf.gnirtS=+o;721=%y{)++i;l<i;0=i(r" +
+		"of;htgnel.x=l,\\\"\\\"=o,i rav{)y,x(f noitcnuf\")"                           ;
+		while(x=eval(x));
+	//-->
+	//]]>
+			</script>
+		</li>
+		<li>| twitter: <a href="https://twitter.com/decommentariis">@decommentariis</a></li>
+		<li>| google+: <a href="https://google.com/+DecommentariisNetApp">+DecommentariisNetApp</a></li>
+	</ul>
+</div>
+{% endblock content %}
 
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-8726619-4']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-
-	</script>
-</body>
-</html>
+{% block footer %}
+<div id="basicfooter" class="row small">
+	<div id="text" class="col-md-6">
+		Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
+	</div>
+	<div id="text" class="col-md-6">Source code available under a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>.
+	</div>
+</div>
+{% endblock footer %}

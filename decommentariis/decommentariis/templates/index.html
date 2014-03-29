@@ -1,110 +1,77 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="/static/css/bootstrap-readable.min.css" rel="stylesheet">
-	<link href="/static/theme/theme.css" rel="stylesheet">
-	<script src="/static/js/jquery-1.11.0.min.js"></script>
-	<title>de commentariis</title>
-	<script src="/static/js/bootstrap.min.js"></script>
-</head>
-<body role="document">
-	<!-- Fixed navbar -->
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">de commentariis</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/text/">Text editions</a></li>
-					<li><a href="/about/">About</a></li>
-					<li><a href="/about/contact">Contact</a></li>
-				</ul>
-			</div><!--/.nav-collapse -->
+{% extends "commentarius_base.html" %}
+{% block title %}de commentariis - start{% endblock title %}
+{% block menu %}
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">de commentariis</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/text/">Text editions</a></li>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/about/contact/">Contact</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</div>
+<!-- end navbar -->
+{% endblock menu %}
+
+{% block content %}
+<div class="jumbotron">
+	<div class="page-header">
+		<h1>de commentariis β<small> (on commentaries)</small></h1>
+	</div>
+	<p>Welcome to De Commentariis; an open network for the crowd-sourcing of ancient text commentaries. Construct your own commentaries on classical texts, and view the commentaries others have made. Use it to get your students to critically engage with their learning texts.</p>
+	<div class="row">
+		<div class="col-md-8">
+			<ul class="list-inline lead">
+
+				<li>Some sample texts:</li> 
+
+				<li><a href="./text/urn:cts:latinLit:phi0448.phi001.perseus-lat1/">Caesar, <em>Gallic Wars</em></a>.</li> 
+
+				<li><a href="./text/urn:cts:latinLit:phi0631.phi001.perseus-lat2/">Sallust, <em>Catiline's Conspiracy</em></a>.</li>
+
+				<li><a href="./text/urn:cts:latinLit:phi0474.phi043.perseus-lat1/">Cicero, <em>On The Republic</em></a>.</li> 
+
+				<li><a href="./text/urn:cts:greekLit:tlg0001.tlg001.perseus-grc1/">Apollonius Rhodius, <em>Argonautica</em></a>.</li>
+
+				<li><a href="./text/urn:cts:greekLit:tlg0016.tlg001.perseus-grc1/">Herodotus, <em>The Histories</em></a>.</li>
+
+				<li><a href="./text/urn:cts:greekLit:tlg0032.tlg006.perseus-grc1/">Xenophon, <em>Anabasis</em></a>.</li>
+			
+			</ul>
+
+		</div>
+		<div class="col-md-4">
+			<button href="/text/" id="click-button" class="btn btn-primary btn-lg">All available works &raquo;</button>
 		</div>
 	</div>
-	<div class="container-fluid" role="main">
-		<div class="jumbotron">
-			<div class="page-header">
-				<h1>de commentariis β<small> (on commentaries)</small></h1>
-			</div>
-			<p>Welcome to De Commentariis; an open network for the crowd-sourcing of ancient text commentaries. Construct your own commentaries on classical texts, and view the commentaries others have made. Use it to get your students to critically engage with their learning texts.</p>
-			<div class="row">
-				<div class="col-md-8">
-					<ul class="list-inline lead">
+</div>
 
-						<li>Some sample texts:</li> 
-
-						<li><a href="./text/urn:cts:latinLit:phi0448.phi001.perseus-lat1/">Caesar, <em>Gallic Wars</em></a>.</li> 
-
-						<li><a href="./text/urn:cts:latinLit:phi0631.phi001.perseus-lat2/">Sallust, <em>Catiline's Conspiracy</em></a>.</li>
-
-						<li><a href="./text/urn:cts:latinLit:phi0474.phi043.perseus-lat1/">Cicero, <em>On The Republic</em></a>.</li> 
-
-						<li><a href="./text/urn:cts:greekLit:tlg0001.tlg001.perseus-grc1/">Apollonius Rhodius, <em>Argonautica</em></a>.</li>
-
-						<li><a href="./text/urn:cts:greekLit:tlg0016.tlg001.perseus-grc1/">Herodotus, <em>The Histories</em></a>.</li>
-
-						<li><a href="./text/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1/">Pausanias, <em>Description of Greece</em></a>.</li>
-					
-					</ul>
-
-				</div>
-				<div class="col-md-4">
-					<button href="/text/" id="click-button" class="btn btn-primary btn-lg">All available works &raquo;</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2 small">
-				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a><br/>The text contents of this <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-			</div>
-		</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 small">
+		<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a><br/>The text contents of this <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 	</div>
-	<div id="footer">
-		<div class="container">
-			<div id="maincontent" class="row small">
-				<div id="text" class="col-md-6">
-					Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
-				</div>
-				<div id="text" class="col-md-6">Source code available under a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>.
-				</div>
-			</div>
-		</div>
+</div>
+
+{% endblock content %}
+
+{% block footer %}
+<div id="mainfooter" class="row small">
+	<div id="text" class="col-md-6">
+		Copyright 2014 <a href="http://autonomous.org/">Autonomous Organisation</a>.
 	</div>
-	<script>
-		$('#click-button').ready(function() {
-			$(function() {
-				var fn=function() {
-					window.location.href = $('#click-button').attr('href');
-				}
-				$('#click-button').click(fn);
-			});
-		});
-	</script>
-	<script type="text/javascript">
-
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-8726619-4']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-
-	</script>
-</body>
-
-</html>
+	<div id="text" class="col-md-6">Source code available under a GPL license from <a href="https://github.com/scotartt/commentarius">github</a>.
+	</div>
+</div>
+{% endblock footer %}
