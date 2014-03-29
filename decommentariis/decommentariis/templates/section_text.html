@@ -1,16 +1,16 @@
 {% extends 'commentarius_base.html' %}
 {% load shorter_cts %}
 {% block title %}
-decommentariis - {{ object.entry.author }} -
+de commentariis - {{ object.entry.author }} - {{ object.entry.title }} {{ object.section_ref }} -
 {{ object.cts_urn }}
 {% endblock title %}
 
 {% block content %}
 <div class="row">
 	<div class="col-sm-6 vertical-five">
-		<h4>{{ object.entry.author }} <small> &mdash; {{ object.entry.title }}</small></h4>
+		<h4 class="no-space-before">{{ object.entry.author }} <small> &mdash; {{ object.entry.title }} {{ object.section_ref }}</small></h4>
 	</div>
-</div>
+</div>	
 
 <div class="row no-fifteen" id="section-nav">
 	<div class="col-sm-5 vertical-five padding-be-gone">

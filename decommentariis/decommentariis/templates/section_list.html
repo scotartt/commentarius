@@ -1,15 +1,14 @@
 {% extends 'commentarius_base.html' %}
 {% load shorter_cts %}
 {% block title %}
-decommentariis - {{ teientry.author }} -
-{{ teientry.cts_urn }}
+de commentariis - {{ teientry.author }} - {{ teientry.title}} - {{ teientry.cts_urn }}
 {% endblock title %}
 
 {% block content %}
 
 <div class="row">
 	<div class="col-sm-12">
-		<h2>{{ teientry.author }} <small><em>{{ teientry.title}}</em></small></h2>
+		<h2 class="no-space-before">{{ teientry.author }} <small><em>{{ teientry.title}}</em></small></h2>
 	</div>
 </div>
 <div class="row">

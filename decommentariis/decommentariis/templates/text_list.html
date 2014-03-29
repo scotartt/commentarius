@@ -1,12 +1,16 @@
 {% extends 'commentarius_base.html' %}
 {% load shorter_cts %}
 {% block title %}
+Editions available -
 {% if selected_author  %}
 {{ selected_author }}
 {% else %}
-Editions available
+All authors
 {% endif %}
- &mdash;  de commentariis
+- de commentariis 
+{% if is_paginated %}
+- page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+{% endif %}
 {% endblock title %}
 
 {% block content %}
