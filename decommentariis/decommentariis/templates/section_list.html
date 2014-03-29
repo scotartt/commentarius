@@ -14,8 +14,11 @@ decommentariis - {{ teientry.author }} -
 </div>
 <div class="row">
 	<div class="col-sm-12">
-		<p>{{ teientry.bibliographic_entry }}</p>
-		<p>CTS URN <a href="./">{{ teientry.cts_urn }}</a></p>
+		<ul class="list-inline text-success">
+			<li>&laquo;{{ teientry.bibliographic_entry }}&raquo;</li>
+			<li>&laquo;CTS URN <a href="./">{{ teientry.cts_urn }}&raquo;</a></li> 
+			<li>&laquo;<a href="/text/?author={{ teientry.author }}">Other works by {{ teientry.author }}</a>&raquo;</li>
+		</ul>
 	</div>
 </div>
 <div class="row">
