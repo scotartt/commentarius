@@ -39,7 +39,7 @@ Editions available
 				<tr>
 					<th class="col-sm-3 text-right">Author</th>
 					<th class="col-sm-6">Edition Title</th>			
-					<th class="col-sm-3">CTS URN</th>
+					<th class="col-sm-3 hidden-xs">CTS URN</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -58,7 +58,7 @@ Editions available
 							{% endif %}
 						</a>
 					</td>
-					<td class="small">
+					<td class="small hidden-xs">
 						<a href='./{{ teientry.cts_urn }}/'>{{ teientry.cts_urn|prettyctsurn }}</a>
 					</td>
 				</tr>
