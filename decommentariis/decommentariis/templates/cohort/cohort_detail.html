@@ -1,0 +1,49 @@
+{% extends "commentarius_base.html" %}
+{% block title %}de commentariis - Edit '{{cohort.cohort_name}}' Cohort {% endblock title %}
+
+{% block content %}
+
+
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-2">
+		<h1 class="no-space-before">Cohort <small class="text-primary">'{{cohort.cohort_name}}'</small></h1>
+	</div>
+	<div class="col-sm-2">
+		<a class="btn btn-primary btn-sm btn-block" href="../">List Cohorts</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		{% if request.user.username == cohort.instructor.username %}
+		{% load crispy_forms_tags %}
+		{% crispy form %}
+		{% else %}
+		<div class="row">
+			<div class="col-sm-4 text-muted text-right">
+				Description
+			</div>
+			<div class="col-sm-8">
+				{{cohort.cohort_description}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4 text-muted text-right">
+				Instructor
+			</div>
+			<div class="col-sm-8 text-muted">
+				{{cohort.instructor.username}} &mdash; {{cohort.instructor.email}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4 text-muted text-right">
+				Date Created
+			</div>
+			<div class="col-sm-8 text-muted">
+				{{cohort.creation_date}}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock content %}

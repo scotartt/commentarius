@@ -67,6 +67,7 @@ INSTALLED_APPS = (
 	# 'allauth.socialaccount.providers.openid',
 	'allauth.socialaccount.providers.twitter',
 	'tastypie',
+	'crispy_forms',
 	)
 
 MIDDLEWARE_CLASSES = (
@@ -122,6 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 try:
 	from decommentariis.prod_settings import *

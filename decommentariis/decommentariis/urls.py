@@ -7,6 +7,8 @@ from tastypie.api import Api
 from decommentariis.api import TEIEntryResource, TEISectionResource, CommentaryEntryResource, UserResource, CommentaryEntryVoterResource
 from decommentariis.views import main_page, about_page, contact_page
 from decommentariis.views import TextListView, SectionListView, SectionTextDetailView
+from decommentariis.views import CohortListView, CohortDetailView, CohortCreate
+
 
 admin.autodiscover()
 
@@ -28,6 +30,9 @@ urlpatterns += patterns('decommentariis.views',
 	url(r'^text/$', TextListView.as_view()),
 	url(r'^text/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\w{0,3}\.){2}[\w-]+)/$', SectionListView.as_view()),
 	url(r'^textdata/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\w{0,3}\.){2}[\w-]+:[\w\., ()]+)/$', login_required(SectionTextDetailView.as_view())),
+	url(r'^cohort/$', login_required(CohortListView.as_view()) ),
+	url(r'^cohort/(?P<pk>(\w{6,}))/$', login_required(CohortDetailView.as_view()), name='cohort_detail'),
+	url(r'^cohort/new/$', login_required(CohortCreate.as_view()), name='cohort_add'),
 )
 
 # urlpatterns += patterns('',

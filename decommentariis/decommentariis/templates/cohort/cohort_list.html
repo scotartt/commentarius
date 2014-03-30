@@ -1,0 +1,88 @@
+{% extends "commentarius_base.html" %}
+{% block title %}de commentariis - cohort list{% endblock title %}
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-4">
+		<h2 class="no-space-before">Cohorts</h2>
+	</div>
+	<div class="col-sm-8">
+		<form class="form-inline pull-right">
+			<select class="form-control form-control-sm" id="instructorselect" data-style="btn-success" name="instructor">
+				<option value=''>(select instructor)</option>
+				{% for instructor in instructor_list %}
+				{% if instructor == selected_instructor  %}
+				<option selected="selected" value="{{ instructor }}">{{ instructor }}</option>
+				{% else %}
+				<option value="{{ instructor }}">{{ instructor }}</option>
+				{% endif %}
+				{% endfor %}
+			</select>
+			<button type="submit" class="btn btn-success">Find Selected</button>
+			<a href="./" class="btn btn-default">All</a>
+		</form>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th class="col-xs-4  col-sm-4  col-md-3 small text-right">Cohort Name</th>
+					<th class="col-xs-8  col-sm-5  col-md-4 small">Cohort Description</th>	
+					<th class="hidden-xs col-sm-3  col-md-2 small">Instructor</th>
+					<th class="hidden-xs hidden-sm col-md-2 small">Created Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for cohort in object_list %}
+				<tr>
+					<td class="text-right small">
+						<a href="./{{ cohort.cohort_name }}/">{{ cohort.cohort_name }}</a>
+					    {% if request.user.username == cohort.instructor.username %}
+					    <!-- a href="/delete/cohort" class="btn btn-xs btn-default pull-left"><span class="glyphicon glyphicon-trash"></span><span class="sr-only">Delete cohort</span></a -->
+					    {% endif %}					
+					</td>
+					<td class="small">
+						{{ cohort.cohort_description }}
+					</td>
+					<td class="small hidden-xs"> 
+						{{ cohort.instructor.username }}
+					</td>
+					<td class="small hidden-sm hidden-xs">
+						{{ cohort.creation_date }}
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-8">
+		<a href="./new/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> New Cohort</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2 text-muted">
+		{# .... **Now the pagination section** .... #}
+		{% if is_paginated %}
+		<ul class="pagination">
+			<li class="previous"><a href="./?page=1">(1) first</a></li>
+			{% if page_obj.has_previous %}
+			<li><a href="./?page={{ page_obj.previous_page_number }}">({{ page_obj.previous_page_number }}) previous</a></li>
+			{% else %}
+			<li class="disabled"><a href='#'>&laquo;</a></li>
+			{% endif %}
+			<li class="text-info"><a href="./?page={{ page_obj.number }}">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a></li>
+			{% if page_obj.has_next %}
+			<li><a href="./?page={{ page_obj.next_page_number }}">next ({{ page_obj.next_page_number }})</a></li>
+			{% else %}
+			<li class="disabled"><a href='#'>&raquo;</a></li>
+			{% endif %}
+			<li class="next"><a href="./?page={{ page_obj.paginator.num_pages }}">last ({{ page_obj.paginator.num_pages }})</a></li>
+		</ul>
+		{% endif %}
+	</div>
+</div>
+{% endblock content %}

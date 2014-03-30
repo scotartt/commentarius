@@ -209,6 +209,9 @@ class Cohort(models.Model) :
 	def __str__(self) :
 		return '{0} :: ({1}) >>> {2}'.format(self.cohort_name, self.instructor.username, self.cohort_description)
 
+	def get_absolute_url(self) :
+		return reverse('cohort_detail', kwargs={'pk': self.cohort_name})
+
 	class Meta :
 		ordering = ['cohort_name', 'creation_date']
 

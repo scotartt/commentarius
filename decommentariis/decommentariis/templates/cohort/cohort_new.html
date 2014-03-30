@@ -1,0 +1,18 @@
+{% extends "commentarius_base.html" %}
+{% block title %}de commentariis - Add New Cohort {% endblock title %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<h1 class="no-space-before">New Cohort</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		{% load crispy_forms_tags %}
+		{% crispy form %}
+	</div>
+</div>
+
+{% endblock content %}

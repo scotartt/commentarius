@@ -1,5 +1,6 @@
 import datetime
 from django.core.urlresolvers import reverse_lazy
+from django.core.exceptions import ValidationError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView
@@ -7,8 +8,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render_to_response
 from django.contrib.auth import logout
 from decommentariis.models import TEIEntry, TEISection
+from decommentariis.models import Cohort, CohortMembers, CohortTexts
 from decommentariis.xml_file import TEIDataSource
-from decommentariis.forms import UserForm
+from decommentariis.forms import UserForm, CohortEditForm, CohortCreateForm
 
 class TextListView(ListView) :
 	model = TEIEntry
@@ -71,6 +73,51 @@ class SectionTextDetailView(DetailView) :
 			context['section_next'] = siblings['next']
 		context['children'] = self.object.children()
 		return context
+
+class CohortListView(ListView) :
+	template_name = 'cohort/cohort_list.html'
+	model = Cohort
+	paginate_by = 25
+	selected_instructor = None
+
+	def get_context_data(self, **kwargs) :
+		context = super(CohortListView, self).get_context_data(**kwargs)
+		instructorsqueryset = Cohort.objects.exclude(instructor=None).order_by('instructor__username').values_list('instructor__username', flat=True).distinct()
+		context['instructor_list'] = instructorsqueryset
+		context['selected_instructor'] = self.selected_instructor
+		return context
+
+	def get_queryset(self) :
+		if 'instructor' in self.request.GET and self.request.GET['instructor'] :
+			self.selected_instructor = self.request.GET['instructor']
+			self.paginate_by = 0
+			return Cohort.objects.filter(instructor__username=self.selected_instructor)
+		else :
+			self.paginate_by = 25
+			return Cohort.objects.all()
+
+class CohortDetailView(UpdateView) :
+	template_name = 'cohort/cohort_detail.html'
+	success_url = './'
+	context_object_name = 'cohort'
+	model = Cohort
+	form_class = CohortEditForm
+	fields = ['cohort_description']
+
+	def form_valid(self, form) :
+		if form.instance.instructor != self.request.user :
+			raise ValidationError('Action is not allowed by user {0}'.format(self.request.user.username))
+		return super(CohortDetailView, self).form_valid(form)
+
+class CohortCreate(CreateView) :
+	model = Cohort
+	fields = ['cohort_name', 'cohort_description']
+	form_class = CohortCreateForm
+	template_name = 'cohort/cohort_new.html'
+	
+	def form_valid(self, form) :
+		form.instance.instructor = self.request.user
+		return super(CohortCreate, self).form_valid(form)
 
 
 ## old school views
