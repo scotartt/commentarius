@@ -8,7 +8,7 @@ from tastypie.authentication import BasicAuthentication, SessionAuthentication, 
 from tastypie.authorization import DjangoAuthorization
 from tastypie.authorization import Authorization
 from tastypie.exceptions import Unauthorized
-from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, CommentaryEntryVoter
+from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, CommentaryEntryVoter, Cohort
 from decommentariis.api_authorization import UpdateUserObjectsOnlyAuthorization
 
 class TEIEntryResource(ModelResource):
@@ -88,4 +88,14 @@ class UserResource(ModelResource):
 		filtering = {
 			'username': ALL,
 		}
+
+class CohortResource(ModelResource) :
+	instructor = fields.ForeignKey('decommentariis.api.UserResource', 'instructor')
+	class Meta :
+		queryset = Cohort.objects.all()
+		resource_name = 'cohort'
+		list_allowed_methods = ['get']
+		fields = ['cohort_name', 'cohort_description', 'instructor', 'creation_date']
+		authentication = SessionAuthentication()
+		authorization = DjangoAuthorization()
 
