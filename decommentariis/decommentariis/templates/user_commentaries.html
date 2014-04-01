@@ -1,0 +1,77 @@
+{% extends 'commentarius_base.html' %}
+{% load shorter_cts %}
+{% block title %}
+de commentariis - user commentaries - {{ request.user.username }}
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-12 vertical-five">
+		<h1 class="no-space-before">User Commentaries <small> &mdash; made by {{ selected_user }}</small></h1>
+	</div>
+</div>	
+<div class="row">
+	<div class="col-sm-12">
+		{% for commentary in commentaries %}
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>{{ commentary.section.entry.author }} <small class="text-success">{{ commentary.section.entry.title }}
+				{{ commentary.section.section_ref }}</small></h3>
+				<p class="small text-muted">{{ commentary.section.cts_urn }} {{ commentary.section.cts_sequence }}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 commentary-focused">
+				<div class="row commentary-item-row">
+					<div class="col-sm-10 commentary-text">
+						{% autoescape off %}{{ commentary.commentary_html }}{% endautoescape %}
+					</div>
+					<div class="col-sm-2 votes small">
+					{% if commentary.votes < 1 %}
+					<button class="btn-vote btn btn-xs btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;{{commentary.votes}}</button>
+					{% else %}
+					<button class="btn-vote btn btn-xs btn-success"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;{{commentary.votes}}</button>
+					{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 small">
+				<div class="row">
+					<div class="col-sm-2">
+					</div>
+					<div class="col-sm-10">
+						{% autoescape off %}{{ commentary.section_text }}{% endautoescape %}
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12 text-muted">
+		{# .... **Now the pagination section** .... #}
+		{% if is_paginated %}
+		<ul class="pagination">
+			<li class="previous"><a href="./?page=1">(1) first</a></li>
+			{% if page_obj.has_previous %}
+			<li><a href="./?page={{ page_obj.previous_page_number }}">({{ page_obj.previous_page_number }}) previous</a></li>
+			{% else %}
+			<li class="disabled"><a href='#'>&laquo;</a></li>
+			{% endif %}
+			<li class="text-info"><a href="./?page={{ page_obj.number }}">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a></li>
+			{% if page_obj.has_next %}
+			<li><a href="./?page={{ page_obj.next_page_number }}">next ({{ page_obj.next_page_number }})</a></li>
+			{% else %}
+			<li class="disabled"><a href='#'>&raquo;</a></li>
+			{% endif %}
+			<li class="next"><a href="./?page={{ page_obj.paginator.num_pages }}">last ({{ page_obj.paginator.num_pages }})</a></li>
+
+
+		</ul>
+		{% endif %}
+	</div>
+</div>
+{% endblock content %}
+

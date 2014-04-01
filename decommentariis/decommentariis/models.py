@@ -192,7 +192,6 @@ class CommentaryEntryVoter(models.Model) :
 		super(CommentaryEntryVoter, self).save(*args, **kwargs) 
 		# Call the "real" save() method.
 		
-
 	def delete(self, *args, **kwargs) :
 		super(CommentaryEntryVoter, self).delete(*args, **kwargs) 
 		self.entry.count_votes()

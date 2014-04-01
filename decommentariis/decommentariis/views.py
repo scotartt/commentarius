@@ -1,13 +1,15 @@
 import datetime
+import markdown
+import bleach
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render_to_response
 from django.contrib.auth import logout
-from decommentariis.models import TEIEntry, TEISection
+from decommentariis.models import TEIEntry, TEISection, CommentaryEntry
 from decommentariis.models import Cohort, CohortMembers, CohortTexts
 from decommentariis.xml_file import TEIDataSource
 from decommentariis.forms import UserForm, CohortEditForm, CohortCreateForm
@@ -72,6 +74,36 @@ class SectionTextDetailView(DetailView) :
 		if 'next' in siblings :
 			context['section_next'] = siblings['next']
 		context['children'] = self.object.children()
+		return context
+
+class UserCommentaryView(ListView) :
+	template_name = 'user_commentaries.html'
+	selected_user = None
+	paginate_by = 5
+
+	def get_queryset(self) :
+		if 'username' in self.kwargs and self.kwargs['username'] :
+			self.selected_user = self.kwargs['username']
+		else :
+			self.selected_user = self.request.user.username
+		return CommentaryEntry.objects.filter(user__username=self.selected_user).order_by('section')
+
+	def get_context_data(self, **kwargs) :
+		context = super(UserCommentaryView, self).get_context_data(**kwargs)
+		context['selected_user'] = self.selected_user
+		commentaries = []
+		for commentaryentry in context['object_list'] :
+			entry = {}
+			entry['commentary_html'] = markdown.markdown(commentaryentry.commentary, encoding="utf-8", output_format="html5", safe_mode=False)
+			entry['commentary_md'] = commentaryentry.commentary
+			entry['username'] = commentaryentry.user.username
+			entry['votes'] = commentaryentry.votes
+			entry['commentary_date'] = commentaryentry.creation_date
+			entry['section'] = commentaryentry.section
+			entry['section_text'] = commentaryentry.section.readData()
+			commentaries.append(entry)
+
+		context['commentaries'] = commentaries
 		return context
 
 class CohortListView(ListView) :

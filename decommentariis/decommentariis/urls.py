@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from tastypie.api import Api
 from decommentariis.api import TEIEntryResource, TEISectionResource, CommentaryEntryResource, UserResource, CommentaryEntryVoterResource, CohortResource
 from decommentariis.views import main_page, about_page, contact_page
-from decommentariis.views import TextListView, SectionListView, SectionTextDetailView
+from decommentariis.views import TextListView, SectionListView, SectionTextDetailView, UserCommentaryView
 from decommentariis.views import CohortListView, CohortDetailView, CohortCreate
 
 
@@ -34,6 +34,9 @@ urlpatterns += patterns('decommentariis.views',
 	url(r'^cohort/$', login_required(CohortListView.as_view()) ),
 	url(r'^cohort/(?P<pk>(\w{6,}))/$', login_required(CohortDetailView.as_view()), name='cohort_detail'),
 	url(r'^cohort/new/$', login_required(CohortCreate.as_view()), name='cohort_add'),
+	url(r'^commentary/$', login_required(UserCommentaryView.as_view()), name='user_commentary_self'),
+	url(r'^commentary/(?P<username>(\w+))/$', login_required(UserCommentaryView.as_view()), name='user_commentary'),
+
 )
 
 # urlpatterns += patterns('',
