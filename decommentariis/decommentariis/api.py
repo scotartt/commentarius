@@ -77,7 +77,7 @@ class CommentaryEntryVoterResource(ModelResource):
 
 
 class UserResource(ModelResource):
-	pass
+	# commentaries = fields.ToManyField(CommentaryEntryResource, 'commentaryentryvoter_set', related_name='user', null=True, full=False)
 	class Meta:
 		queryset = User.objects.all()
 		resource_name = 'user'
