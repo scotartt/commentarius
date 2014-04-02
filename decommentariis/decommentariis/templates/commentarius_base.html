@@ -39,6 +39,7 @@
           				<a href="#" class="dropdown-toggle small" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span><span class="sr-only">Configuration menu</span> <b class="caret"></b></a>
           				<ul class="dropdown-menu">
 							{% if user.is_authenticated %}
+							<li><a href="{% url 'user_commentary_self' %}">View your commentary</a></li>
 							<li><a href="/cohort/">Cohort management</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Logged in as {{request.user.username}}</a></li>

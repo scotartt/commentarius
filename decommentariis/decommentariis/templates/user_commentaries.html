@@ -10,7 +10,7 @@ de commentariis - user commentaries - {{ request.user.username }}
 		<h1 class="no-space-before">User Commentaries <small> &mdash; made by {{ selected_user }}</small></h1>
 	</div>
 </div>	
-<div class="row">
+<div class="row" id="user-commentary-container">
 	<div class="col-sm-12">
 		{% for commentary in commentaries %}
 		<div class="row">
@@ -37,9 +37,10 @@ de commentariis - user commentaries - {{ request.user.username }}
 			</div>
 			<div class="col-sm-6 small">
 				<div class="row">
-					<div class="col-sm-2">
+					<div class="col-sm-2 small">
+						{{ commentary.section.section_ref }}
 					</div>
-					<div class="col-sm-10">
+					<div class="col-sm-10 expander commentary-section-text">
 						{% autoescape off %}{{ commentary.section_text }}{% endautoescape %}
 					</div>
 				</div>
@@ -48,6 +49,24 @@ de commentariis - user commentaries - {{ request.user.username }}
 		{% endfor %}
 	</div>
 </div>
+<script>
+$('#user-commentary-container').ready(function(){
+	$('#user-commentary-container').find(".expander").each(
+		function() {
+			$(this).expander({
+				slicePoint: 150,
+				expandEffect: 'fadeIn',
+				expandSpeed: 250,
+				collapseEffect: 'fadeOut',
+				collapseSpeed: 250,
+				moreClass: 'read-more text-info',
+				lessClass: 'read-less text-info',
+				expandPrefix: ' … ',
+			}); //end $(this).expander({ ... });
+		} // end function{ ... } in each()
+	); //end each( ... );
+});
+</script>
 
 <div class="row">
 	<div class="col-sm-12 text-muted">

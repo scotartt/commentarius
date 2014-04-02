@@ -258,6 +258,70 @@ note cit {
 #commentary-container div.small>h4 {
 	margin-top: 0;
 }
+
+/*  USER COMMENTARY */
+#user-commentary-container .small {
+	font-size: 11pt;
+}
+
+#user-commentary-container .votes {
+	color: #999;
+}
+#user-commentary-container .commentary-text h1 {
+	font-size: 12pt;
+	font-weight: bold;
+	font-variant: small-caps;
+	color: #333;
+}
+#user-commentary-container .commentary-text div.small>h1 {
+	margin-top: 0;
+}
+#user-commentary-container .commentary-text h2 {
+	font-size: 12pt;
+	font-weight: bold;
+	font-variant: small-caps;
+	color: #333;
+}
+#user-commentary-container .commentary-text div.small>h2 {
+	margin-top: 0;
+}
+#user-commentary-container .commentary-text h3 {
+	font-size: 12pt;
+	font-variant: small-caps;
+	color: #333;
+}
+#user-commentary-container .commentary-text div.small>h3 {
+	margin-top: 0;
+}
+#user-commentary-container .commentary-text h4 {
+	font-size: 12pt;
+	font-variant: small-caps;
+	color: #333;
+}
+#user-commentary-container .commentary-text div.small>h4 {
+	margin-top: 0;
+}
+#user-commentary-container .commentary-text blockquote {
+	font-size: 11pt;
+	color: #333;
+}
+.commentary-section-text {
+	margin-top: 0;
+	padding-top: 0;
+}
+.commentary-section-text div1 {
+	margin-top: 0;
+	padding-top: 0;
+}
+.commentary-section-text div2 {
+	margin-top: 0;
+	padding-top: 0;
+}
+.commentary-section-text div3 {
+	margin-top: 0;
+	padding-top: 0;
+}
+/* END HERE */
 form.editable > button {
 	
 }
