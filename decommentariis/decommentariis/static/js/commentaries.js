@@ -121,9 +121,9 @@ var commentaryitem = function(commentjson, userjson) {
 
 	var usernamedetail;
 	if (fname === "" && lname === "" && !(uname === "")) {
-		usernamedetail = uname;
+		usernamedetail = '<a href="/commentary/' + uname + '/">' + uname  + '</a>';
 	} else if (!(fname === "") || !(lname === "")) {
-		usernamedetail = fname + " " + lname;
+		usernamedetail = '<a href="/commentary/' + uname + '/">' + fname + " " + lname + '</a>';
 	} else {
 		usernamedetail = "unknown";
 	}

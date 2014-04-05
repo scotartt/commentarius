@@ -47,7 +47,7 @@ class CommentaryEntryResource(ModelResource):
 	class Meta:
 		queryset = CommentaryEntry.objects.all()
 		resource_name = 'sourcecommentary'
-		list_allowed_methods = ['get', 'put', 'post']
+		list_allowed_methods = ['get', 'put', 'post', 'delete']
 		authentication = SessionAuthentication()
 		authorization = UpdateUserObjectsOnlyAuthorization()
 		filtering = {

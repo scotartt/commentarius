@@ -7,17 +7,17 @@ de commentariis - user commentaries - {{ request.user.username }}
 {% block content %}
 <div class="row">
 	<div class="col-sm-12 vertical-five">
-		<h1 class="no-space-before">User Commentaries <small> &mdash; made by {{ selected_user }}</small></h1>
+		<h1 class="no-space-before">User Commentaries <small> &mdash; by {{ selected_user }}</small></h1>
 	</div>
 </div>	
 <div class="row" id="user-commentary-container">
 	<div class="col-sm-12">
 		{% for commentary in commentaries %}
-		<div class="row">
+		<div class="row ">
 			<div class="col-sm-12">
-				<h3>{{ commentary.section.entry.author }} <small class="text-success">{{ commentary.section.entry.title }}
-				{{ commentary.section.section_ref }}</small></h3>
-				<p class="small text-muted">{{ commentary.section.cts_urn }} {{ commentary.section.cts_sequence }}</p>
+				<h3 class="no-space-before">{{ commentary.section.entry.author }} <small class="text-success">&laquo;{{ commentary.section.entry.title }}
+				{{ commentary.section.section_ref }}&raquo;
+				<span class="text-muted"> &mdash; &laquo;CTS URN <a href="/textdata/{{ commentary.section.cts_urn }}/">{{ commentary.section.cts_urn }}</a>&raquo;</span></small></h3>
 			</div>
 		</div>
 		<div class="row">
@@ -27,11 +27,16 @@ de commentariis - user commentaries - {{ request.user.username }}
 						{% autoescape off %}{{ commentary.commentary_html }}{% endautoescape %}
 					</div>
 					<div class="col-sm-2 votes small">
-					{% if commentary.votes < 1 %}
-					<button class="btn-vote btn btn-xs btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;{{commentary.votes}}</button>
-					{% else %}
-					<button class="btn-vote btn btn-xs btn-success"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;{{commentary.votes}}</button>
-					{% endif %}
+						<p>
+							{% if commentary.votes < 1 %}
+							<button class="btn-vote btn btn-xs btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;{{commentary.votes}}</button>
+							{% else %}
+							<button class="btn-vote btn btn-xs btn-success"><span class="glyphicon glyphicon-thumbs-up"></span><span class="sr-only">number of votes</span>&nbsp;{{commentary.votes}}</button>
+							{% endif %}
+						</p>
+						<!--p>
+							<button class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span><span class="sr-only">delete</span></button>
+						</p -->
 					</div>
 				</div>
 			</div>
@@ -48,6 +53,7 @@ de commentariis - user commentaries - {{ request.user.username }}
 		</div>
 		{% endfor %}
 	</div>
+	<input id="f_user_input_id" type="hidden" name="user" value=""/>
 </div>
 <script>
 $('#user-commentary-container').ready(function(){
