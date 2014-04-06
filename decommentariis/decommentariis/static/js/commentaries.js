@@ -19,6 +19,9 @@ $.ajaxSetup({
 	}
 });
 
+
+
+
 // set the form element to initially slide up.
 $('#hidey-form').ready(function(){
 	$('#hidey-form').removeAttr('hidden');
@@ -47,6 +50,15 @@ $('#commentary-form-click-target').ready(function() {
 	});
 	$('#commentary-form-click-target').removeAttr('hidden');
 });
+
+// get the user name
+var getusername = function() {
+	return $('#user-username').text();
+}
+// get the user uri (API)
+var getuseruri = function() {
+	return $('#user-uri').text();
+}
 
 // functions below here
 var commentaries = function (cts_urn) {
@@ -114,7 +126,7 @@ var commentary_and_user = function(json) {
 }
 
 var commentaryitem = function(commentjson, userjson) {
-	var uname_login = getuserdetail();
+	var uname_login = getusername();
 	var fname = userjson['first_name'];
 	var lname = userjson['last_name'];
 	var uname = userjson['username'];
@@ -207,7 +219,7 @@ var commentary_td = function () {
 
 var make_vote_button = function(commentjson, rowTR, iseditable, theid) {
 	var voterlist = commentjson['voters'];
-	var user_resource_uri = $('#f_user_input_id').attr('value');
+	var user_resource_uri = getuseruri();
 	// why are where using uri here and username elsewhere?
 	var has_voted = false;
 	var self_voted = false;
@@ -319,20 +331,12 @@ function pad(num, size) {
 }
 
 var setuserdetail = function() {
-	var username = getuserdetail();
+	var username = getusername();
 	var userQueryUrl = "/api/v1/user/?username=" + username;
-	$.ajax({
-		url: userQueryUrl,
-		success:function(data){
-			var user_resource_uri = data['objects'][0]['resource_uri']
-			$('#f_user_input_id').attr( 'value', user_resource_uri )
-		}
-	});
+	$('#f_user_input_id').attr( 'value', getuseruri() );
 }
 
-var getuserdetail = function() {
-	return $('#user-username').text();
-}
+
 
 var update_commentary_form = function(commentform) {
 	commentform.find('#f_commentary').val('');
@@ -346,7 +350,7 @@ var update_commentary_form = function(commentform) {
 var make_comment = function(commentform) {
 	var ajaxurl = commentform.attr('action');
 	var sectionurl = commentform.find('#f_section_input_id').attr('value');
-	var userurl = commentform.find('#f_user_input_id').attr('value');
+	var userurl = getuseruri();
 	var commentarytext = commentform.find('#f_commentary').val();
 	var csrfmiddlewaretoken = commentform.find("[name='csrfmiddlewaretoken']").attr('value');
 

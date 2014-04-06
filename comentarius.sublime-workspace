@@ -523,9 +523,13 @@
 	"build_system": "Packages/Pandown/Pandown HTML.sublime-build",
 	"command_palette":
 	{
-		"height": 287.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"in",
+				"Indentation: Reindent Lines"
+			],
 			[
 				"tabs",
 				"Indentation: Convert to Tabs"
@@ -561,10 +565,6 @@
 			[
 				"rei",
 				"Indentation: Reindent Lines"
-			],
-			[
-				"in",
-				"Indentation: Convert to Tabs"
 			],
 			[
 				"reinde",
@@ -646,14 +646,20 @@
 	},
 	"file_history":
 	[
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/import_cts_metadata.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/user_commentaries.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/api.py",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0690/phi001/phi0690.phi001.perseus-lat1.xml",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0690/phi003/phi0690.phi003.perseus-eng2.xml",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file.py",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0690/phi003/phi0690.phi003.perseus-lat1.xml",
+		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0690/phi002/phi0690.phi002.perseus-lat1.xml",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/models.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_list.html",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/urls.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/api.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/views.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/user_commentaries.html",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_text.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/section_list.html",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/commentaries.js",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/import_cts_metadata.py",
+		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/urls.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/api_authorization.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/settings.py",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templates/commentarius_base.html",
@@ -676,10 +682,8 @@
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/theme/theme.css",
 		"/Users/smcphee/Development/python/lib/python3.3/site-packages/tastypie/authorization.py",
 		"/Users/smcphee/Development/python/lib/python3.3/site-packages/tastypie/resources.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/static/js/commentaries.js",
 		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/99-latincoursework/LATN3001/Sallust-Translation.md",
 		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/templatetags/shorter_cts.py",
-		"/Users/smcphee/Development/sources/commentarius/decommentariis/decommentariis/xml_file.py",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/latinLit/phi0914/phi00145/phi0914.phi00145.perseus-lat1.xml",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/greekLit/tlg0007/tlg097/tlg0007.tlg097.perseus-grc1.xml",
 		"/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/greekLit/tlg0007/tlg008/tlg0007.tlg008.perseus-grc1.xml",
@@ -769,11 +773,7 @@
 		"/Users/smcphee/Dropbox/ANCH/SOURCE TEXTS/perseus/hopper-texts/Classics/Caesar/opensource/caes.bg_eng.xml",
 		"/Users/smcphee/Sites/autonomous.org/index.html",
 		"/Users/smcphee/Dropbox/ANCH/SOURCE TEXTS/perseus/CTS/CTS-Livy-Only.xml",
-		"/Users/smcphee/Dropbox/ANCH/SOURCE TEXTS/perseus/hopper-texts/Classics/Caesar/opensource/ag.caes.bg_eng.xml",
-		"/Users/smcphee/Dropbox/ANCH/SOURCE TEXTS/perseus/hopper-texts/Classics/Caesar/opensource/caes.bc_eng.xml",
-		"/Users/smcphee/Dropbox/ANCH/SOURCE TEXTS/perseus/hopper-texts/Classics/Caesar/opensource/caes.bc_lat.xml",
-		"/Users/smcphee/.ssh/known_hosts",
-		"/Users/smcphee/Dropbox/ANCH/PHD/THESIS/03-PoliticsControlAndLandscape/ControlAndLandscape.md"
+		"/Users/smcphee/Dropbox/ANCH/SOURCE TEXTS/perseus/hopper-texts/Classics/Caesar/opensource/ag.caes.bg_eng.xml"
 	],
 	"find":
 	{
@@ -793,6 +793,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"read_fragment",
+			"user-username",
+			"f_user_input_id",
+			"usernamedetail",
 			"dehydratedcommentary",
 			"markdown",
 			"endif",
@@ -916,11 +920,7 @@
 			"get_file_name",
 			"document_metastructureure",
 			"document_struct",
-			"xmsectionslist",
-			"sectionslist",
-			"print",
-			"file_name",
-			"tree_top_element"
+			"xmsectionslist"
 		],
 		"highlight": true,
 		"in_selection": false,

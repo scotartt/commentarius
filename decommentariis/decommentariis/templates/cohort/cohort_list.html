@@ -23,7 +23,7 @@
 		</form>
 	</div>
 </div>
-<div class="row">
+<div class="row" id="cohort-list">
 	<div class="col-sm-12">
 		<table class="table table-responsive">
 			<thead>
@@ -36,12 +36,23 @@
 			</thead>
 			<tbody>
 				{% for cohort in object_list %}
-				<tr>
+				<tr id="row-{{cohort.cohort_name}}">
 					<td class="text-right small">
 						<a href="./{{ cohort.cohort_name }}/">{{ cohort.cohort_name }}</a>
+						<span>
 					    {% if request.user.username == cohort.instructor.username %}
-					    <!-- a href="/delete/cohort" class="btn btn-xs btn-default pull-left"><span class="glyphicon glyphicon-trash"></span><span class="sr-only">Delete cohort</span></a -->
-					    {% endif %}					
+					    	<button id ="delete-{{cohort.cohort_name}}" uri="/api/v1/cohort/{{ cohort.cohort_name }}/" cohort-name="{{cohort.cohort_name}}" class="btn btn-xs btn-primary pull-left delete-cohort"><span class="glyphicon glyphicon-trash"></span><span class="sr-only">Delete cohort</span></button>
+					    {% elif cohort in memberships %}
+					        {% for key, value in membership_uris.items %}
+					        {% if key == cohort.cohort_name %}
+					    	<button id="leave-{{cohort.cohort_name}}-{{request.user.username}}" cohort="/api/v1/cohort/{{ cohort.cohort_name }}/" cohort-name="{{cohort.cohort_name}}" uri="/api/v1/cohortmember/{{ value }}/" username="{{ request.user.username }}" class="btn btn-xs btn-danger pull-left leave-cohort"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">Leave cohort</span></button>
+					    	{% endif %}
+					        {% endfor %}
+					    {% else %}
+					    	
+					    	<button id="join-{{cohort.cohort_name}}-{{request.user.username}}" cohort="/api/v1/cohort/{{ cohort.cohort_name }}/" cohort-name="{{cohort.cohort_name}}"uri="/api/v1/cohortmember/" username="{{ request.user.username }}" class="btn btn-xs btn-success pull-left join-cohort"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">Join cohort</span></button>
+					    {% endif %}
+					    </span>		
 					</td>
 					<td class="small">
 						{{ cohort.cohort_description }}
@@ -60,7 +71,7 @@
 </div>
 <div class="row">
 	<div class="col-sm-4 col-sm-offset-8">
-		<a href="./new/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> New Cohort</a>
+		<a href="./new/" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Add Cohort</a>
 	</div>
 </div>
 <div class="row">
@@ -85,4 +96,6 @@
 		{% endif %}
 	</div>
 </div>
+<script src="/static/js/cohorts.js" type="text/javascript"></script>
+
 {% endblock content %}

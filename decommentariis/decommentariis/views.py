@@ -117,6 +117,14 @@ class CohortListView(ListView) :
 		instructorsqueryset = Cohort.objects.exclude(instructor=None).order_by('instructor__username').values_list('instructor__username', flat=True).distinct()
 		context['instructor_list'] = instructorsqueryset
 		context['selected_instructor'] = self.selected_instructor
+		memberships = CohortMembers.objects.filter(member=self.request.user)
+		cohorts = []
+		membership_uris = {}
+		for membership in memberships:
+			cohorts.append(membership.cohort)
+			membership_uris[membership.cohort.cohort_name] = membership.id
+		context['memberships'] = cohorts
+		context['membership_uris'] = membership_uris
 		return context
 
 	def get_queryset(self) :

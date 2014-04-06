@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import TemplateView
 from tastypie.api import Api
-from decommentariis.api import TEIEntryResource, TEISectionResource, CommentaryEntryResource, UserResource, CommentaryEntryVoterResource, CohortResource
+from decommentariis.api import TEIEntryResource, TEISectionResource, CommentaryEntryResource, UserResource, CommentaryEntryVoterResource, CohortResource, CohortMembersResource
 from decommentariis.views import main_page, about_page, contact_page
 from decommentariis.views import TextListView, SectionListView, SectionTextDetailView, UserCommentaryView
 from decommentariis.views import CohortListView, CohortDetailView, CohortCreate
@@ -19,6 +19,7 @@ v1_api.register(CommentaryEntryResource())
 v1_api.register(UserResource())
 v1_api.register(CommentaryEntryVoterResource())
 v1_api.register(CohortResource())
+v1_api.register(CohortMembersResource())
 
 urlpatterns = patterns('',
 	(r'^$', main_page),

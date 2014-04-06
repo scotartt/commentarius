@@ -42,6 +42,18 @@
 				{{cohort.creation_date}}
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm-4 text-muted text-right">
+				Members
+			</div>
+			<div class="col-sm-8">
+				<ul class="list-inline text-success">
+				{% for cohortmember in cohort.cohortmembers_set.all %}
+					<li>{{cohortmember.member.username}}</li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
 		{% endif %}
 	</div>
 </div>

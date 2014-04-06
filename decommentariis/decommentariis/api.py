@@ -8,8 +8,9 @@ from tastypie.authentication import BasicAuthentication, SessionAuthentication, 
 from tastypie.authorization import DjangoAuthorization
 from tastypie.authorization import Authorization
 from tastypie.exceptions import Unauthorized
-from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, CommentaryEntryVoter, Cohort
-from decommentariis.api_authorization import UpdateUserObjectsOnlyAuthorization
+from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, CommentaryEntryVoter
+from decommentariis.models import  Cohort, CohortMembers, CohortTexts
+from decommentariis.api_authorization import UpdateUserObjectsOnlyAuthorization, CohortInstructorOrMemberAuthorization
 
 class TEIEntryResource(ModelResource):
 	sections = fields.ToManyField('decommentariis.api.TEISectionResource', 'teisection_set', related_name='entry')
@@ -91,11 +92,29 @@ class UserResource(ModelResource):
 
 class CohortResource(ModelResource) :
 	instructor = fields.ForeignKey('decommentariis.api.UserResource', 'instructor')
+	members = fields.ToManyField('decommentariis.api.CohortMembersResource', 'cohortmembers_set', related_name='cohort', null=True, full=False)
 	class Meta :
 		queryset = Cohort.objects.all()
 		resource_name = 'cohort'
-		list_allowed_methods = ['get']
+		list_allowed_methods = ['get', 'post', 'delete']
 		fields = ['cohort_name', 'cohort_description', 'instructor', 'creation_date']
 		authentication = SessionAuthentication()
-		authorization = DjangoAuthorization()
+		authorization = CohortInstructorOrMemberAuthorization()
+
+class CohortMembersResource(ModelResource) :
+	cohort = fields.ForeignKey('decommentariis.api.CohortResource', 'cohort', related_name='members')
+	member = fields.ForeignKey('decommentariis.api.UserResource', 'member')
+	class Meta :
+		queryset = CohortMembers.objects.all()
+		resource_name = 'cohortmember'
+		list_allowed_methods = ['get', 'post', 'delete']
+		authentication = SessionAuthentication()
+		authorization = CohortInstructorOrMemberAuthorization()
+		filtering = {
+			'cohort': ALL_WITH_RELATIONS,
+			'member': ALL_WITH_RELATIONS,
+		}
+
+
+
 
