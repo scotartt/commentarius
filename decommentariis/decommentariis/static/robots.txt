@@ -32,3 +32,7 @@ Disallow: /api/
 
 User-agent: SiteExplorer
 Disallow: /
+
+User-agent: TwitterBot
+Disallow: /
+
