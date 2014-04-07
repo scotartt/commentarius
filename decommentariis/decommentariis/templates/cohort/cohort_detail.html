@@ -19,7 +19,7 @@
 		{% crispy form %}
 		{% else %}
 		<div class="row">
-			<div class="col-sm-4 text-muted text-right">
+			<div class="col-sm-4 text-muted text-right hidden-xs">
 				Description
 			</div>
 			<div class="col-sm-8">
@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-4 text-muted text-right">
+			<div class="col-sm-4 text-muted text-right hidden-xs">
 				Instructor
 			</div>
 			<div class="col-sm-8 text-muted">
@@ -35,27 +35,44 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-4 text-muted text-right">
+			<div class="col-sm-4 text-muted text-right hidden-xs">
 				Date Created
 			</div>
 			<div class="col-sm-8 text-muted">
 				{{cohort.creation_date}}
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-4 text-muted text-right">
-				Members
-			</div>
-			<div class="col-sm-8">
-				<ul class="list-inline text-success">
-				{% for cohortmember in cohort.cohortmembers_set.all %}
-					<li>{{cohortmember.member.username}}</li>
-				{% endfor %}
-				</ul>
+		<div class="row " id="cohort-list">
+			<div class="col-sm-3 col-sm-offset-9">
+				{% if cohort in memberships %}
+			        {% for key, value in membership_uris.items %}
+			        {% if key == cohort.cohort_name %}
+			    	<button id="leave-{{cohort.cohort_name}}-{{request.user.username}}" initial="true" other-id="join-{{cohort.cohort_name}}-{{request.user.username}}" cohort="/api/v1/cohort/{{ cohort.cohort_name }}/" cohort-name="{{cohort.cohort_name}}" uri="/api/v1/cohortmember/{{ value }}/" username="{{ request.user.username }}" class="btn btn-sm btn-danger btn-block leave-cohort"><span class="glyphicon glyphicon-remove"></span><span>Leave cohort</span></button>
+
+			    	<button id="join-{{cohort.cohort_name}}-{{request.user.username}}" initial="false" other-id="leave-{{cohort.cohort_name}}-{{request.user.username}}" cohort="/api/v1/cohort/{{ cohort.cohort_name }}/" cohort-name="{{cohort.cohort_name}}"uri="/api/v1/cohortmember/" username="{{ request.user.username }}" class="btn btn-sm btn-success btn-block join-cohort"><span class="glyphicon glyphicon-ok"></span><span>Join cohort</span></button>
+			    	{% endif %}
+			        {% endfor %}
+			    {% else %}
+			    	<button id="leave-{{cohort.cohort_name}}-{{request.user.username}}" initial="false" other-id="join-{{cohort.cohort_name}}-{{request.user.username}}" cohort="/api/v1/cohort/{{ cohort.cohort_name }}/" cohort-name="{{cohort.cohort_name}}" uri="/api/v1/cohortmember/{{ value }}/" username="{{ request.user.username }}" class="btn btn-sm btn-danger btn-block leave-cohort"><span class="glyphicon glyphicon-remove"></span><span>Leave cohort</span></button>
+
+			    	<button id="join-{{cohort.cohort_name}}-{{request.user.username}}" initial="true" other-id="leave-{{cohort.cohort_name}}-{{request.user.username}}" cohort="/api/v1/cohort/{{ cohort.cohort_name }}/" cohort-name="{{cohort.cohort_name}}"uri="/api/v1/cohortmember/" username="{{ request.user.username }}" class="btn btn-sm btn-success btn-block join-cohort"><span class="glyphicon glyphicon-ok"></span><span>Join cohort</span></button>
+			    {% endif %}
 			</div>
 		</div>
 		{% endif %}
+		
 	</div>
 </div>
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-2">
+		<span class="text-muted">Members:</span>
+		<ul class="list-inline text-success">
+			{% for cohortmember in cohort.cohortmembers_set.all %}
+			<li>{{cohortmember.member.username}}</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+<script src="/static/js/cohorts.js" type="text/javascript"></script>
 
 {% endblock content %}

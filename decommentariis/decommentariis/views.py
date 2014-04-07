@@ -144,6 +144,18 @@ class CohortDetailView(UpdateView) :
 	form_class = CohortEditForm
 	fields = ['cohort_description']
 
+	def get_context_data(self, **kwargs) :
+		context = super(CohortDetailView, self).get_context_data(**kwargs)
+		memberships = CohortMembers.objects.filter(member=self.request.user)
+		cohorts = []
+		membership_uris = {}
+		for membership in memberships:
+			cohorts.append(membership.cohort)
+			membership_uris[membership.cohort.cohort_name] = membership.id
+		context['memberships'] = cohorts
+		context['membership_uris'] = membership_uris
+		return context
+
 	def form_valid(self, form) :
 		if form.instance.instructor != self.request.user :
 			raise ValidationError('Action is not allowed by user {0}'.format(self.request.user.username))

@@ -23,6 +23,9 @@ $.ajaxSetup({
 $('#cohort-list').ready(function() {
 	$('#cohort-list').find('.join-cohort').each(
 		function() {
+			if ($(this).attr('initial') == 'false') {
+				$(this).hide();
+			}
 			$(this).click(
 				function() {
 					var useruri = getuseruri();
@@ -61,6 +64,9 @@ $('#cohort-list').ready(function() {
 $('#cohort-list').ready(function() {
 	$('#cohort-list').find('.leave-cohort').each(
 		function() {
+			if ($(this).attr('initial') == 'false') {
+				$(this).hide();
+			}
 			$(this).click(
 				function() {
 					var useruri = getuseruri();
@@ -131,7 +137,10 @@ var reload = function(cohorturi, elementid) {
 	if (elementid.lastIndexOf('leave-', 0) === 0) {
 		console.log(elementid);
 	}
+	var otherid = $('#' + elementid).attr('other-id');
+	console.log(otherid);
 	$('#' + elementid).hide();
+	$('#' + otherid).show();
 	// work out how to swap the buttons.
 }
 
