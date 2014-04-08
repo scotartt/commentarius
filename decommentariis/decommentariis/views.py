@@ -4,11 +4,13 @@ import bleach
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse, HttpResponseRedirect
+from django.http import Http404
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import FormView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render_to_response
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from decommentariis.models import TEIEntry, TEISection, CommentaryEntry
 from decommentariis.models import Cohort, CohortMembers, CohortTexts
 from decommentariis.xml_file import TEIDataSource
@@ -86,7 +88,15 @@ class UserCommentaryView(ListView) :
 			self.selected_user = self.kwargs['username']
 		else :
 			self.selected_user = self.request.user.username
+		self.user_exists_or_404()
 		return CommentaryEntry.objects.filter(user__username=self.selected_user).order_by('section')
+
+	def user_exists_or_404(self):
+		try :
+			user = User.objects.get(username=self.selected_user)
+		except Exception :
+			raise Http404()
+		return True
 
 	def get_context_data(self, **kwargs) :
 		context = super(UserCommentaryView, self).get_context_data(**kwargs)

@@ -36,7 +36,7 @@ urlpatterns += patterns('decommentariis.views',
 	url(r'^cohort/(?P<pk>(\w{6,}))/$', login_required(CohortDetailView.as_view()), name='cohort_detail'),
 	url(r'^cohort/new/$', login_required(CohortCreate.as_view()), name='cohort_add'),
 	url(r'^commentary/$', login_required(UserCommentaryView.as_view()), name='user_commentary_self'),
-	url(r'^commentary/(?P<username>(\w+))/$', login_required(UserCommentaryView.as_view()), name='user_commentary'),
+	url(r'^commentary/(?P<username>([\w\.\-]+))/$', login_required(UserCommentaryView.as_view()), name='user_commentary'),
 
 )
 
