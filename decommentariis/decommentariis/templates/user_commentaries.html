@@ -34,9 +34,11 @@ de commentariis - user commentaries - {{ request.user.username }}
 							<button class="btn-vote btn btn-xs btn-success"><span class="glyphicon glyphicon-thumbs-up"></span><span class="sr-only">number of votes</span>&nbsp;{{commentary.votes}}</button>
 							{% endif %}
 						</p>
-						<!--p>
-							<button class="btn btn-xs btn-default"><span class="glyphicon glyphicon-trash"></span><span class="sr-only">delete</span></button>
-						</p -->
+						{% if request.user.username == commentary.username %}
+						<p>
+							<button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span><span class="sr-only">delete commentary</span></button>
+						</p>
+						{% endif %}
 					</div>
 				</div>
 			</div>
