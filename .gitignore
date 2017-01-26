@@ -41,3 +41,4 @@ prod_settings.py
 import.log
 decommentariis_db.sqlite3-journal
 .idea/
+decommentariis.settings

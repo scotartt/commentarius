@@ -10,9 +10,9 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -29,21 +29,43 @@ CACHES = {
 	}
 }
 
-TEMPLATE_LOADERS = (
-	'django.template.loaders.app_directories.Loader',
-	'django.template.loaders.filesystem.Loader',
-	)
+# TEMPLATE_LOADERS = (
+# 	'django.template.loaders.app_directories.Loader',
+# 	'django.template.loaders.filesystem.Loader',
+# 	)
+TEMPLATES = [
+	{
+		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'APP_DIRS': True,
+		'OPTIONS': {
+			'debug': DEBUG,
+			'context_processors': [
+				"django.core.context_processors.request",
+				"django.contrib.auth.context_processors.auth",
+				'django.template.context_processors.debug',
+				'django.contrib.messages.context_processors.messages',
+				"allauth.account.context_processors.account",
+				"allauth.socialaccount.context_processors.socialaccount",
+			],
+		},
+		# 'TEMPLATE_DEBUG': True,
+		# 'TEMPLATE_CONTEXT_PROCESSORS': (
+		# 	"django.core.context_processors.request",
+		# 	"django.contrib.auth.context_processors.auth",
+		# 	"allauth.account.context_processors.account",
+		# 	"allauth.socialaccount.context_processors.socialaccount",
+		# ),
+	},
+]
 
-TEMPLATE_DEBUG = True
-
-SITE_ID=1
+SITE_ID = 1
 
 ALLOWED_HOSTS = [
 ]
 
 # LOGIN_URL='/login/'
 
-LOGIN_REDIRECT_URL='/' ## default redirect after success login if no "next"
+LOGIN_REDIRECT_URL = '/'  ## default redirect after success login if no "next"
 
 # Application definition
 
@@ -60,7 +82,7 @@ INSTALLED_APPS = (
 	'allauth.account',
 	'allauth.socialaccount',
 	# 'allauth.socialaccount.providers.dropbox',
-	#'allauth.socialaccount.providers.facebook',
+	# 'allauth.socialaccount.providers.facebook',
 	# 'allauth.socialaccount.providers.github',
 	'allauth.socialaccount.providers.google',
 	# 'allauth.socialaccount.providers.instagram',
@@ -68,7 +90,7 @@ INSTALLED_APPS = (
 	'allauth.socialaccount.providers.twitter',
 	'tastypie',
 	'crispy_forms',
-	)
+)
 
 MIDDLEWARE_CLASSES = (
 	'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,33 +99,27 @@ MIDDLEWARE_CLASSES = (
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
-	)
-TEMPLATE_CONTEXT_PROCESSORS = (
-	"django.core.context_processors.request",
-	"django.contrib.auth.context_processors.auth",
-	"allauth.account.context_processors.account",
-	"allauth.socialaccount.context_processors.socialaccount",
-	)
+)
+
 AUTHENTICATION_BACKENDS = (
 	# Needed to login by username in Django admin, regardless of `allauth`
 	"django.contrib.auth.backends.ModelBackend",
 	# `allauth` specific authentication methods, such as login by e-mail
 	"allauth.account.auth_backends.AuthenticationBackend",
-	)
+)
 
 ROOT_URLCONF = 'decommentariis.urls'
 
 WSGI_APPLICATION = 'decommentariis.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.sqlite3',
-'NAME': os.path.join(BASE_DIR, 'decommentariis_db.sqlite3'),
-}
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'decommentariis_db.sqlite3'),
+	}
 }
 
 # Internationalization
@@ -132,5 +148,3 @@ except ImportError as e:
 	print("Error importing prod settings: {0}".format(str(e)))
 except FileNotFoundError as e:
 	print("Missing file: {0}".format(str(e)))
-
-

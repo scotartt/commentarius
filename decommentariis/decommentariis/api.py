@@ -1,7 +1,7 @@
 # decommentariis/api.py
 from django.contrib.auth.models import User
 import markdown
-import bleach
+# import bleach
 from tastypie import fields
 from tastypie.resources import Resource, ModelResource, ALL, ALL_WITH_RELATIONS
 from tastypie.authentication import BasicAuthentication, SessionAuthentication, MultiAuthentication 
@@ -24,6 +24,7 @@ class TEIEntryResource(ModelResource):
 		bundle.data['section_refs'] = bundle.obj.section_refs()
 		return bundle
 
+
 class TEISectionResource(ModelResource):
 	entry = fields.ForeignKey(TEIEntryResource, 'entry', related_name='sections')
 	user_commentaries = fields.ToManyField('decommentariis.api.CommentaryEntryResource', 'commentaryentry_set', related_name='section')
@@ -37,8 +38,9 @@ class TEISectionResource(ModelResource):
 		}
 
 	def dehydrate(self, bundle):
-		#bundle.data['text_data'] = bundle.obj.readData()
+		# bundle.data['text_data'] = bundle.obj.readData()
 		return bundle 
+
 
 class CommentaryEntryResource(ModelResource):
 	section = fields.ForeignKey(TEISectionResource, 'section', related_name='user_commentaries')
@@ -62,6 +64,7 @@ class CommentaryEntryResource(ModelResource):
 		bundle.data['commentary.md'] = bundle.obj.commentary
 		return bundle 
 
+
 class CommentaryEntryVoterResource(ModelResource):
 	voter = fields.ForeignKey('decommentariis.api.UserResource', 'user')
 	entry = fields.ForeignKey(CommentaryEntryResource, 'entry', related_name='voters')
@@ -79,6 +82,7 @@ class CommentaryEntryVoterResource(ModelResource):
 
 class UserResource(ModelResource):
 	pass
+	
 	class Meta:
 		queryset = User.objects.all()
 		resource_name = 'user'
@@ -90,6 +94,7 @@ class UserResource(ModelResource):
 			'username': ALL,
 		}
 
+
 class CohortResource(ModelResource) :
 	instructor = fields.ForeignKey('decommentariis.api.UserResource', 'instructor')
 	members = fields.ToManyField('decommentariis.api.CohortMembersResource', 'cohortmembers_set', related_name='cohort', null=True, full=False)
@@ -100,6 +105,7 @@ class CohortResource(ModelResource) :
 		fields = ['cohort_name', 'cohort_description', 'instructor', 'creation_date']
 		authentication = SessionAuthentication()
 		authorization = CohortInstructorOrMemberAuthorization()
+
 
 class CohortMembersResource(ModelResource) :
 	cohort = fields.ForeignKey('decommentariis.api.CohortResource', 'cohort', related_name='members')
@@ -114,7 +120,3 @@ class CohortMembersResource(ModelResource) :
 			'cohort': ALL_WITH_RELATIONS,
 			'member': ALL_WITH_RELATIONS,
 		}
-
-
-
-

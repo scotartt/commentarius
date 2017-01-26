@@ -8,14 +8,18 @@ from django.utils.translation import ugettext_lazy as _
 
 from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, CommentaryEntryVoter
 
+
 class TEIEntryAdmin(admin.ModelAdmin):
 	pass
+
 
 class TEISectionAdmin(admin.ModelAdmin):
 	pass
 
+
 class CommentaryEntryAdmin(admin.ModelAdmin):
 	fields = ['user', 'section', 'creation_date', 'votes', 'commentary']
+
 
 class CommentaryEntryVoterAdmin(admin.ModelAdmin):
 	pass
@@ -26,6 +30,7 @@ admin.site.register(TEISection, TEISectionAdmin)
 admin.site.register(CommentaryEntry, CommentaryEntryAdmin)
 admin.site.register(CommentaryEntryVoter, CommentaryEntryVoterAdmin)
 
+
 class GroupAdminForm(forms.ModelForm):
 	users = forms.ModelMultipleChoiceField(
 		queryset=User.objects.all(), 
@@ -33,12 +38,13 @@ class GroupAdminForm(forms.ModelForm):
 		widget=FilteredSelectMultiple(
 			verbose_name=_('Users'),
 			is_stacked=False
-		)
+		),
 	)
-
+	
 	class Meta:
 		model = Group
-
+		fields = '__all__'
+	
 	def __init__(self, *args, **kwargs):
 		super(GroupAdminForm, self).__init__(*args, **kwargs)
 
@@ -56,6 +62,7 @@ class GroupAdminForm(forms.ModelForm):
 			self.save_m2m()
 
 		return group
+
 
 class GroupAdmin(admin.ModelAdmin):
 	form = GroupAdminForm

@@ -1,6 +1,6 @@
 import datetime
 import markdown
-import bleach
+# import bleach
 from django.core.urlresolvers import reverse_lazy
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse, HttpResponseRedirect
