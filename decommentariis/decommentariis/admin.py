@@ -5,8 +5,11 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
-
 from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, CommentaryEntryVoter
+admin.site.register(TEIEntry)
+admin.site.register(TEISection)
+admin.site.register(CommentaryEntry)
+admin.site.register(CommentaryEntryVoter)
 
 
 class TEIEntryAdmin(admin.ModelAdmin):
@@ -24,6 +27,10 @@ class CommentaryEntryAdmin(admin.ModelAdmin):
 class CommentaryEntryVoterAdmin(admin.ModelAdmin):
 	pass
 
+admin.site.unregister(TEIEntry)
+admin.site.unregister(TEISection)
+admin.site.unregister(CommentaryEntry)
+admin.site.unregister(CommentaryEntryVoter)
 
 admin.site.register(TEIEntry, TEIEntryAdmin)
 admin.site.register(TEISection, TEISectionAdmin)

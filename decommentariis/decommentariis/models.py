@@ -1,9 +1,6 @@
 import json
 from tastypie.utils.timezone import now
 from django.db import models
-from django.db.models import Q
-from django.db.models import F
-from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from decommentariis.xml_file import TEIDataSource
 from decommentariis.signals import *
@@ -49,6 +46,7 @@ class TEIEntry(models.Model):
 	
 	class Meta:
 		ordering = ['cts_urn']
+		managed = True
 
 
 class TEISection(models.Model):
@@ -172,15 +170,13 @@ class CommentaryEntry(models.Model):
 		self.votes = len(self.commentaryentryvoter_set.all());
 		self.save()
 	
-	# print("votes counted at " + str(self.votes))
-	
-	
 	def __str__(self):
 		return '{0} :: ({1}) >>> {2} :: {3}'.format(self.section.entry, self.section.section_ref, self.user.username,
 													self.creation_date)
 	
 	class Meta:
 		ordering = ['-votes', 'creation_date']
+
 
 class CommentaryEntryVoter(models.Model):
 	entry = models.ForeignKey(CommentaryEntry)
@@ -194,14 +190,13 @@ class CommentaryEntryVoter(models.Model):
 		self.entry.count_votes()
 		super(CommentaryEntryVoter, self).save(*args, **kwargs)
 	
-	# Call the "real" save() method.
-	
 	def delete(self, *args, **kwargs):
 		super(CommentaryEntryVoter, self).delete(*args, **kwargs)
 		self.entry.count_votes()
 	
 	class Meta:
 		unique_together = ('entry', 'user')
+
 
 class Cohort(models.Model):
 	cohort_name = models.CharField(max_length=64, primary_key=True)
@@ -217,6 +212,7 @@ class Cohort(models.Model):
 	
 	class Meta:
 		ordering = ['cohort_name', 'creation_date']
+
 
 class CohortMembers(models.Model):
 	cohort = models.ForeignKey(Cohort)

@@ -1,15 +1,19 @@
 import unittest, os, sys
-##
-# this python file is a script that imports all readable TEI data from the disk.
-##
+import django
+django.setup()
+
+"""this python file is a script that tests the models."""
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "decommentariis.settings")
 os.environ.setdefault("CTS_DATA_PATH", "/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/")
+
 from decommentariis.models import TEIEntry, TEISection
 from decommentariis.xml_file import TEIDataSource
 
 caesar_gallic = "urn:cts:latinLit:phi0448.phi001.perseus-lat1"
 sallust_cataline = "urn:cts:latinLit:phi0631.phi001.perseus-lat2"
 cicero_rhetoric = "urn:cts:latinLit:phi0474.phi037.perseus-lat1"
+
 
 class TestTEISection(unittest.TestCase):
 

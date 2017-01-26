@@ -12,6 +12,7 @@ from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, Comment
 from decommentariis.models import  Cohort, CohortMembers, CohortTexts
 from decommentariis.api_authorization import UpdateUserObjectsOnlyAuthorization, CohortInstructorOrMemberAuthorization
 
+
 class TEIEntryResource(ModelResource):
 	sections = fields.ToManyField('decommentariis.api.TEISectionResource', 'teisection_set', related_name='entry')
 	class Meta:
@@ -60,7 +61,9 @@ class CommentaryEntryResource(ModelResource):
 		}
 
 	def dehydrate(self, bundle):
-		bundle.data['commentary.html'] = markdown.markdown(bundle.obj.commentary, encoding="utf-8", output_format="html5", safe_mode=False)
+		bundle.data['commentary.html'] = markdown.markdown(
+			bundle.obj.commentary,
+			encoding="utf-8", output_format="html5", safe_mode=False)
 		bundle.data['commentary.md'] = bundle.obj.commentary
 		return bundle 
 
@@ -68,6 +71,7 @@ class CommentaryEntryResource(ModelResource):
 class CommentaryEntryVoterResource(ModelResource):
 	voter = fields.ForeignKey('decommentariis.api.UserResource', 'user')
 	entry = fields.ForeignKey(CommentaryEntryResource, 'entry', related_name='voters')
+	
 	class Meta:
 		queryset = CommentaryEntryVoter.objects.all()
 		resource_name = "voter"
@@ -97,8 +101,13 @@ class UserResource(ModelResource):
 
 class CohortResource(ModelResource) :
 	instructor = fields.ForeignKey('decommentariis.api.UserResource', 'instructor')
-	members = fields.ToManyField('decommentariis.api.CohortMembersResource', 'cohortmembers_set', related_name='cohort', null=True, full=False)
-	class Meta :
+	members = fields.ToManyField(
+		'decommentariis.api.CohortMembersResource',
+		'cohortmembers_set',
+		related_name='cohort', null=True, full=False
+	)
+	
+	class Meta:
 		queryset = Cohort.objects.all()
 		resource_name = 'cohort'
 		list_allowed_methods = ['get', 'post', 'delete']
@@ -110,7 +119,8 @@ class CohortResource(ModelResource) :
 class CohortMembersResource(ModelResource) :
 	cohort = fields.ForeignKey('decommentariis.api.CohortResource', 'cohort', related_name='members')
 	member = fields.ForeignKey('decommentariis.api.UserResource', 'member')
-	class Meta :
+	
+	class Meta:
 		queryset = CohortMembers.objects.all()
 		resource_name = 'cohortmember'
 		list_allowed_methods = ['get', 'post', 'delete']

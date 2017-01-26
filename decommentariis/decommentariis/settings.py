@@ -40,21 +40,12 @@ TEMPLATES = [
 		'OPTIONS': {
 			'debug': DEBUG,
 			'context_processors': [
-				"django.core.context_processors.request",
+				"django.template.context_processors.request",
 				"django.contrib.auth.context_processors.auth",
 				'django.template.context_processors.debug',
 				'django.contrib.messages.context_processors.messages',
-				"allauth.account.context_processors.account",
-				"allauth.socialaccount.context_processors.socialaccount",
 			],
 		},
-		# 'TEMPLATE_DEBUG': True,
-		# 'TEMPLATE_CONTEXT_PROCESSORS': (
-		# 	"django.core.context_processors.request",
-		# 	"django.contrib.auth.context_processors.auth",
-		# 	"allauth.account.context_processors.account",
-		# 	"allauth.socialaccount.context_processors.socialaccount",
-		# ),
 	},
 ]
 
@@ -65,7 +56,7 @@ ALLOWED_HOSTS = [
 
 # LOGIN_URL='/login/'
 
-LOGIN_REDIRECT_URL = '/'  ## default redirect after success login if no "next"
+LOGIN_REDIRECT_URL = '/'  # default redirect after success login if no "next"
 
 # Application definition
 
@@ -77,19 +68,14 @@ INSTALLED_APPS = (
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	'django.contrib.sites',
-	'decommentariis',
 	'allauth',
 	'allauth.account',
 	'allauth.socialaccount',
-	# 'allauth.socialaccount.providers.dropbox',
-	# 'allauth.socialaccount.providers.facebook',
-	# 'allauth.socialaccount.providers.github',
 	'allauth.socialaccount.providers.google',
-	# 'allauth.socialaccount.providers.instagram',
-	# 'allauth.socialaccount.providers.openid',
 	'allauth.socialaccount.providers.twitter',
 	'tastypie',
 	'crispy_forms',
+	'decommentariis',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,9 +89,9 @@ MIDDLEWARE_CLASSES = (
 
 AUTHENTICATION_BACKENDS = (
 	# Needed to login by username in Django admin, regardless of `allauth`
-	"django.contrib.auth.backends.ModelBackend",
+	'django.contrib.auth.backends.ModelBackend',
 	# `allauth` specific authentication methods, such as login by e-mail
-	"allauth.account.auth_backends.AuthenticationBackend",
+	'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 ROOT_URLCONF = 'decommentariis.urls'
