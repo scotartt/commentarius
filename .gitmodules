@@ -1,3 +1,6 @@
 [submodule "data/canonical"]
 	path = data/canonical
 	url = https://github.com/scotartt/canonical
+[submodule "data/latinLit"]
+	path = data/latinLit
+	url = https://github.com/scotartt/canonical-latinLit

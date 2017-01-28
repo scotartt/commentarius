@@ -55,11 +55,12 @@ class CohortInstructorOrMemberAuthorization(DjangoAuthorization):
 
 
 class UpdateUserObjectsOnlyAuthorization(DjangoAuthorization):
-	# def create_detail(self, object_list, bundle):
-	# 	if super(UpdateUserObjectsOnlyAuthorization, self).create_detail(object_list, bundle) :
-	# 		return bundle.obj.user == bundle.request.user
-	# 	else :
-	# 		raise Unauthorized("You are not allowed to create a resource that is not assigned to yourself.")
+	def create_detail(self, object_list, bundle):
+		print("create_detail " + object_list + " " + bundle)
+		if super(UpdateUserObjectsOnlyAuthorization, self).create_detail(object_list, bundle):
+			return bundle.obj.user == bundle.request.user
+		else:
+			raise Unauthorized("You are not allowed to create a resource that is not assigned to yourself.")
 	
 	def update_list(self, object_list, bundle):
 		allowed = []
@@ -67,9 +68,11 @@ class UpdateUserObjectsOnlyAuthorization(DjangoAuthorization):
 		for obj in object_list:
 			if obj.user == bundle.request.user:
 				allowed.append(obj)
+		print("update_list " + object_list + " " + bundle + " " + allowed)
 		return allowed
 	
 	def update_detail(self, object_list, bundle):
+		print("update_detail " + object_list + " " + bundle)
 		if super(UpdateUserObjectsOnlyAuthorization, self).update_detail(object_list, bundle):
 			return bundle.obj.user == bundle.request.user
 		else:
@@ -81,10 +84,55 @@ class UpdateUserObjectsOnlyAuthorization(DjangoAuthorization):
 		for obj in object_list:
 			if obj.user == bundle.request.user:
 				allowed.append(obj)
+		print("delete_list " + object_list + " " + bundle + " " + allowed)
 		return allowed
 	
 	def delete_detail(self, object_list, bundle):
+		print("delete_detail " + object_list + " " + bundle)
 		if super(UpdateUserObjectsOnlyAuthorization, self).delete_detail(object_list, bundle):
 			return bundle.obj.user == bundle.request.user
 		else:
 			raise Unauthorized("You are not allowed to delete that resource.")
+
+
+class UserObjectsOnlyAuthorization(Authorization):
+	def create_list(self, object_list, bundle):
+		print("create_list " + object_list + " " + bundle)
+		return False
+	
+	def read_list(self, object_list, bundle):
+		print("read_list " + object_list + " " + bundle)
+		return object_list
+
+	def read_detail(self, object_list, bundle):
+		# Is the requested object owned by the user?
+		print("read_detail " + object_list + " " + bundle)
+		return bundle.obj.user == bundle.request.user
+	
+	# def create_list(self, object_list, bundle):
+	# 	# Assuming they're auto-assigned to ``user``.
+	# 	print("create_list " + object_list + " " + bundle)
+	# 	return object_list
+
+	def create_detail(self, object_list, bundle):
+		print("create_detail " + object_list + " " + bundle)
+		return bundle.obj.user == bundle.request.user
+	
+	def update_list(self, object_list, bundle):
+		print("update_list " + object_list + " " + bundle)
+		allowed = []
+		# Since they may not all be saved, iterate over them.
+		for obj in object_list:
+			if obj.user == bundle.request.user:
+				allowed.append(obj)
+		return allowed
+	
+	def update_detail(self, object_list, bundle):
+		return bundle.obj.user == bundle.request.user
+	
+	def delete_list(self, object_list, bundle):
+		# Sorry user, no deletes for you!
+		raise Unauthorized("Sorry, no deletes.")
+	
+	def delete_detail(self, object_list, bundle):
+		raise Unauthorized("Sorry, no deletes.")

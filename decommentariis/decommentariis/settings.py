@@ -128,6 +128,9 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+# allauth settings
+ACCOUNT_EMAIL_VERIFICATION = "None" 	# nonprod setting only
+
 try:
 	from decommentariis.prod_settings import *
 except ImportError as e:

@@ -1,18 +1,26 @@
-from django.conf.urls import *
-from django.contrib.auth.models import User, Group
-from django.contrib import admin
-from django.contrib.auth.decorators import login_required, permission_required
-from django.views.generic import TemplateView
 from django.conf.urls import include, url
+from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from tastypie.api import Api
-from decommentariis.api import TEIEntryResource, TEISectionResource, CommentaryEntryResource, UserResource
-from decommentariis.api import CommentaryEntryVoterResource, CohortResource, CohortMembersResource
-from decommentariis.views import main_page, about_page, contact_page
-from decommentariis.views import TextListView, SectionListView, SectionTextDetailView, UserCommentaryView
-from decommentariis.views import CohortListView, CohortDetailView, CohortCreate
 
+from decommentariis.api.resources import CommentaryEntryVoterResource, CohortResource, CohortMembersResource
+from decommentariis.api.resources import TEIEntryResource, TEISectionResource, CommentaryEntryResource, UserResource
+from decommentariis.views import CohortListView, CohortDetailView, CohortCreate
+from decommentariis.views import TextListView, SectionListView, SectionTextDetailView, UserCommentaryView
+from decommentariis.views import main_page, about_page, contact_page
 
 admin.autodiscover()
+
+# tastypie API
+v1_api = Api(api_name='v1')
+v1_api.register(TEIEntryResource())
+v1_api.register(TEISectionResource())
+v1_api.register(CommentaryEntryResource())
+v1_api.register(UserResource())
+v1_api.register(CommentaryEntryVoterResource())
+v1_api.register(CohortResource())
+v1_api.register(CohortMembersResource())
+
 
 urlpatterns = [
 	url(r'^$', main_page),
@@ -21,10 +29,16 @@ urlpatterns = [
 ]
 
 urlpatterns += [
+	url(r'^admin/', include(admin.site.urls)),
+	url(r'^api/', include(v1_api.urls)),
+]
+
+urlpatterns += [
 	# 'decommentariis.views',
 	# a CTS URN looks like this 'urn:cts:latinLit:phi0631.phi001.perseus-lat2'
 	url(r'^text/$', TextListView.as_view()),
-	url(r'^text/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\w{0,3}\.){2}[\w-]+)/$', SectionListView.as_view()),
+	url(r'^text/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\w{0,3}\.){2}[\w-]+)/$',
+		SectionListView.as_view()),
 	url(r'^textdata/(?P<urn>urn:cts:([a-z]{5})Lit:([a-zA-Z]{3,4}\d{3,4}\w{0,3}\.){2}[\w-]+:[\w\., ()]+)/$',
 		SectionTextDetailView.as_view()),
 	url(r'^cohort/$', login_required(CohortListView.as_view()) ),
@@ -35,28 +49,9 @@ urlpatterns += [
 		name='user_commentary'),
 ]
 
-# urlpatterns += patterns('',
-# 	url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-# )
-
-urlpatterns += [
-	url(r'^admin/', include(admin.site.urls)),
-]
-
 urlpatterns += [
 	url(r'^accounts/', include('allauth.urls')),
 ]
 
-v1_api = Api(api_name='v1')
-v1_api.register(TEIEntryResource())
-v1_api.register(TEISectionResource())
-v1_api.register(CommentaryEntryResource())
-v1_api.register(UserResource())
-v1_api.register(CommentaryEntryVoterResource())
-v1_api.register(CohortResource())
-v1_api.register(CohortMembersResource())
 
-urlpatterns += [
-	url(r'^admin/', include(admin.site.urls)),
-]
 
