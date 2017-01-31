@@ -224,17 +224,19 @@ var make_vote_button = function(commentjson, rowTR, iseditable, theid) {
 	var has_voted = false;
 	var self_voted = false;
 	var existing_vote_uri = false;
-	for (var i = 0; i < voterlist.length; i++)  {
-		rowTR.append("<span hidden='hidden' class='voteid' voter='" + voterlist[i].voter + "'/>")
-		if (user_resource_uri === voterlist[i].voter) {
-			has_voted = true;
-			existing_vote_uri = voterlist[i].resource_uri;
-			/* this user voted for this comment already */
-		} else if (commentjson['user'] === voterlist[i].voter) {
-			self_voted = true; 
-			/* all voting by all users will be disabled, user voted for self.*/
-		}
-	}
+	if (voterlist) {
+        for (var i = 0; i < voterlist.length; i++) {
+            rowTR.append("<span hidden='hidden' class='voteid' voter='" + voterlist[i].voter + "'/>")
+            if (user_resource_uri === voterlist[i].voter) {
+                has_voted = true;
+                existing_vote_uri = voterlist[i].resource_uri;
+				/* this user voted for this comment already */
+            } else if (commentjson['user'] === voterlist[i].voter) {
+                self_voted = true;
+				/* all voting by all users will be disabled, user voted for self.*/
+            }
+        }
+    }
 	var btnclass ="btn-default";
 	var userisowner = "";
 	if (has_voted) {

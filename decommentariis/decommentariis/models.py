@@ -171,8 +171,9 @@ class CommentaryEntry(models.Model):
 		self.save()
 	
 	def __str__(self):
-		return '{0} :: ({1}) >>> {2} :: {3}'.format(self.section.entry, self.section.section_ref, self.user.username,
-													self.creation_date)
+		return '{0} :: ({1}) >>> {2} :: {3}'.format(
+			self.section.entry, self.section.section_ref, self.user.username, self.creation_date
+		)
 	
 	class Meta:
 		ordering = ['-votes', 'creation_date']

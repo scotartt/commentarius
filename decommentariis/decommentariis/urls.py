@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from tastypie.api import Api
 
 from decommentariis.api.resources import CommentaryEntryVoterResource, CohortResource, CohortMembersResource
-from decommentariis.api.resources import TEIEntryResource, TEISectionResource, CommentaryEntryResource, UserResource
+from decommentariis.api.resources import TEIEntryResource, TEISectionResource, TEISectionResourceContent
+from decommentariis.api.resources import CommentaryEntryResource, UserResource
 from decommentariis.views import CohortListView, CohortDetailView, CohortCreate
 from decommentariis.views import TextListView, SectionListView, SectionTextDetailView, UserCommentaryView
 from decommentariis.views import main_page, about_page, contact_page
@@ -15,6 +16,7 @@ admin.autodiscover()
 v1_api = Api(api_name='v1')
 v1_api.register(TEIEntryResource())
 v1_api.register(TEISectionResource())
+v1_api.register(TEISectionResourceContent())
 v1_api.register(CommentaryEntryResource())
 v1_api.register(UserResource())
 v1_api.register(CommentaryEntryVoterResource())

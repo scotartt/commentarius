@@ -3,7 +3,7 @@
 import markdown
 from django.contrib.auth.models import User
 from tastypie import fields
-from tastypie.authentication import SessionAuthentication
+from tastypie.authentication import SessionAuthentication, BasicAuthentication, MultiAuthentication
 from tastypie.authorization import DjangoAuthorization, Authorization
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 
@@ -24,6 +24,7 @@ class TEIEntryResource(ModelResource):
 		list_allowed_methods = ['get']
 
 	def dehydrate(self, bundle):
+		print("dehydrating ... " + str(self) + " ... " + str(bundle))
 		bundle.data['section_refs'] = bundle.obj.section_refs()
 		return bundle
 
@@ -43,8 +44,30 @@ class TEISectionResource(ModelResource):
 		}
 
 	def dehydrate(self, bundle):
-		# bundle.data['text_data'] = bundle.obj.readData()
-		return bundle 
+		print("dehydrating ... " + str(self) + " ... " + str(bundle))
+		return bundle
+
+
+class TEISectionResourceContent(ModelResource):
+	entry = fields.ForeignKey(TEIEntryResource, 'entry', related_name='sections')
+	user_commentaries = fields.ToManyField(
+		'decommentariis.api.resources.CommentaryEntryResource',
+		'commentaryentry_set', related_name='section')
+
+	class Meta:
+		queryset = TEISection.objects.all()
+		resource_name = 'sourcesectiontext'
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		authorization = Authorization()
+		list_allowed_methods = ['get']
+		filtering = {
+			'cts_urn': ALL,
+		}
+
+	def dehydrate(self, bundle):
+		print("dehydrating ... " + str(self) + " ... " + str(bundle))
+		bundle.data['text_data'] = bundle.obj.readData()
+		return bundle
 
 
 class CommentaryEntryResource(ModelResource):
@@ -54,14 +77,12 @@ class CommentaryEntryResource(ModelResource):
 		'decommentariis.api.resources.CommentaryEntryVoterResource',
 		'commentaryentryvoter_set',
 		related_name='entry', null=True, full=True)
-	print("hello")
 	
 	class Meta:
 		queryset = CommentaryEntry.objects.all()
 		resource_name = 'sourcecommentary'
 		list_allowed_methods = ['get', 'put', 'post', 'delete']
-		authentication = SessionAuthentication()
-		# authorization = UpdateUserObjectsOnlyAuthorization()
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
 		authorization = Authorization()
 		filtering = {
 			'section': ALL_WITH_RELATIONS,
@@ -70,7 +91,7 @@ class CommentaryEntryResource(ModelResource):
 		}
 
 	def dehydrate(self, bundle):
-		print("dehydrating " + bundle)
+		print("dehydrating ... " + str(self) + " ... " + str(bundle))
 		bundle.data['commentary.html'] = markdown.markdown(
 			bundle.obj.commentary,
 			encoding="utf-8", output_format="html5", safe_mode=False)
@@ -86,8 +107,10 @@ class CommentaryEntryVoterResource(ModelResource):
 		queryset = CommentaryEntryVoter.objects.all()
 		resource_name = "voter"
 		list_allowed_methods = ['get', 'post', 'delete']
-		authentication = SessionAuthentication()
-		authorization = UpdateUserObjectsOnlyAuthorization()
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		authorization = Authorization()
+		# authentication = SessionAuthentication()
+		# authorization = UpdateUserObjectsOnlyAuthorization()
 		filtering = {
 			'entry': ALL_WITH_RELATIONS,
 			'voter': ALL_WITH_RELATIONS,
@@ -102,8 +125,8 @@ class UserResource(ModelResource):
 		resource_name = 'user'
 		list_allowed_methods = ['get']
 		fields = ['username', 'first_name', 'last_name', 'id']
-		authentication = SessionAuthentication()
-		authorization = DjangoAuthorization()
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		authorization = Authorization()
 		filtering = {
 			'username': ALL,
 		}
@@ -122,7 +145,7 @@ class CohortResource(ModelResource):
 		resource_name = 'cohort'
 		list_allowed_methods = ['get', 'post', 'delete']
 		fields = ['cohort_name', 'cohort_description', 'instructor', 'creation_date']
-		authentication = SessionAuthentication()
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
 		authorization = CohortInstructorOrMemberAuthorization()
 
 
@@ -134,7 +157,7 @@ class CohortMembersResource(ModelResource):
 		queryset = CohortMembers.objects.all()
 		resource_name = 'cohortmember'
 		list_allowed_methods = ['get', 'post', 'delete']
-		authentication = SessionAuthentication()
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
 		authorization = CohortInstructorOrMemberAuthorization()
 		filtering = {
 			'cohort': ALL_WITH_RELATIONS,

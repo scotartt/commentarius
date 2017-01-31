@@ -80,7 +80,8 @@ de commentariis - {{ object.entry.author }} - {{ object.entry.title }} {{ object
 							{% csrf_token %}
 							<input id="f_cts_urn" type="hidden" value="{{ object.cts_urn }}"/>
 							<input id="f_section_input_id" type="hidden" name="section" value="/api/v1/sourcesection/{{ object.cts_urn }}/"/>
-							<input id="f_user_input_id" type="hidden" name="user" value=""/>
+							<input id="f_user_input_id" type="hidden" name="user"
+                                   value="{{ request.user.username }}"/>
 						</span>
 
 					</div>
