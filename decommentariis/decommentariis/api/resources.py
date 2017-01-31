@@ -15,13 +15,17 @@ from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, Comment
 
 
 class TEIEntryResource(ModelResource):
-	sections = fields.ToManyField('decommentariis.api.resources.TEISectionResource', 'teisection_set', related_name='entry')
+	sections = fields.ToManyField(
+		'decommentariis.api.resources.TEISectionResource',
+		'teisection_set', related_name='entry')
 	
 	class Meta:
 		queryset = TEIEntry.objects.all()
 		resource_name = 'sourcetext'
 		excludes = ['metadata']
 		list_allowed_methods = ['get']
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		authorization = Authorization()
 
 	def dehydrate(self, bundle):
 		print("dehydrating ... " + str(self) + " ... " + str(bundle))
@@ -39,6 +43,8 @@ class TEISectionResource(ModelResource):
 		queryset = TEISection.objects.all()
 		resource_name = 'sourcesection'
 		list_allowed_methods = ['get']
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		authorization = Authorization()
 		filtering = {
 			'cts_urn': ALL,
 		}
@@ -145,8 +151,10 @@ class CohortResource(ModelResource):
 		resource_name = 'cohort'
 		list_allowed_methods = ['get', 'post', 'delete']
 		fields = ['cohort_name', 'cohort_description', 'instructor', 'creation_date']
+		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authorization = CohortInstructorOrMemberAuthorization()
 		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authorization = CohortInstructorOrMemberAuthorization()
+		authorization = Authorization()
 
 
 class CohortMembersResource(ModelResource):
@@ -157,8 +165,10 @@ class CohortMembersResource(ModelResource):
 		queryset = CohortMembers.objects.all()
 		resource_name = 'cohortmember'
 		list_allowed_methods = ['get', 'post', 'delete']
+		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authorization = CohortInstructorOrMemberAuthorization()
 		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authorization = CohortInstructorOrMemberAuthorization()
+		authorization = Authorization()
 		filtering = {
 			'cohort': ALL_WITH_RELATIONS,
 			'member': ALL_WITH_RELATIONS,
