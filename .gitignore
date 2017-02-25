@@ -34,15 +34,12 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
-decommentariis_db.sqlite3
+*.sqlite3
 .DS_Store
-decommentariis/.DS_Store
 prod_settings.py
 import.log
 decommentariis_db.sqlite3-journal
 .idea/
 decommentariis/decommentariis/migrations/
-
-
 data/greekLit.txt
 data/latinLit.txt

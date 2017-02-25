@@ -37,7 +37,7 @@ class TEISectionResource(ModelResource):
 	entry = fields.ForeignKey(TEIEntryResource, 'entry', related_name='sections')
 	user_commentaries = fields.ToManyField(
 		'decommentariis.api.resources.CommentaryEntryResource',
-		'commentaryentry_set', related_name='section')
+		'commentaryentry_set', related_name='section', null=True)
 
 	class Meta:
 		queryset = TEISection.objects.all()
@@ -58,7 +58,7 @@ class TEISectionResourceContent(ModelResource):
 	entry = fields.ForeignKey(TEIEntryResource, 'entry', related_name='sections')
 	user_commentaries = fields.ToManyField(
 		'decommentariis.api.resources.CommentaryEntryResource',
-		'commentaryentry_set', related_name='section')
+		'commentaryentry_set', related_name='section', null=True)
 
 	class Meta:
 		queryset = TEISection.objects.all()
@@ -77,7 +77,8 @@ class TEISectionResourceContent(ModelResource):
 
 
 class CommentaryEntryResource(ModelResource):
-	section = fields.ForeignKey(TEISectionResource, 'section', related_name='user_commentaries')
+	section = fields.ForeignKey('decommentariis.api.resources.TEISectionResource',
+								'section', related_name='user_commentaries')
 	user = fields.ForeignKey('decommentariis.api.resources.UserResource', 'user')
 	voters = fields.ToManyField(
 		'decommentariis.api.resources.CommentaryEntryVoterResource',
