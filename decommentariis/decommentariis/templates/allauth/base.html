@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/css/bootstrap-readable.min.css" rel="stylesheet">
+    <link href="/static/theme/theme.css" rel="stylesheet">
+    <script src="/static/js/jquery-1.11.0.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body role="document">
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">de commentariis</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/text/">Text editions</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/about/contact/">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle small" data-toggle="dropdown"><span
+                            class="glyphicon glyphicon-cog"></span><span class="sr-only">Configuration menu</span> <b
+                            class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% if user.is_authenticated %}
+                            <li><a href="#">Logged in as {{ request.user.username }}</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{% url 'account_change_password' %}">Change your password</a></li>
+                            <li><a href="{% url 'account_email' %}">Manage Your Email</a></li>
+                            <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+                        {% else %}
+                            <li><a href="{% url 'account_login' %}">Log In</a></li>
+                            <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+<!-- end navbar -->
+<div class="container-fluid">
+    {% block body %}
+        {% if messages %}
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="alert alert-danger">
+                        <strong>Messages:</strong>
+                        {% for message in messages %}
+                            <br/>{{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% block content %}
+
+        {% endblock %}
+    {% endblock %}
+
+    {% block extra_body %}
+    {% endblock %}
+
+    <div class="row">
+        <div class="col-sm-8">
+
+            {% if user.is_authenticated %}
+                <ul class='list-inline lead text-muted'>
+                    <li>You are logged in. You can:</li>
+                    {#					<li><a href="{% url 'account_change_password' %}">Change your password</a>,</li>#}
+                    {#					<li><a href="{% url 'account_email' %}">Manage Your Email</a>, or</li>#}
+                    <li><a href="{% url 'account_logout' %}">Log Out</a>.</li>
+                </ul>
+            {% else %}
+                <ul class='list-inline lead text-muted'>
+                    <li>You are not logged in. You can:</li>
+                    <li><a href="{% url 'account_login' %}">Log In with an existing third-party account.</a></li>
+                    <li>This site only accepts third-party account logins.</li>
+                    {#                <li><a href="{% url 'account_signup' %}">Sign Up</a>.</li>#}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<script src="/static/js/jquery-1.11.0.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8726619-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+</body>
+</html>

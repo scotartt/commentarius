@@ -94,8 +94,8 @@ class CommentaryEntryResource(ModelResource):
 		queryset = CommentaryEntry.objects.all()
 		resource_name = 'sourcecommentary'
 		list_allowed_methods = ['get', 'put', 'post', 'delete']
-		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authentication = SessionAuthentication()
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authentication = SessionAuthentication()
 		authorization = Authorization()
 		filtering = {
 			'section': ALL_WITH_RELATIONS,
@@ -120,10 +120,10 @@ class CommentaryEntryVoterResource(ModelResource):
 		queryset = CommentaryEntryVoter.objects.all()
 		resource_name = "voter"
 		list_allowed_methods = ['get', 'post', 'delete']
-		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		# authorization = Authorization()
-		authentication = SessionAuthentication()
-		authorization = UpdateUserObjectsOnlyAuthorization()
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		authorization = Authorization()
+		# authentication = SessionAuthentication()
+		# authorization = UpdateUserObjectsOnlyAuthorization()
 		filtering = {
 			'entry': ALL_WITH_RELATIONS,
 			'voter': ALL_WITH_RELATIONS,
@@ -138,8 +138,8 @@ class UserResource(ModelResource):
 		resource_name = 'user'
 		list_allowed_methods = ['get']
 		fields = ['username', 'first_name', 'last_name', 'id']
-		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authentication = SessionAuthentication()
+		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authentication = SessionAuthentication()
 		authorization = Authorization()
 		filtering = {
 			'username': ALL,

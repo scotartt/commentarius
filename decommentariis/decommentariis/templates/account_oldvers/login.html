@@ -14,27 +14,27 @@
 			</div>
 			<div class="panel-body">
 				<p>You have several options to log in.</p>
-				{% if socialaccount.providers  %}
+				{% if socialaccount.socialaccount_providers  %}
 				<p class="lead">
-					{% blocktrans with site.name as site_name %}Please log in with one
-					of your existing third party accounts (the preferred way to login).{% endblocktrans %}
+					{% blocktrans with site.name as site_name %}Please log in with one of your existing third party accounts (the preferred way to login).{% endblocktrans %}
 				</p>
 				<div class="socialaccount_ballot lead">
 					<ul class="socialaccount_providers">
 						{% include "socialaccount/snippets/provider_list.html" with process="login" %}
 					</ul>
 				</div>
-				<p>
-					{% blocktrans with site.name as site_name %}If you don't want to use one of your existing social accounts, <a href="{{ signup_url }}">you can sign up for a {{site_name}} account</a> and then log in with the form on this page.{% endblocktrans %}
-				</p>
+{#				<p>#}
+{#					{% blocktrans with site.name as site_name %}If you don't want to use one of your existing social accounts, <a href="{{ signup_url }}">you can sign up for a {{site_name}} account</a> and then log in with the form on this page.{% endblocktrans %}#}
+{#				</p>#}
 				{% include "socialaccount/snippets/login_extra.html" %}
 				{% else %}
-				<p class="lead">
-					{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-				</p>
+				<p class="lead">{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 				{% endif %}
+
 				<div class="login-or">
-					<p>Or, if you've signed up at some point before, you can use the account that you've already created with the form on this page.</p>
+                    <p>
+                        Or, if you've signed up at some point before, you can use the account that you've already created with the form on this page.
+                    </p>
 				</div>
 			</div>
 		</div>

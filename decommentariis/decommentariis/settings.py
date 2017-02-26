@@ -36,6 +36,12 @@ CACHES = {
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [
+			os.path.join(PROJECT_ROOT, 'decommentariis', 'templates'),
+			os.path.join(PROJECT_ROOT, 'decommentariis', 'templates', 'allauth'),
+			os.path.join(PROJECT_ROOT, 'decommentariis', 'templates', 'cohort'),
+			os.path.join(PROJECT_ROOT, 'decommentariis', 'templates', 'registration'),
+		],
 		'APP_DIRS': True,
 		'OPTIONS': {
 			'debug': DEBUG,

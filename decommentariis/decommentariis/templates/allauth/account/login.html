@@ -1,0 +1,44 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+    <h1>{% trans "Sign In" %}</h1>
+
+    {% get_providers as socialaccount_providers %}
+
+    {% if socialaccount_providers %}
+
+        <div class="row">
+
+            <div class="panel panel-primary col-md-8">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Account login</h3>
+                </div>
+                <div class="panel-body">
+                    {% blocktrans with site.name as site_name %}
+                        Please sign in with one of your existing third party accounts.
+                        This site only accepts accounts via social media or third party sites.
+                    {% endblocktrans %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="socialaccount_ballot lead col-md-8">
+                <ul class="socialaccount_providers list-inline lead">
+                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                </ul>
+
+            </div>
+
+            {% include "socialaccount/snippets/login_extra.html" %}
+
+        </div>
+
+    {% endif %}
+
+{% endblock %}

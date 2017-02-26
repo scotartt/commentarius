@@ -1,100 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="/static/css/bootstrap-readable.min.css" rel="stylesheet">
-	<link href="/static/theme/theme.css" rel="stylesheet">
-	<script src="/static/js/jquery-1.11.0.min.js"></script>
-	<script src="/static/js/bootstrap.min.js"></script>
-	<title>{% block title %}de commentariis{% endblock title %}</title>
-	<!-- just to make sure it's set every single page.
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/css/bootstrap-readable.min.css" rel="stylesheet">
+    <link href="/static/theme/theme.css" rel="stylesheet">
+    <script src="/static/js/jquery-1.11.0.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <title>{% block title %}de commentariis{% endblock title %}</title>
+    <!-- just to make sure it's set every single page.
 		{% csrf_token %}
 	-->
 </head>
 <body role="document">
-	{% block menu %}
-	<!-- Fixed navbar -->
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">de commentariis</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/text/">Text editions</a></li>
-					<li><a href="/about/">About</a></li>
-					<li><a href="/about/contact/">Contact</a></li>
-					<li class="dropdown">
-          				<a href="#" class="dropdown-toggle small" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span><span class="sr-only">Configuration menu</span> <b class="caret"></b></a>
-          				<ul class="dropdown-menu">
-							{% if user.is_authenticated %}
-							<li><a href="{% url 'user_commentary_self' %}">View your commentary</a></li>
-							<li><a href="/cohort/">Cohort management</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Logged in as {{request.user.username}}</a></li>
-							<li class="divider"></li>
-							<li><a href="{% url 'account_change_password' %}">Change your password</a></li> 
-							<li><a href="{% url 'account_email' %}">Manage Your Email</a></li>
-							<li><a href="{% url 'account_logout' %}">Log Out</a></li>
-							{% else %}
-							<li><a href="{% url 'account_login' %}">Log In</a></li>
-							<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-							{% endif %}
-						</ul>
-					</li>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</div>
-	<!-- end navbar -->
-	{% endblock menu %}
+{% block menu %}
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">de commentariis</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/text/">Text editions</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/about/contact/">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle small" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-cog"></span>
+                            <span class="sr-only">Configuration menu</span>
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url 'user_commentary_self' %}">View your commentary</a></li>
+                                <li><a href="/cohort/">Cohort management</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Logged in as {{ request.user.username }}</a></li>
+                                <li class="divider"></li>
+{#                                <li><a href="{% url 'account_change_password' %}">Change your password</a></li>#}
+{#                                <li><a href="{% url 'account_email' %}">Manage Your Email</a></li>#}
+                                <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+                            {% else %}
+                                <li><a href="{% url 'account_login' %}">Log In</a></li>
+                                <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- end navbar -->
+{% endblock menu %}
 
-	<div class="container-fluid" role="main">
-		{% block content %}there is no content here{% endblock content %}
-	</div>
-	<div id="footer">
-		<div class="container ">
-			{% block footer %}
-			<div id="nav2ancestors-footer" class="row">
-				<div class="col-sm-6">
+<div class="container-fluid" role="main">
+    {% block content %}there is no content here{% endblock content %}
+</div>
+<div id="footer">
+    <div class="container ">
+        {% block footer %}
+            <div id="nav2ancestors-footer" class="row">
+                <div class="col-sm-6">
 
-				</div>
-				<div class="col-sm-6 hidden-xs">
-					<ol class="text-muted breadcrumb ">
-						<span class="pull-right">You are logged in as user '{{request.user.username}}'</span>
-					</ol>
-				</div>
-			</div>
-			{% endblock footer %}
-		</div>
-	</div>
-	{% if request.user %}
-	<span id="user-username" hidden="true" value="{{request.user.username}}">{{request.user.username}}</span>
-	<span id="user-uri" hidden="true" value="/api/v1/user/{{ request.user.id }}/">/api/v1/user/{{ request.user.id }}/</span>
-	{% endif %}
-	<script src="/static/js/jquery.cookie.js"></script>
-	<script src="/static/js/jquery.jeditable.mini.js"></script>
-	<script src="/static/js/jquery.expander.min.js"></script>
-	<script type="text/javascript" id="google-analytics-decommentariis">
+                </div>
+                <div class="col-sm-6 hidden-xs">
+                    <ol class="text-muted breadcrumb ">
+                        <span class="pull-right">You are logged in as user '{{ request.user.username }}'</span>
+                    </ol>
+                </div>
+            </div>
+        {% endblock footer %}
+    </div>
+</div>
+{% if request.user %}
+    <span id="user-username" hidden="true" value="{{ request.user.username }}">{{ request.user.username }}</span>
+    <span id="user-uri" hidden="true"
+          value="/api/v1/user/{{ request.user.id }}/">/api/v1/user/{{ request.user.id }}/</span>
+{% endif %}
+<script src="/static/js/jquery.cookie.js"></script>
+<script src="/static/js/jquery.jeditable.mini.js"></script>
+<script src="/static/js/jquery.expander.min.js"></script>
+<script type="text/javascript" id="google-analytics-decommentariis">
 
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-8726619-4']);
-		_gaq.push(['_trackPageview']);
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-8726619-4']);
+    _gaq.push(['_trackPageview']);
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
 
-	</script>
+</script>
 </body>
 </html>
