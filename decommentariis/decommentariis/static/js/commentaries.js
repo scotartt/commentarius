@@ -14,6 +14,7 @@ $.ajaxSetup({
 	crossDomain: false, // obviates need for sameOrigin test
 	beforeSend: function(xhr, settings) {
 		if (!csrfSafeMethod(settings.type)) {
+			console.log("token is " + $.cookie('csrftoken') + " " + xhr + " " + settings);
 			xhr.setRequestHeader("X-CSRFToken", $.cookie('csrftoken'));
 		}
 	}
@@ -363,6 +364,7 @@ var make_comment = function(commentform) {
 		"voters": [],
 		"csrfmiddlewaretoken": csrfmiddlewaretoken
 	});
+	console.log("the data is " + data);
 	sendcomment(ajaxurl, 'POST', data, commentform);
 }
 
