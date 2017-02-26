@@ -26,7 +26,7 @@ de commentariis - user commentaries - {{ request.user.username }}
 					<div class="col-sm-10 commentary-text">
 						{% autoescape off %}{{ commentary.commentary_html }}{% endautoescape %}
 					</div>
-					<div class="col-sm-2 votes small">
+					<div class="col-sm-2 votes x-small">
 						<p>
 							{% if commentary.votes < 1 %}
 							<button class="btn-vote btn btn-xs btn-default"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;{{commentary.votes}}</button>

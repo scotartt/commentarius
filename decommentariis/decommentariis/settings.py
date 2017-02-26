@@ -49,7 +49,7 @@ TEMPLATES = [
 	},
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 ALLOWED_HOSTS = [
 ]
@@ -72,7 +72,8 @@ INSTALLED_APPS = (
 	'allauth.account',
 	'allauth.socialaccount',
 	'allauth.socialaccount.providers.google',
-	'allauth.socialaccount.providers.twitter',
+	# 'allauth.socialaccount.providers.twitter',
+	'allauth.socialaccount.providers.facebook',
 	'tastypie',
 	'crispy_forms',
 	'decommentariis',
@@ -92,7 +93,36 @@ AUTHENTICATION_BACKENDS = (
 	'django.contrib.auth.backends.ModelBackend',
 	# `allauth` specific authentication methods, such as login by e-mail
 	'allauth.account.auth_backends.AuthenticationBackend',
+
 )
+
+SOCIALACCOUNT_PROVIDERS = {
+	'google': {
+		'SCOPE': [
+			'profile',
+			'email',
+		],
+		'AUTH_PARAMS': {
+			'access_type': 'online',
+		}
+	},
+	'facebook': {
+		'METHOD': 'oauth2',
+		'SCOPE': ['email', 'public_profile', 'user_friends'],
+		'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+		'FIELDS': [
+			'id',
+			'email',
+			'name',
+			'first_name',
+			'last_name',
+		],
+		'EXCHANGE_TOKEN': True,
+		# 'LOCALE_FUNC': 'path.to.callable',
+		'VERIFIED_EMAIL': False,
+		'VERSION': 'v2.4',
+	}
+}
 
 ROOT_URLCONF = 'decommentariis.urls'
 
@@ -129,7 +159,7 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # allauth settings
-ACCOUNT_EMAIL_VERIFICATION = "None" 	# nonprod setting only
+ACCOUNT_EMAIL_VERIFICATION = "None"  # nonprod setting only
 
 try:
 	from decommentariis.prod_settings import *

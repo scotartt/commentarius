@@ -311,7 +311,7 @@ var make_vote_button = function(commentjson, rowTR, iseditable, theid) {
 }
 
 var voterbutton = function() {
-	return ['<td class="col-sm-2 votes small">', 
+	return ['<td class="col-sm-2 votes small">',
 		'<div class="input-group" id="',this.voterid,'">',
 		'<button class="btn-vote btn btn-xs ', this.btnclass, '" ', this.userisowner, 
 		' user_uri="',this.user_uri,'"',
@@ -319,9 +319,9 @@ var voterbutton = function() {
 		' vote_uri="',this.vote_uri,'"',
 		' >',
 		'<span class="glyphicon glyphicon-thumbs-up"></span>',
-		'&nbsp;',
+		'&nbsp;<span style="font-size: x-small;">',
 		this.votes,
-		'</button>',
+		'</span></button>',
 		'</div>',
 		'</td>'].join('');
 }
@@ -397,73 +397,73 @@ var sendcomment = function(ajaxurl, methodtype, data, commentform) {
 				update_commentary_form(commentform)
 			},
 			400: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: 400 Bad Request (the gods were not pleased by your sacrifice and the request was denied)", jqXHR);
+				error( "Commentary not posted: 400 Bad Request", jqXHR);
 			},
 			401: function(jqXHR, textStatus, errorThrown) {
-				error( "Not authorised to post commentary (the gods would prefer you don't do that right now)", jqXHR );
+				error( "Not authorised to post commentary", jqXHR );
 			},
 			403: function(jqXHR, textStatus, errorThrown) {
-				error( "Forbidden to post commentary (the gods forbid this from happening)", jqXHR );
+				error( "Forbidden to post commentary", jqXHR );
 			},
 			404: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: 404 not found (the gods can't be found)", jqXHR );
+				error( "Commentary not posted: 404 not found", jqXHR );
 			},
 			405: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 405 (the gods forbid the method of scarfice you are using)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 405", jqXHR );
 			},
 			406: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 406 (the gods do not find your sacrifice acceptable)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 406", jqXHR );
 			},
 			407: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 407 (the gods deny your proxy is authentic)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 407", jqXHR );
 			},
 			408: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 408 (the gods are busy battling titans and could not find the time for your request)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 408", jqXHR );
 			},
 			409: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 409 (the gods are in conflict)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 409", jqXHR );
 			},
 			410: function(jqXHR, textStatus, errorThrown) {
 				error( "Commentary not posted: HTTP Error Status 410 (the gods are gone (see also: Sophocles))", jqXHR );
 			},
 			411: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 411 (the gods demand a sacrifice of appropriate length)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 411", jqXHR );
 			},
 			412: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 412 (the gods demand preconditions which were not satisfied)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 412", jqXHR );
 			},
 			413: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 413 (the gods have determined your sacrificial entity was too large)" , jqXHR );
+				error( "Commentary not posted: HTTP Error Status 413" , jqXHR );
 			},
 			414: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 414 (the gods found your prayers went for too long and refused to accept them)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 414", jqXHR );
 			},
 			415: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 415 (the gods don't accept this type of sacrifice)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 415", jqXHR );
 			},
 			416: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 416 (the gods cannot satisfy the range of your requests)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 416", jqXHR );
 			},
 			417: function(jqXHR, textStatus, errorThrown) {
-				error( "Commentary not posted: HTTP Error Status 417 (the gods were expecting something else)", jqXHR );
+				error( "Commentary not posted: HTTP Error Status 417", jqXHR );
 			},
 			500: function(jqXHR, textStatus, errorThrown) {
 				error( "Server error: 500 Internal Error (the gods punish hubris)", jqXHR );
 			},
 			501: function(jqXHR, textStatus, errorThrown) {
-				error( "Server error: 501 Not Implemented (the gods have not implemented this type of sacrifice)", jqXHR );
+				error( "Server error: 501 Not Implemented", jqXHR );
 			},
 			502: function(jqXHR, textStatus, errorThrown) {
-				error( "Server error: 502 Bad Gateway (the gods tried to relay your request and were denied)", jqXHR );
+				error( "Server error: 502 Bad Gateway", jqXHR );
 			},
 			503: function(jqXHR, textStatus, errorThrown) {
-				error( "Server error: 503 Service Unavailable (the gods are getting too many sacrifices right now to deal with yours, tray again later)", jqXHR );
+				error( "Server error: 503 Service Unavailable (try again later)", jqXHR );
 			},
 			504: function(jqXHR, textStatus, errorThrown) {
-				error( "Server error: 504 Gateway Timeout (the gods tried to relay your request but the other gods aren't listening)", jqXHR );
+				error( "Server error: 504 Gateway Timeout", jqXHR );
 			},
 			505: function(jqXHR, textStatus, errorThrown) {
-				error( "Server error: 505 HTTP Version Not Supported (the gods don't like that method)", jqXHR );
+				error( "Server error: 505 HTTP Version Not Supported", jqXHR );
 			},
 		},
 	});
@@ -471,6 +471,7 @@ var sendcomment = function(ajaxurl, methodtype, data, commentform) {
 
 var error = function(msg, jqXHR) {
 	console.log(jqXHR);
+	console.log(msg);
 	alert(msg); // work out something nicer later.
 	//var alert = '<div class="alert alert-danger">' + msg + '.</div>'
 }

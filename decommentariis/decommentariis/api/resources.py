@@ -24,9 +24,10 @@ class TEIEntryResource(ModelResource):
 		resource_name = 'sourcetext'
 		excludes = ['metadata']
 		list_allowed_methods = ['get']
-		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authorization = Authorization()
-
+		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authentication = SessionAuthentication()
+		# authorization = Authorization()
+	
 	def dehydrate(self, bundle):
 		print("dehydrating ... " + str(self) + " ... " + str(bundle))
 		bundle.data['section_refs'] = bundle.obj.section_refs()
@@ -38,19 +39,21 @@ class TEISectionResource(ModelResource):
 	user_commentaries = fields.ToManyField(
 		'decommentariis.api.resources.CommentaryEntryResource',
 		'commentaryentry_set', related_name='section', null=True)
-
+	
 	class Meta:
 		queryset = TEISection.objects.all()
 		resource_name = 'sourcesection'
 		list_allowed_methods = ['get']
-		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authorization = Authorization()
+		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authentication = SessionAuthentication()
+		# authorization = Authorization()
 		filtering = {
 			'cts_urn': ALL,
 		}
-
+	
 	def dehydrate(self, bundle):
 		print("dehydrating ... " + str(self) + " ... " + str(bundle))
+		bundle.data['z_text_data'] = bundle.obj.readData()
 		return bundle
 
 
@@ -59,20 +62,22 @@ class TEISectionResourceContent(ModelResource):
 	user_commentaries = fields.ToManyField(
 		'decommentariis.api.resources.CommentaryEntryResource',
 		'commentaryentry_set', related_name='section', null=True)
-
+	
 	class Meta:
 		queryset = TEISection.objects.all()
 		resource_name = 'sourcesectiontext'
-		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authorization = Authorization()
+		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authentication = SessionAuthentication()
+		# authorization = Authorization()
 		list_allowed_methods = ['get']
 		filtering = {
 			'cts_urn': ALL,
 		}
-
+	
 	def dehydrate(self, bundle):
 		print("dehydrating ... " + str(self) + " ... " + str(bundle))
 		bundle.data['text_data'] = bundle.obj.readData()
+		# bundle.data['sourcesection'] =
 		return bundle
 
 
@@ -89,21 +94,22 @@ class CommentaryEntryResource(ModelResource):
 		queryset = CommentaryEntry.objects.all()
 		resource_name = 'sourcecommentary'
 		list_allowed_methods = ['get', 'put', 'post', 'delete']
-		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		authentication = SessionAuthentication()
 		authorization = Authorization()
 		filtering = {
 			'section': ALL_WITH_RELATIONS,
 			'user': ALL_WITH_RELATIONS,
 			'id': ALL,
 		}
-
+	
 	def dehydrate(self, bundle):
 		print("dehydrating ... " + str(self) + " ... " + str(bundle))
 		bundle.data['commentary.html'] = markdown.markdown(
 			bundle.obj.commentary,
 			encoding="utf-8", output_format="html5", safe_mode=False)
 		bundle.data['commentary.md'] = bundle.obj.commentary
-		return bundle 
+		return bundle
 
 
 class CommentaryEntryVoterResource(ModelResource):
@@ -114,10 +120,10 @@ class CommentaryEntryVoterResource(ModelResource):
 		queryset = CommentaryEntryVoter.objects.all()
 		resource_name = "voter"
 		list_allowed_methods = ['get', 'post', 'delete']
-		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authorization = Authorization()
-		# authentication = SessionAuthentication()
-		# authorization = UpdateUserObjectsOnlyAuthorization()
+		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authorization = Authorization()
+		authentication = SessionAuthentication()
+		authorization = UpdateUserObjectsOnlyAuthorization()
 		filtering = {
 			'entry': ALL_WITH_RELATIONS,
 			'voter': ALL_WITH_RELATIONS,
@@ -132,7 +138,8 @@ class UserResource(ModelResource):
 		resource_name = 'user'
 		list_allowed_methods = ['get']
 		fields = ['username', 'first_name', 'last_name', 'id']
-		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
+		authentication = SessionAuthentication()
 		authorization = Authorization()
 		filtering = {
 			'username': ALL,
@@ -152,10 +159,10 @@ class CohortResource(ModelResource):
 		resource_name = 'cohort'
 		list_allowed_methods = ['get', 'post', 'delete']
 		fields = ['cohort_name', 'cohort_description', 'instructor', 'creation_date']
+		authentication = SessionAuthentication()
+		authorization = CohortInstructorOrMemberAuthorization()
 		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		# authorization = CohortInstructorOrMemberAuthorization()
-		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authorization = Authorization()
+		# authorization = Authorization()
 
 
 class CohortMembersResource(ModelResource):
@@ -166,10 +173,10 @@ class CohortMembersResource(ModelResource):
 		queryset = CohortMembers.objects.all()
 		resource_name = 'cohortmember'
 		list_allowed_methods = ['get', 'post', 'delete']
+		authentication = SessionAuthentication()
+		authorization = CohortInstructorOrMemberAuthorization()
 		# authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		# authorization = CohortInstructorOrMemberAuthorization()
-		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authorization = Authorization()
+		# authorization = Authorization()
 		filtering = {
 			'cohort': ALL_WITH_RELATIONS,
 			'member': ALL_WITH_RELATIONS,
