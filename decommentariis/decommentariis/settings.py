@@ -173,3 +173,7 @@ except ImportError as e:
 	print("Error importing prod settings: {0}".format(str(e)))
 except FileNotFoundError as e:
 	print("Missing file: {0}".format(str(e)))
+
+print(DATABASES);
+print(SECRET_KEY);
+
