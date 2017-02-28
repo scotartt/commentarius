@@ -4,7 +4,6 @@ import sys
 import argparse
 import django
 import decommentariis
-django.setup()
 
 """this python file is a script that imports all readable TEI data from the disk."""
 
@@ -14,6 +13,7 @@ django.setup()
 os.environ['DJANGO_SETTINGS_MODULE'] = 'decommentariis.settings'
 os.environ['CTS_DATA_PATH'] = '/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/'
 
+django.setup()
 
 def parse_args():
 	env_cts_path = os.environ.get('CTS_DATA_PATH')
