@@ -43,4 +43,5 @@ decommentariis_db.sqlite3-journal
 decommentariis/decommentariis/migrations/
 data/greekLit.txt
 data/latinLit.txt
-/data/teiHeaderLatin.txt
+data/teiHeaderLatin.txt
+social_sites.sql

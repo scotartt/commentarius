@@ -1,0 +1,16 @@
+defusedxml==0.4.1
+Django==1.10.5
+django-allauth==0.30.0
+django-crispy-forms==1.6.1
+django-tastypie==0.13.3
+lxml==3.7.2
+Markdown==2.6.8
+oauthlib==2.0.1
+psycopg2==2.6.2
+pycrypto==2.6.1
+python-dateutil==2.6.0
+python-mimeparse==1.6.0
+python3-openid==3.0.10
+requests==2.13.0
+requests-oauthlib==0.7.0
+six==1.10.0
