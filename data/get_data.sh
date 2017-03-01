@@ -6,6 +6,8 @@ find canonical/CTS_XML_TEI/perseus/latinLit -type f | xargs grep -l 'TEI P4//DTD
 find canonical/CTS_XML_TEI/perseus/greekLit -type f | xargs grep -l '<TEI.2>' | grep 'grc' >>greekLitTemp.txt
 find canonical/CTS_XML_TEI/perseus/latinLit -type f | xargs grep -l '<TEI.2>' | grep 'lat' >>latinLitTemp.txt
 
+find canonical/CTS_XML_TEI/perseus/latinLit -type f | xargs grep -l '<teiHeader' | grep '\-lat' >teiHeaderLatin.txt
+
 find canonical/CTS_XML_TEI/perseus/greekLit -type f | xargs grep -l 'templates/tei-xl.rng' | grep 'grc' >>greekLitTemp.txt
 find canonical/CTS_XML_TEI/perseus/latinLit -type f | xargs grep -l 'templates/tei-xl.rng' | grep 'lat' >>latinLitTemp.txt
 

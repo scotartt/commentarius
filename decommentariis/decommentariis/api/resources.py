@@ -7,7 +7,7 @@ from tastypie.authentication import SessionAuthentication, BasicAuthentication, 
 from tastypie.authorization import DjangoAuthorization, Authorization, ReadOnlyAuthorization
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 
-from decommentariis.api.api_authorization import UpdateUserObjectsOnlyAuthorization
+from decommentariis.api.api_authorization import UserObjectsUpdateOnlyReadAllAuthorization
 from decommentariis.api.api_authorization import CohortInstructorOrMemberAuthorization
 from decommentariis.api.api_authorization import UserObjectsOnlyAuthorization
 from decommentariis.models import Cohort, CohortMembers
@@ -90,8 +90,8 @@ class CommentaryEntryResource(ModelResource):
 		queryset = CommentaryEntry.objects.all()
 		resource_name = 'sourcecommentary'
 		list_allowed_methods = ['get', 'put', 'post', 'delete']
-		authentication = MultiAuthentication(BasicAuthentication(), SessionAuthentication())
-		authorization = UpdateUserObjectsOnlyAuthorization()
+		authentication = SessionAuthentication()
+		authorization = UserObjectsUpdateOnlyReadAllAuthorization()
 		filtering = {
 			'section': ALL_WITH_RELATIONS,
 			'user': ALL_WITH_RELATIONS,
@@ -109,14 +109,14 @@ class CommentaryEntryResource(ModelResource):
 
 class CommentaryEntryVoterResource(ModelResource):
 	voter = fields.ForeignKey('decommentariis.api.resources.UserResource', 'user')
-	entry = fields.ForeignKey(CommentaryEntryResource, 'entry', related_name='voters')
+	entry = fields.ForeignKey('decommentariis.api.resources.CommentaryEntryResource', 'entry', related_name='voters')
 	
 	class Meta:
 		queryset = CommentaryEntryVoter.objects.all()
 		resource_name = "voter"
 		list_allowed_methods = ['get', 'post', 'delete']
 		authentication = SessionAuthentication()
-		authorization = Authorization()
+		authorization = UserObjectsUpdateOnlyReadAllAuthorization()
 		filtering = {
 			'entry': ALL_WITH_RELATIONS,
 			'voter': ALL_WITH_RELATIONS,

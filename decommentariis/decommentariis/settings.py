@@ -78,7 +78,7 @@ INSTALLED_APPS = (
 	'allauth.account',
 	'allauth.socialaccount',
 	'allauth.socialaccount.providers.google',
-	# 'allauth.socialaccount.providers.twitter',
+	'allauth.socialaccount.providers.github',
 	'allauth.socialaccount.providers.facebook',
 	'tastypie',
 	'crispy_forms',
@@ -114,7 +114,7 @@ SOCIALACCOUNT_PROVIDERS = {
 	},
 	'facebook': {
 		'METHOD': 'oauth2',
-		'SCOPE': ['email', 'public_profile', 'user_friends'],
+		'SCOPE': ['email', 'public_profile'],
 		'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
 		'FIELDS': [
 			'id',
@@ -127,6 +127,11 @@ SOCIALACCOUNT_PROVIDERS = {
 		# 'LOCALE_FUNC': 'path.to.callable',
 		'VERIFIED_EMAIL': False,
 		'VERSION': 'v2.4',
+	},
+	'github': {
+		'SCOPE': [
+			'read:user',
+		],
 	}
 }
 
@@ -173,7 +178,3 @@ except ImportError as e:
 	print("Error importing prod settings: {0}".format(str(e)))
 except FileNotFoundError as e:
 	print("Missing file: {0}".format(str(e)))
-
-print(DATABASES);
-print(SECRET_KEY);
-

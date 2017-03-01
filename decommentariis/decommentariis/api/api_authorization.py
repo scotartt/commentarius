@@ -54,7 +54,7 @@ class CohortInstructorOrMemberAuthorization(DjangoAuthorization):
             return False
 
 
-class UpdateUserObjectsOnlyAuthorization(Authorization):
+class UserObjectsUpdateOnlyReadAllAuthorization(Authorization):
     def read_list(self, object_list, bundle):
         return object_list
 
@@ -81,7 +81,7 @@ class UpdateUserObjectsOnlyAuthorization(Authorization):
 
     def delete_list(self, object_list, bundle):
         # Sorry user, no deletes for you!
-        raise Unauthorized("Sorry, no deletes.")
+        raise Unauthorized("Sorry, no list deletes.")
 
     def delete_detail(self, object_list, bundle):
         return bundle.obj.user == bundle.request.user
@@ -117,7 +117,7 @@ class UserObjectsOnlyAuthorization(Authorization):
 
     def delete_list(self, object_list, bundle):
         # Sorry user, no deletes for you!
-        raise Unauthorized("Sorry, no deletes.")
+        raise Unauthorized("Sorry, no list deletes.")
 
     def delete_detail(self, object_list, bundle):
         return bundle.obj.user == bundle.request.user
