@@ -11,7 +11,7 @@ import decommentariis
 # from decommentariis.xml_file import TEIDataSource
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'decommentariis.settings'
-os.environ['CTS_DATA_PATH'] = '/var/www/commentarius/data/'
+os.environ['CTS_DATA_PATH'] = '/var/www/commentarius/data/canonical/CTS_XML_TEI/perseus/'
 
 django.setup()
 

@@ -11,6 +11,6 @@ find canonical/CTS_XML_TEI/perseus/latinLit -type f | xargs grep -l '<teiHeader'
 find canonical/CTS_XML_TEI/perseus/greekLit -type f | xargs grep -l 'templates/tei-xl.rng' | grep 'grc' >>greekLitTemp.txt
 find canonical/CTS_XML_TEI/perseus/latinLit -type f | xargs grep -l 'templates/tei-xl.rng' | grep 'lat' >>latinLitTemp.txt
 
-cat greekLitTemp.txt | sort -u > greekLit.txt 
-cat latinLitTemp.txt | sort -u > latinLit.txt
+cat greekLitTemp.txt | sort -u > canonical/CTS_XML_TEI/perseus/greekLit.txt
+cat latinLitTemp.txt | sort -u > canonical/CTS_XML_TEI/perseus/latinLit.txt
 rm greekLitTemp.txt latinLitTemp.txt
