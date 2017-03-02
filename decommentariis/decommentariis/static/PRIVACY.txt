@@ -1,0 +1,49 @@
+PRIVACY POLICY, TERMS OF USE, DISCLAIMERS
+=========================================
+
+HTTPS://DECOMMENTARIIS.NET/
+
+Hey, we do open, crowd source commentaries on ancient texts. We aren't interested in monetising your data. We run on a budget of zero dollars. We don't have advertising. We don't sell your data. We run the website in https-only mode so it's always safe and secure. We love ancient texts, and we love commentaries. We give you the text, you give all of us the learned commentary.
+
+Note: we're not prudes about strong language (see below).
+
+PRIVACY POLICY
+
+De Commentariis (https://decommentariis.net) requires that you register with a social account like Google or Facebook. We are too small to bother verifying your details via our mechanisms so we rely on public information in social media and third-party type accounts.
+
+De Commentariis collects the following information about you:
+
+1. A 'username' (any valid string provided to us from third party sites like Google or Facebook).
+
+2. Your 'full name' that you use on the third party site like Google or Facebook.
+
+3. Your email address that you have provided to the third party site.
+
+That's it. We otherwise don't store, copy, pass on, give, or sell your details to any other party. We don't run ads, we don't use cookies to track where you've been. We don't care and we don't want to know.
+
+The third-party site, like Facebook or Google definitely will sell the crap out of your data. That's how they make bank. We don't make bank. We don't control Google or Facebook or any other site. Oh, FYI, they will know you use this site because you gave us permission to use the data they store on you, as above. We don't know what they do with this intelligence. There's probably a miracle diet advert they will target at you. Take it up with them.
+
+
+TERMS OF USE
+
+By using this site you agree to the following:
+
+1. Your commentaries are licenced to decommentariis.net using a creative commons attribution licence.
+
+2. You assert that you are the true legal owner of any commentary you provide.
+
+3. Abusive commentaries will be deleted. Site admin decides what abuse means without entering into any correspondence about the matter. Deletion will occur without notice.
+
+4. Don't be a fuckwit. If you're a fuckwit your account will be deleted. Site admin decides on the definition of what a fuckwit is, and will not enter into any correspondence on the matter. Account deletion will occur without notice.
+
+5. Site admin decides on terms of use and policies. We'll put a notice on the site if there are any major changes. We won't ever email you with offers or advertising of any type.
+
+
+DISCLAIMER
+
+There is no warranty.
+
+Route complaints to /dev/null -- you can be assured that we will if you don't.
+
+Genuine bugs to the github site.
+
