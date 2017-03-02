@@ -58,6 +58,8 @@ TEMPLATES = [
 SITE_ID = 2
 
 ALLOWED_HOSTS = [
+	'decommentariis.net',
+	'www.decommentariis.net',
 ]
 
 # LOGIN_URL='/login/'
