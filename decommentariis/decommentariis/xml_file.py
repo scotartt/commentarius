@@ -4,7 +4,7 @@ These python classes are used to get the data off the file system.
 from lxml import etree
 import os
 
-data_dir = "/Users/smcphee/Development/sources/commentarius/data/canonical/CTS_XML_TEI/perseus/"
+data_dir = "/var/www/commentarius/data/canonical/CTS_XML_TEI/perseus/"
 if os.environ.get("CTS_DATA_PATH"):
 	data_dir = os.environ.get("CTS_DATA_PATH")
 else:

@@ -9,7 +9,6 @@ from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 
 from decommentariis.api.api_authorization import UserObjectsUpdateOnlyReadAllAuthorization
 from decommentariis.api.api_authorization import CohortInstructorOrMemberAuthorization
-from decommentariis.api.api_authorization import UserObjectsOnlyAuthorization
 from decommentariis.models import Cohort, CohortMembers
 from decommentariis.models import TEIEntry, TEISection, CommentaryEntry, CommentaryEntryVoter
 
