@@ -3,6 +3,7 @@ These python classes are used to get the data off the file system.
 """
 from lxml import etree
 import os
+import locale
 
 data_dir = "/var/www/commentarius/data/canonical/CTS_XML_TEI/perseus/"
 if os.environ.get("CTS_DATA_PATH"):
@@ -17,10 +18,12 @@ latin_corpus_prefix_2 = "stoa"  # stoa texts
 greek_corpus_prefix = "tlg"  # thesaurus linguae graecae
 default_delim = ","
 
+print('encoding is ' + locale.getpreferredencoding(False))
+
 
 class TEIDataSource:
 	"""This class abstracts access to the XML data in the Perseus TEI files.
-	Expects CTS compliant URN to be passed to constructor. """
+Expects CTS compliant URN to be passed to constructor."""
 	# These fields (strings) simply encode various attributes parsed either
 	# from the given argument or out of the document.
 	urn = None
