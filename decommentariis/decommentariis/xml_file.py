@@ -19,8 +19,6 @@ latin_corpus_prefix_2 = "stoa"  # stoa texts
 greek_corpus_prefix = "tlg"  # thesaurus linguae graecae
 default_delim = ","
 
-print('encoding is ' + locale.getpreferredencoding(False), file=sys.stderr)
-
 
 class TEIDataSource:
 	"""This class abstracts access to the XML data in the Perseus TEI files.

@@ -65,6 +65,11 @@ def save_sections(section_numbers, entry):
 			tei_section.entry = entry
 			tei_section.section_ref = section
 			tei_section.cts_sequence = i
+			section_text = tei_section.readData()
+			meta_data = tei_section.read_doc_metadata()
+			print('\t\t\tMeta: {0}'.format(meta_data))
+			print('\t\t\tText: {0}'.format(section_text))
+			
 			tei_section.save()
 			i += 10
 	else:
