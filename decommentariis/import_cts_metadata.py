@@ -66,8 +66,6 @@ def save_sections(section_numbers, entry):
 			tei_section.section_ref = section
 			tei_section.cts_sequence = i
 			section_text = tei_section.readData()
-			meta_data = tei_section.read_doc_metadata()
-			print('\t\t\tMeta: {0}'.format(meta_data))
 			print('\t\t\tText: {0}'.format(section_text))
 			
 			tei_section.save()
@@ -84,6 +82,8 @@ def save_db(urn):
 		entry = decommentariis.models.TEIEntry.objects.get(cts_urn=urn)
 		section_numbers = entry.loadURN()
 		print('UPDATE {0}\n\t{1}'.format(urn, entry.bibliographic_entry))
+		meta_data = entry.read_doc_metadata()
+		print('\t\tMeta: {0}'.format(meta_data))
 		entry.save()
 		save_sections(section_numbers, entry)
 	elif it_exists:
