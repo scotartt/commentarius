@@ -299,7 +299,7 @@ class TEIDataSource:
 	
 	@staticmethod
 	def parser():
-		return etree.XMLParser(ns_clean=True, resolve_entities=False, no_network=True)
+		return etree.XMLParser(ns_clean=True, resolve_entities=False, no_network=True, encoding='utf-8')
 	
 	@staticmethod
 	def close_source(fo=None):
